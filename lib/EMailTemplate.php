@@ -103,7 +103,7 @@ class EMailTemplate extends ParentTemplate {
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
-		$this->header = include 'nmc_email_template/template/footer.php';
-		$this->htmlBody .= str_replace('<str_repalce>',$text, $this->header);
+		$this->footer = include 'nmc_email_template/template/footer.php';
+		$this->htmlBody .= str_replace('<str_repalce>',$text, $this->footer);
 	}
 }
