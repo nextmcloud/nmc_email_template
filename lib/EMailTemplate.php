@@ -79,14 +79,25 @@ class EMailTemplate extends ParentTemplate {
 		$this->ensureBodyListClosed();
 		$this->ensureBodyIsOpened();
 		// To DO:- Add condtions based on email event later this is test only
-		if ($this->emailId === 'settings.Welcome') {
+
+		switch ($this->emailId) {
+		  case "settings.Welcome":
 			$this->bodyText = include 'nmc_email_template/template/body.php';
-		}elseif($this->emailId === 'files_sharing.RecipientNotification'){
+			break;
+		  case "files_sharing.RecipientNotification":
 			$this->bodyText = include 'nmc_email_template/template/body.php';
-		}elseif($this->emailId === 'settings.TestEmail'){
+			break;
+		  case "settings.TestEmail":
 			$this->bodyText = include 'nmc_email_template/template/body.php';
-		}else{
+			break;
+		  case "quote.notification":
 			$this->bodyText = include 'nmc_email_template/template/body.php';
+			break;
+		  case "quota warning.notifiaiont":
+			$this->bodyText = include 'nmc_email_template/template/body.php';
+			break;
+		  default:
+		  	$this->bodyText = include 'nmc_email_template/template/body.php';
 		}
 		$this->htmlBody .= str_replace('<str_repalce>',$text, $this->bodyText);
 		// $this->htmlBody .= vsprintf($this->bodyText, [$text]);
