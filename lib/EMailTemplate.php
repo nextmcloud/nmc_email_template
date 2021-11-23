@@ -81,6 +81,10 @@ class EMailTemplate extends ParentTemplate {
 		// To DO:- Add condtions based on email event later this is test only
 		if ($this->emailId === 'settings.Welcome') {
 			$this->bodyText = include 'nmc_email_template/template/body.php';
+		}elseif($this->emailId === 'files_sharing.RecipientNotification'){
+			$this->bodyText = include 'nmc_email_template/template/body.php';
+		}elseif($this->emailId === 'settings.TestEmail'){
+			$this->bodyText = include 'nmc_email_template/template/body.php';
 		}else{
 			$this->bodyText = include 'nmc_email_template/template/body.php';
 		}
@@ -104,6 +108,6 @@ class EMailTemplate extends ParentTemplate {
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
 		$this->footer = include 'nmc_email_template/template/footer.php';
-		$this->htmlBody .= str_replace('<str_repalce>',$text, $this->footer);
+		$this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
 	}
 }
