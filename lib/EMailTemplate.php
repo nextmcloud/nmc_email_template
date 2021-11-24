@@ -25,6 +25,7 @@ namespace OCA\EmailTemplateExample;
 
 use Exception;
 use OC\Mail\EMailTemplate as ParentTemplate;
+use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
 
@@ -166,6 +167,7 @@ EOF;
 protected $bodyEnd = <<<EOF
 </div>
 EOF;
+protected $l10n = null;
 
 protected $button = "";
 
@@ -224,7 +226,9 @@ EOF;
 	 * Adds a header to the email
 	 */
 
-	public function addHeader() {
+	public function addHeader(?string $lang = null) {
+		$this->l10n = $this->l10nFactory->get('lib',$lang);
+
 		if ($this->headerAdded) {
 			return;
 		}
@@ -241,7 +245,6 @@ EOF;
 	 *   if empty the $text is used, if false none will be used
 	 */
 	public function addBodyText(string $text, $plainText = '') {
-		// $uid = \OC_User::getUser();
 		if ($this->footerAdded) {
 			return;
 		}
@@ -249,6 +252,7 @@ EOF;
 			$plainText = $text;
 			$text = htmlspecialchars($text);
 		}
+
 		$this->ensureBodyListClosed();
 		$this->ensureBodyIsOpened();
 		// To DO:- Add condtions based on email event later this is test only
@@ -296,6 +300,6 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer;
+		$this->htmlBody .= $this->footer."Details ".json_encode($this->data);
 	}
 }
