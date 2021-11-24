@@ -29,8 +29,8 @@ use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
 
-	protected $heading = "";
-	protected $displayname;
+	// protected $heading = "";
+	// protected $displayname;
 
 	protected $head = <<<EOF
 <!doctype html>
@@ -227,8 +227,8 @@ EOF;
 	 */
 
 	public function addHeader(?string $lang = null) {
-		$this->l10n = $this->l10nFactory->get('lib',$lang);
-
+		$this->l10n = $this->l10nFactory->get('nmc_email_template',$lang);
+		// replace translation here with replace method
 		if ($this->headerAdded) {
 			return;
 		}
@@ -300,6 +300,6 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer."Details ".json_encode($this->data);
+		$this->htmlBody .= $this->footer;
 	}
 }
