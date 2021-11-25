@@ -29,9 +29,24 @@ use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
 
-	// protected $heading = "";
-	// protected $displayname;
-
+	protected $heading = <<<EOF
+<table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
+	<tbody>
+	<tr style="padding:0;text-align:left;vertical-align:top;">
+		<td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+			<h1 class="text-center" style="Margin:0;margin-top:20px !important;Margin-bottom:10px;color:inherit;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal">%s</h1>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<table class="spacer float-center" style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:100%%">
+	<tbody>
+	<tr style="padding:0;text-align:left;vertical-align:top">
+		<td height="36px" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-size:40px;font-weight:400;hyphens:auto;line-height:36px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">&#xA0;</td>
+	</tr>
+	</tbody>
+</table>
+EOF;
 	protected $head = <<<EOF
 <!doctype html>
 <html>
@@ -238,6 +253,47 @@ EOF;
 
 
 	/**
+	 * Adds a heading to the email
+	 *
+	 * @param string $title
+	 * @param string|bool $plainTitle Title that is used in the plain text email
+	 *   if empty the $title is used, if false none will be used
+	 */
+	public function addHeading(string $title, $plainTitle = '') {
+		if ($plainTitle === '') {
+			$plainTitle = $title;
+		}
+
+		switch ($this->emailId) {
+			case "settings.Welcome":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
+			case "files_sharing.RecipientNotification":
+				$this->heading = "";
+				break;
+			case "defaultShareProvider.sendNote":
+				$this->heading = "";
+				break;
+			case "settings.TestEmail":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
+			case "quote.notification":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
+			case "quota warning.notifiaiont":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
+			default:
+				$$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+			}
+
+		if ($plainTitle !== false) {
+			$this->plainBody .= $plainTitle . PHP_EOL . PHP_EOL;
+		}
+	}
+
+
+	/**
 	 * Adds a paragraph to the body of the email
 	 *
 	 * @param string $text Note: When $plainText falls back to this, HTML is automatically escaped in the HTML email
@@ -257,29 +313,33 @@ EOF;
 		$this->ensureBodyIsOpened();
 		// To DO:- Add condtions based on email event later this is test only
 
+
 		switch ($this->emailId) {
 		  case "settings.Welcome":
-			$this->bodyText = include 'nmc_email_template/template/body.php';
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "files_sharing.RecipientNotification":
-			$this->bodyText = include 'nmc_email_template/template/files_sharing_recipient_notification.php';
+			$this->heading = "";
+			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
+			$this->htmlBody .=  $this->bodyText;
 			break;
 		  case "defaultShareProvider.sendNote":
+			$this->heading = "";
 			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
+			$this->htmlBody .=  $this->bodyText;
 			break;
 		  case "settings.TestEmail":
-			$this->bodyText = include 'nmc_email_template/template/test_email.php';
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "quote.notification":
-			$this->bodyText = include 'nmc_email_template/template/body.php';
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "quota warning.notifiaiont":
-			$this->bodyText = include 'nmc_email_template/template/body.php';
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  default:
-		  	$this->bodyText = include 'nmc_email_template/template/body.php';
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 		}
-		$this->htmlBody .= str_replace('<str_repalce>',$text, $this->bodyText);
 		// $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 		if ($plainText !== false) {
 			$this->plainBody .= $plainText . PHP_EOL . PHP_EOL;
@@ -300,6 +360,6 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer;
+		$this->htmlBody .= $this->footer." ".$this->emailId;
 	}
 }
