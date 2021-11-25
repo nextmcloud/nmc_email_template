@@ -159,8 +159,8 @@ protected $header = <<<EOF
   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 	<tr>
 	  <td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
-	  <img src="https://dev1.next.magentacloud.de/themes/nextmagentacloud21/core/img/logo.svg" width="72px" height="35px"/>
-	<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;"> Life is for sharing.</span>
+	  <img src="host_name/themes/nextmagentacloud21/core/img/logo.svg" width="72px" height="35px"/>
+	<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;">Life is for sharing.</span>
 	  </td>
 	</tr>
 	<tr>
@@ -247,6 +247,13 @@ EOF;
 		if ($this->headerAdded) {
 			return;
 		}
+		$host = $_SERVER['HTTP_HOST'];
+		// $host = 'https://dev1.next.magentacloud.de'; // for test only
+
+		$sloganTranslated = $this->l10n->t('Life is for sharing');
+
+		$this->header = str_replace('host_name',$host, str_replace('Life is for sharing', $sloganTranslated, $this->header));
+
 		$this->headerAdded = true;
 		$this->htmlBody .= $this->header;
 	}
