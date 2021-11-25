@@ -320,7 +320,7 @@ EOF;
 			break;
 		  case "files_sharing.RecipientNotification":
 			$this->heading = "";
-			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
+			$this->bodyText = include 'nmc_email_template/template/files_sharing_recipient_notification.php';
 			$this->htmlBody .=  $this->bodyText;
 			break;
 		  case "defaultShareProvider.sendNote":
@@ -360,6 +360,7 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer." ".$this->emailId;
+		//$this->htmlBody .= $this->footer." ".$this->emailId;
+		$this->htmlBody .= $this->footer;
 	}
 }
