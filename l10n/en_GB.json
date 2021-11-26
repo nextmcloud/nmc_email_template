@@ -1,5 +1,7 @@
 { "translations": {
 	"Open share" : "Open share",
-	"Life is for sharing" : "Life is for sharing"
+	"Life is for sharing" : "Life is for sharing",
+	"has shared" : "has shared",
+	"With You. Click button below to accept and open it." :"With You. Click button below to accept and open it."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
