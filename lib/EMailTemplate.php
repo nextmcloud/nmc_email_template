@@ -291,7 +291,7 @@ EOF;
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			default:
-				$$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 			}
 
 		if ($plainTitle !== false) {
