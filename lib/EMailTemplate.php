@@ -188,33 +188,37 @@ protected $button = "";
 
 protected $buttonGroup = "";
 
-protected $listEnd = "";
+// protected $listEnd = "";
 
-protected $listItem = "";
+// protected $listItem = "";
 
-protected $listBegin = "";
+// protected $listBegin = "";
 
 protected $footer = <<<EOF
 <!-- START FOOTER -->
 <div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:2px solid #e5e5e5">
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-	<tr>
-	  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
-		<span class="apple-link" style="color: #191919; font-size: 16px; text-align: left;">© Telekom Deutschland GmbH</span>
-	  </td>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+  <tr>
+	<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
+	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">© Telekom Deutschland GmbH</span>
+	</td>
+	<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
+	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">
+Unsubscribe</span>
+	</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-		<span class="apple-link" style="color: #191919; font-size: 16px; text-align: left;">
+	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">
 Impressum</span>
-	  </td>
+	</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-		<span class="apple-link" style="color: #191919; font-size: 16px; text-align: left;">Datenschutz</span>
-	  </td>
+	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">Datenschutz</span>
+	</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
-		<span class="apple-link" style="color: #191919; font-size: 16px; text-align: left;">Hilfe & FAQ</span>
-	  </td>
-	</tr>
+	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">Hilfe & FAQ</span>
+	</td>
+  </tr>
 
-  </table>
+</table>
 </div>
 <!-- END FOOTER -->
 EOF;
@@ -247,7 +251,8 @@ EOF;
 		if ($this->headerAdded) {
 			return;
 		}
-		$host = $_SERVER['HTTP_HOST'];
+		// $host = $_SERVER['HTTP_HOST'];
+		$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
 		// $host = 'https://dev1.next.magentacloud.de'; // for test only
 
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
@@ -288,6 +293,9 @@ EOF;
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quota warning.notifiaiont":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
+			case "activity.Notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			default:
@@ -344,6 +352,9 @@ EOF;
 		  case "quota warning.notifiaiont":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
+		  case "activity.Notification":
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			break;
 		  default:
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 		}
@@ -367,7 +378,9 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		//$this->htmlBody .= $this->footer." ".$this->emailId;
 		$this->htmlBody .= $this->footer;
+		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
+
 	}
 }
