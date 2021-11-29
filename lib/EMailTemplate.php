@@ -195,32 +195,30 @@ protected $buttonGroup = "";
 // protected $listBegin = "";
 
 protected $footer = <<<EOF
-<!-- START FOOTER -->
-<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:2px solid #e5e5e5">
-<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-  <tr>
-	<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
-	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">© Telekom Deutschland GmbH</span>
-	</td>
-	<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">
-Unsubscribe</span>
-	</td>
-<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">
-Impressum</span>
-	</td>
-<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">Datenschutz</span>
-	</td>
-<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
-	  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">Hilfe & FAQ</span>
-	</td>
-  </tr>
+<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+                  <tr>
+                    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
+                      <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Deutsche Telekom GmbH</span>
+                    </td>
+                    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+                      <span class="apple-link" style="color: #191919; font-size: 12px; ">
+                        <a href="https://dev1.next.magentacloud.de/settings/user/activity">Unsubscribe</a></span>
+                    </td>
+  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+                      <span class="apple-link" style="color: #191919; font-size: 12px;">
+  Impressum</span>
+                    </td>
+  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+                      <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">Datenschutz</span>
+                    </td>
+  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
+                      <span class="apple-link" style="color: #191919; font-size: 12px;">Hilfe & FAQ</span>
+                    </td>
+                  </tr>
 
-</table>
-</div>
-<!-- END FOOTER -->
+                </table>
+              </div>
 EOF;
 
 	/**
