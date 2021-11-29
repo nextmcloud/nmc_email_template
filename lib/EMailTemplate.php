@@ -250,8 +250,8 @@ EOF;
 			return;
 		}
 		// $host = $_SERVER['HTTP_HOST'];
-		$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
-		// $host = 'https://dev1.next.magentacloud.de'; // for test only
+		// $host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
+		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
@@ -300,9 +300,9 @@ EOF;
 					<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 					  <tr>
 						<td style="font-family: sans-serif; vertical-align: top;">
-						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello
+						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').'
 						  "'.$this->data["displayname"].'",</p>
-						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; Margin-bottom: 16px;">There were the following activities in your <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
+						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('There were the following activities in your').' <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
 						</td>
 					  </tr>
 					</table>
@@ -394,7 +394,7 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer;
+		 $this->htmlBody .= $this->footer;
 		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
