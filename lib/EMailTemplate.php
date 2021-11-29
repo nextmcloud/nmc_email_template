@@ -195,11 +195,11 @@ protected $buttonGroup = "";
 // protected $listBegin = "";
 
 protected $footer = <<<EOF
-<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:2px solid #e5e5e5">
+<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                   <tr>
                     <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
-                      <span class="apple-link" style="color: #191919; font-size: 12px;">© Telekom Deutschland GmbH</span>
+                      <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Deutsche Telekom GmbH</span>
                     </td>
                     <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
                       <span class="apple-link" style="color: #191919; font-size: 12px; ">
