@@ -279,12 +279,12 @@ EOF;
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "sharebymail.RecipientNotification":
+				$this->heading = "";
+				break;
 			case "files_sharing.RecipientNotification":
 				$this->heading = "";
 				break;
-			case "defaultShareProvider.sendNote":
-				$this->heading = "";
-				break;
+
 			case "settings.TestEmail":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
@@ -348,15 +348,14 @@ EOF;
 		switch ($this->emailId) {
 		  case "settings.Welcome":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
-			break;
+			break;;
 		  case "sharebymail.RecipientNotification":
-		  case "files_sharing.RecipientNotification":
-			$this->bodyText = include 'nmc_email_template/template/files_sharing_recipient_notification.php';
-			$this->htmlBody .=  $this->bodyText;
+			$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
-		  case "defaultShareProvider.sendNote":
-			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
-			$this->htmlBody .=  $this->bodyText;
+		  case "files_sharing.RecipientNotification":
+			$this->bodyText = include_once 'nmc_email_template/template/files_sharing_recipient_notification.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "settings.TestEmail":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -369,7 +368,7 @@ EOF;
 			break;
 		  case "activity.Notification":
 			$this->bodyText = "";
-			// $this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  default:
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -394,8 +393,8 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		// $this->htmlBody .= $this->footer;
-		 $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+		 $this->htmlBody .= $this->footer;
+		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
