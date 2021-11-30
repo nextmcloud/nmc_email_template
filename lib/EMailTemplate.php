@@ -250,8 +250,8 @@ EOF;
 			return;
 		}
 		// $host = $_SERVER['HTTP_HOST'];
-		$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
-		// $host = 'https://dev1.next.magentacloud.de'; // for test only
+		// $host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
+		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
@@ -278,6 +278,7 @@ EOF;
 			case "settings.Welcome":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
+			case "sharebymail.RecipientNotification":
 			case "files_sharing.RecipientNotification":
 				$this->heading = "";
 				break;
@@ -294,7 +295,22 @@ EOF;
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "activity.Notification":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
+				<tr>
+				  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+					<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+					  <tr>
+						<td style="font-family: sans-serif; vertical-align: top;">
+						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').'
+						  "'.$this->data["displayname"].'",</p>
+						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('There were the following activities in your').' <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
+						</td>
+					  </tr>
+					</table>
+				  </td>
+				</tr>
+			   </table>';
+				$this->htmlBody .= $this->heading;
 				break;
 			default:
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
@@ -304,6 +320,8 @@ EOF;
 			$this->plainBody .= $plainTitle . PHP_EOL . PHP_EOL;
 		}
 	}
+
+
 
 
 	/**
@@ -331,13 +349,12 @@ EOF;
 		  case "settings.Welcome":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
+		  case "sharebymail.RecipientNotification":
 		  case "files_sharing.RecipientNotification":
-			$this->heading = "";
 			$this->bodyText = include 'nmc_email_template/template/files_sharing_recipient_notification.php';
 			$this->htmlBody .=  $this->bodyText;
 			break;
 		  case "defaultShareProvider.sendNote":
-			$this->heading = "";
 			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
 			$this->htmlBody .=  $this->bodyText;
 			break;
@@ -351,7 +368,8 @@ EOF;
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "activity.Notification":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText = "";
+			// $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  default:
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -376,8 +394,8 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+		// $this->htmlBody .= $this->footer;
+		 $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
