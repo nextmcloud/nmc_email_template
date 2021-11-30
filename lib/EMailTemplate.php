@@ -278,6 +278,7 @@ EOF;
 			case "settings.Welcome":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
+			case "sharebymail.RecipientNotification":
 			case "files_sharing.RecipientNotification":
 				$this->heading = "";
 				break;
@@ -348,13 +349,12 @@ EOF;
 		  case "settings.Welcome":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
+		  case "sharebymail.RecipientNotification":
 		  case "files_sharing.RecipientNotification":
-			$this->heading = "";
 			$this->bodyText = include 'nmc_email_template/template/files_sharing_recipient_notification.php';
 			$this->htmlBody .=  $this->bodyText;
 			break;
 		  case "defaultShareProvider.sendNote":
-			$this->heading = "";
 			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
 			$this->htmlBody .=  $this->bodyText;
 			break;
@@ -394,8 +394,8 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		 $this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+		// $this->htmlBody .= $this->footer;
+		 $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
