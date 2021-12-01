@@ -28,7 +28,7 @@ use OC\Mail\EMailTemplate as ParentTemplate;
 use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
-
+	protected $urlPath = "";
 	protected $heading = <<<EOF
 <table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
@@ -194,33 +194,6 @@ protected $buttonGroup = "";
 
 // protected $listBegin = "";
 
-protected $footer = <<<EOF
-<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-                    <tr>
-                      <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
-                        <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Deutsche Telekom GmbH</span>
-                      </td>
-                      <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-                        <span class="apple-link" style="color: #191919; font-size: 12px; ">
-                          <a href="https://dev1.next.magentacloud.de/settings/user/activity">Unsubscribe</a></span>
-                      </td>
-    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-                        <span class="apple-link" style="color: #191919; font-size: 12px;">
-                          <a href="http://www.telekom.de/impressum">Impressum</a></span>
-                      </td>
-    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-                        <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <Datenschutz href="https://static.magentacloud.de/Datenschutz">Datenschutz</a></span>
-                      </td>
-    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
-                        <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">Hilfe & FAQ</a></span>
-                      </td>
-                    </tr>
-
-                  </table>
-                </div>
-EOF;
-
 	/**
 	 * the following method overwrites the add button group method and
 	 * manipulates the result for the welcome email to only include one button
@@ -250,12 +223,12 @@ EOF;
 			return;
 		}
 		// $host = $_SERVER['HTTP_HOST'];
-		// $host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
+		$this->urlPath = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
 		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
-		$this->header = str_replace('host_name',$host, str_replace('Life is for sharing', $sloganTranslated, $this->header));
+		$this->header = str_replace('host_name',$this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
 
 		$this->headerAdded = true;
 		$this->htmlBody .= $this->header;
@@ -287,7 +260,8 @@ EOF;
 				break;
 
 			case "settings.TestEmail":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->htmlBody = "";
+				$this->heading = "";
 				break;
 			case "quote.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
@@ -350,7 +324,7 @@ EOF;
 		  case "settings.Welcome":
 			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
 			$this->htmlBody .= rtrim($this->bodyText,"1");
-			break;;
+			break;
 		  case "sharebymail.RecipientNotification":
 			$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
 			$this->htmlBody .= rtrim($this->bodyText,"1");
@@ -360,7 +334,8 @@ EOF;
 			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "settings.TestEmail":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -388,6 +363,30 @@ EOF;
 	 */
 
 	public function addFooter(string $text = '', ?string $lang = null) {
+		$this->footer = '<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
+		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+		  <tr>
+			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Deutsche Telekom GmbH</span>
+			</td>
+			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
+				<a href="'.$this->urlPath.'/index.php/settings/user/activity">Unsubscribe</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;">
+				<a href="http://www.telekom.de/impressum">Impressum</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <Datenschutz href="https://static.magentacloud.de/Datenschutz">Datenschutz</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">Hilfe & FAQ</a></span>
+			</td>
+		  </tr>
+
+		</table>
+	  </div>';
 		if ($this->footerAdded) {
 			return;
 		}

@@ -98,13 +98,13 @@
 			<tr>
 			<td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;
 ">
-			<img src="https://dev1.next.magentacloud.de/themes/nextmagentacloud21/core/img/logo.svg" width="72px" height="35px"/>
+			<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/logo.svg" width="72px" height="35px"/>
 			<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;"> Life is for sharing.</span>
 			</td>
 			</tr>
 			<tr>
 			<td class="content-block" style="font-family: sans-serif; vertical-align: top;">
-			<img src="/welcome-banner.png" width="100%" style="margin-top: 16px;"/>
+			<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/icons/welcome-banner.png" width="100%" style="margin-top: 16px;"/>
 			</td>
 			</tr>
 		</table>
@@ -130,7 +130,7 @@
 				<tr style="background-color: #f1f1f1;">
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 					<div style="Width: 100%;padding-top: 32px;padding-bottom: 24px;padding-left: 24px;box-sizing: border-box;">
-						<img src="mobile.svg" width="48px" height="48px">
+						<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/icons/mobile.svg" width="48px" height="48px">
 						<div style="display: inline-block;vertical-align: top;padding-top: 2px;">
 						<span style="font-size: 16px;color:#191919">Software & Apps:</span>
 						<br/>
@@ -140,7 +140,7 @@
 					</td>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 						<div style="width: 100%;padding-top: 32px;padding-bottom: 24px;padding-right: 24px;box-sizing: border-box;">
-						<img src="computer.svg" width="48px" height="48px" style="margin-right: 8px;">
+						<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/icons/computer.svg" width="48px" height="48px" style="margin-right: 8px;">
 						<div style="display: inline-block;vertical-align: super;padding-top: 2px;">
 							<span style="font-size: 16px;color:#191919">Online Information:</span>
 							<br/>
