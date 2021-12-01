@@ -8,7 +8,7 @@
 	 <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 	   <tr>
 		 <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello "'.$this->data['shareWith'].'",</p>
+		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello "'.$this->data['shareWithDisplayName'].'",</p>
 		   <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->data['initiator'].' '.$this->l10n->t('has shared').' >> '.$this->data['filename'].' '.$this->l10n->t('With You. Click button below to accept and open it.').'</p>
 		   <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
 			 <tbody>
