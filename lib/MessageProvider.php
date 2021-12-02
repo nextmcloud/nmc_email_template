@@ -341,7 +341,7 @@ EOF,
 	}
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
-		$emailTemplate->addHeading('Hello ' . $user->getDisplayName() . ',');
+		$emailTemplate->addHeading('Hello ' . $user->getDisplayNameOtherUser() . ',');
 		$home = $this->generator->getAbsoluteURL('/');
 
 		$emailTemplate->addBodyText(
