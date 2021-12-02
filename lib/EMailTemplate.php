@@ -371,17 +371,17 @@ protected $buttonGroup = "";
 			</td>
 			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a href="'.$this->urlPath.'/index.php/settings/user/activity">Unsubscribe</a></span>
+				<a href="'.$this->urlPath.'/index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
 			</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;">
-				<a href="http://www.telekom.de/impressum">Impressum</a></span>
+				<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a></span>
 			</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <Datenschutz href="https://static.magentacloud.de/Datenschutz">Datenschutz</a></span>
+			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <Datenschutz href="https://static.magentacloud.de/Datenschutz">'.$this->l10n->t('Data Protection').'</a></span>
 			</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">Hilfe & FAQ</a></span>
+			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a></span>
 			</td>
 		  </tr>
 
