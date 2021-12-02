@@ -28,7 +28,7 @@ use OC\Mail\EMailTemplate as ParentTemplate;
 use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
-
+	protected $urlPath = "";
 	protected $heading = <<<EOF
 <table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
@@ -194,33 +194,6 @@ protected $buttonGroup = "";
 
 // protected $listBegin = "";
 
-protected $footer = <<<EOF
-<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-                  <tr>
-                    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
-                      <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Deutsche Telekom GmbH</span>
-                    </td>
-                    <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-                      <span class="apple-link" style="color: #191919; font-size: 12px; ">
-                        <a href="https://dev1.next.magentacloud.de/settings/user/activity">Unsubscribe</a></span>
-                    </td>
-  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-                      <span class="apple-link" style="color: #191919; font-size: 12px;">
-  Impressum</span>
-                    </td>
-  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
-                      <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">Datenschutz</span>
-                    </td>
-  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
-                      <span class="apple-link" style="color: #191919; font-size: 12px;">Hilfe & FAQ</span>
-                    </td>
-                  </tr>
-
-                </table>
-              </div>
-EOF;
-
 	/**
 	 * the following method overwrites the add button group method and
 	 * manipulates the result for the welcome email to only include one button
@@ -250,12 +223,12 @@ EOF;
 			return;
 		}
 		// $host = $_SERVER['HTTP_HOST'];
-		$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
-		// $host = 'https://dev1.next.magentacloud.de'; // for test only
+		$this->urlPath = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
+		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
-		$this->header = str_replace('host_name',$host, str_replace('Life is for sharing', $sloganTranslated, $this->header));
+		$this->header = str_replace('host_name',$this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
 
 		$this->headerAdded = true;
 		$this->htmlBody .= $this->header;
@@ -276,16 +249,19 @@ EOF;
 
 		switch ($this->emailId) {
 			case "settings.Welcome":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->htmlBody = "";
+				$this->heading = "";
+				break;
+			case "sharebymail.RecipientNotification":
+				$this->heading = "";
 				break;
 			case "files_sharing.RecipientNotification":
 				$this->heading = "";
 				break;
-			case "defaultShareProvider.sendNote":
-				$this->heading = "";
-				break;
+
 			case "settings.TestEmail":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->htmlBody = "";
+				$this->heading = "";
 				break;
 			case "quote.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
@@ -294,7 +270,22 @@ EOF;
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "activity.Notification":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
+				<tr>
+				  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+					<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+					  <tr>
+						<td style="font-family: sans-serif; vertical-align: top;">
+						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').'
+						  "'.$this->data["displayname"].'",</p>
+						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('There were the following activities in your').' <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
+						</td>
+					  </tr>
+					</table>
+				  </td>
+				</tr>
+			   </table>';
+				$this->htmlBody .= $this->heading;
 				break;
 			default:
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
@@ -304,6 +295,8 @@ EOF;
 			$this->plainBody .= $plainTitle . PHP_EOL . PHP_EOL;
 		}
 	}
+
+
 
 
 	/**
@@ -329,20 +322,20 @@ EOF;
 
 		switch ($this->emailId) {
 		  case "settings.Welcome":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
+			break;
+		  case "sharebymail.RecipientNotification":
+			$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "files_sharing.RecipientNotification":
-			$this->heading = "";
-			$this->bodyText = include 'nmc_email_template/template/files_sharing_recipient_notification.php';
-			$this->htmlBody .=  $this->bodyText;
-			break;
-		  case "defaultShareProvider.sendNote":
-			$this->heading = "";
-			$this->bodyText = include 'nmc_email_template/template/default_shareprovider_sendnote.php';
-			$this->htmlBody .=  $this->bodyText;
+			$this->bodyText = include_once 'nmc_email_template/template/files_sharing_recipient_notification.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "settings.TestEmail":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -351,7 +344,8 @@ EOF;
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "activity.Notification":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText = "";
+			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  default:
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -369,6 +363,30 @@ EOF;
 	 */
 
 	public function addFooter(string $text = '', ?string $lang = null) {
+		$this->footer = '<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
+		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+		  <tr>
+			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Deutsche Telekom GmbH</span>
+			</td>
+			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
+				<a href="'.$this->urlPath.'/index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;">
+				<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <Datenschutz href="https://static.magentacloud.de/Datenschutz">'.$this->l10n->t('Data Protection').'</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #999999; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a></span>
+			</td>
+		  </tr>
+
+		</table>
+	  </div>';
 		if ($this->footerAdded) {
 			return;
 		}
@@ -376,7 +394,7 @@ EOF;
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		$this->htmlBody .= $this->footer;
+		 $this->htmlBody .= $this->footer;
 		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
