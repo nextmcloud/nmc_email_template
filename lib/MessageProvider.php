@@ -341,14 +341,15 @@ EOF,
 	}
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
-		$emailTemplate->addHeading('Hello ' . $user->getDisplayNameOtherUser() . ',');
+	   //$emailTemplate->addHeading('Hello ' . $user->getDisplayNameOtherUser() . ',');
+		$displayName = $user->getDisplayNameOtherUser();
 		$home = $this->generator->getAbsoluteURL('/');
 
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<table><tr>
 		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-		  <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello "Display Name of recipient",</p>
+		  <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello $displayName,</p>
 		  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.</p>
 		  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">We also give you tips and tricks for the daily use of you <br>MagentaCLOUD.You can find out how to upload,move,share etc.files<br>
 		  here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">First Steps</a></p>
