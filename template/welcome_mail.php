@@ -99,7 +99,7 @@
 			<td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;
 ">
 			<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/logo.svg" width="72px" height="35px"/>
-			<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;"> Life is for sharing.</span>
+			<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;">'.$this->l10n->t('Life is for sharing').'</span>
 			</td>
 			</tr>
 			<tr>
@@ -120,9 +120,11 @@
 				<tr>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding:0 24px;">
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello "'.$this->data['displayname'].'",</p>
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.</p>
-					<a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a>
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin-top: 32px; Margin-bottom: 24px;">with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.</p>
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.').'
+					</p>
+					<a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">'.$this->l10n->t('Open MagentaCLOUD').'</a>
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin-top: 32px; Margin-bottom: 24px;">'.$this->l10n->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.').'
+					</p>
 					</td>
 				</tr>
 				</table>
@@ -156,14 +158,14 @@
 					<div style="">
 						<span style="font-family: sans-serif; font-size: 14px;font-weight: bold;">Die vorteile der MagentaCLOUD im Uberblick:</span>
 						<ul style="margin-top: 16px;margin-bottom: 32px;list-style: none;padding: 0;">
-						<li style="margin-bottom: 8px;background: url(./checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">Erinnerungen sicher aufbewahren</li>
-						<li style="margin-bottom: 8px;background: url(./checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">Besondere Momente mit der Familie teilen</li>
-						<li style="margin-bottom: 8px;background: url(./checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">Alle Dateien im Überblick behalten</li>
-						<li style="margin-bottom: 0px;background: url(./checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">Gerätespeicher kostenlos erweitern</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep memories safe').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Share special moments with family').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep all files in overview').'</li>
+						<li style="margin-bottom: 0px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Expand device memory free of charge').'</li>
 						</ul>
-						<p style="margin:0"> Mehr Informationen sowie häufige Fragen und Antworten zur MagentaCLOUD finden Sie unter</p>
+						<p style="margin:0"> '.$this->l10n->t('You can find more information as well as frequently asked questions and answers about MagentaCLOUD at').'</p>
 						<a href="www.telekom.de/magentacloud" style="text-decoration: none;">www.telekom.de/magentacloud</a>
-						<p>Ihre Telekom</p>
+						<p>'.$this->l10n->t('Your Telekom').'</p>
 					</div>
 					</td>
 					<td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
@@ -171,10 +173,10 @@
 
 						<div style="font-weight: bolder;"><span style="font-size: 40px;color:#191919;">100 GB</span></div>
 						<span style="font-weight: bolder;font-size: 12px;">MagentaCLOUD M</span>
-						<p style="font-size: 10px;margin-top: 8px;margin-bottom: 16px;text-align: left;">Jetzt auf MagentaCLOUD M <br />upgraden für nur 1,95 € im Monat und sofort über 100 GB Speicher<br /> verfügen.
-							<br /> 3 Monate Mindestvertragslaufzeit</p>
-							<span style="display:inline-block; font-size:20px;margin-top: 16px;margin-bottom: 16px;">nur <span style="font-weight: bolder;">1,95 €</span> mtl.</span>
-						<a href="#" target="_blank" style="display: inline-block;color: #ffffff;background-color: #e20074 !important;border: solid 1px #e20074;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+						<p style="font-size: 10px;margin-top: 8px;margin-bottom: 16px;text-align: left;">'.$this->l10n->t('Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available.').'
+							<br /> '.$this->l10n->t('3 months minimum contract term').'</p>
+							<span style="display:inline-block; font-size:20px;margin-top: 16px;margin-bottom: 16px;">'.$this->l10n->t('only').' <span style="font-weight: bolder;">1,95 €</span> '.$this->l10n->t('monthly').'</span>
+						<a href="#" target="_blank" style="display: inline-block;color: #ffffff;background-color: #e20074 !important;border: solid 1px #e20074;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">'.$this->l10n->t('Expand Storage').'</a>
 						</div>
 						</td>
 					</tr>
