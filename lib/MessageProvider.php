@@ -204,6 +204,7 @@ EOF,
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
+
 <table style="background-color: #f8f8f8; padding: 20px; width: 100%">
 	<tr>
 		<td style="padding-right: 20px; text-align: center">
@@ -233,19 +234,19 @@ EOF,
 			<<<EOF
 			<div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
 			<table id="part1"><td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-			
-			<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>    
-			  <br>                    
+
+			<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+			  <br>
 			  <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-			  <br>        
+			  <br>
 			  <span style="font-weight: bold;">Storage</span>
-			  <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]</span>% of your memory is currently occupied. You can expand your storage space at any time for 
+			  <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]</span>% of your memory is currently occupied. You can expand your storage space at any time for
 				a fee.</p>
 				$requestMoreStorageLink
 			  <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
 			  </td></table>
 			  </div>
-			
+
 EOF,
 			"."
 		);
@@ -299,7 +300,7 @@ EOF,
 		} else {
 			$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
 			// $host = 'https://dev1.next.magentacloud.de'; // for test only
-			
+
 			$emailTemplate->addBodyText(
 				<<<EOF
 				<div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
@@ -313,7 +314,7 @@ EOF,
 				  </td>
 				  <table>
 				  </div>
-				
+
 EOF,
 				"."
 			);
@@ -372,6 +373,6 @@ EOF,
 EOF,
 			"."
 		);
-	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');	
+	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
 	}
 }
