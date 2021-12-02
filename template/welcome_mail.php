@@ -119,11 +119,11 @@
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 				<tr>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding:0 24px;">
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello "'.$this->data['displayname'].'",</p>
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.').'
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').' "'.$this->data['displayname'].'",</p>
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t("we have activated your MagentaCLOUD, Telekom's online storage. Just click the link, log in and you are ready to go.").'
 					</p>
 					<a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">'.$this->l10n->t('Open MagentaCLOUD').'</a>
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin-top: 32px; Margin-bottom: 24px;">'.$this->l10n->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.').'
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin-top: 32px; Margin-bottom: 24px;">'.$this->l10n->t('With MagentaCLOUD, you can store your photos, videos, documents and much more securely online and access them from anywhere using your personal access data.').'
 					</p>
 					</td>
 				</tr>
@@ -134,7 +134,7 @@
 					<div style="Width: 100%;padding-top: 32px;padding-bottom: 24px;padding-left: 24px;box-sizing: border-box;">
 						<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/mobile.svg" width="48px" height="48px">
 						<div style="display: inline-block;vertical-align: top;padding-top: 2px;">
-						<span style="font-size: 16px;color:#191919">Software & Apps:</span>
+						<span style="font-size: 16px;color:#191919">'.$this->l10n->t('Software & Apps').':</span>
 						<br/>
 						<a style="font-size: 12px;text-decoration: none;color:#e20074" href="https://cloud.telekom-dienste.de/software-apps">magentacloud.de/software-apps</a>
 					</div>
@@ -144,7 +144,7 @@
 						<div style="width: 100%;padding-top: 32px;padding-bottom: 24px;padding-right: 24px;box-sizing: border-box;">
 						<img src="'.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/computer.svg" width="48px" height="48px" style="margin-right: 8px;">
 						<div style="display: inline-block;vertical-align: super;padding-top: 2px;">
-							<span style="font-size: 16px;color:#191919">Online Information:</span>
+							<span style="font-size: 16px;color:#191919">'.$this->l10n->t('Online Information').':</span>
 							<br/>
 							<a style="font-size: 12px;text-decoration: none;color:#e20074" href="https://telekom.de/magentacloud">telekom.de/magentacloud</a>
 						</div>
@@ -156,9 +156,9 @@
 				<tr>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 					<div style="">
-						<span style="font-family: sans-serif; font-size: 14px;font-weight: bold;">Die vorteile der MagentaCLOUD im Uberblick:</span>
+						<span style="font-family: sans-serif; font-size: 14px;font-weight: bold;">'.$this->l10n->t('The advantages of the MagentaCLOUD at a glance').':</span>
 						<ul style="margin-top: 16px;margin-bottom: 32px;list-style: none;padding: 0;">
-						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep memories safe').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Online Information').'</li>
 						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Share special moments with family').'</li>
 						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep all files in overview').'</li>
 						<li style="margin-bottom: 0px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Expand device memory free of charge').'</li>
