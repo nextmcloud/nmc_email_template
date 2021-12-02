@@ -158,7 +158,7 @@
 					<div style="">
 						<span style="font-family: sans-serif; font-size: 14px;font-weight: bold;">'.$this->l10n->t('The advantages of the MagentaCLOUD at a glance').':</span>
 						<ul style="margin-top: 16px;margin-bottom: 32px;list-style: none;padding: 0;">
-						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Online Information').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep memories safe').'</li>
 						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Share special moments with family').'</li>
 						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep all files in overview').'</li>
 						<li style="margin-bottom: 0px;background: url('.$this->urlPath.'/themes/nextmagentacloud21/core/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Expand device memory free of charge').'</li>
