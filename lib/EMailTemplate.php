@@ -222,10 +222,8 @@ protected $buttonGroup = "";
 		if ($this->headerAdded) {
 			return;
 		}
-		// $host = $_SERVER['HTTP_HOST'];
-		$this->urlPath = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
-		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
+		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
 		$this->header = str_replace('host_name',$this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
@@ -247,7 +245,7 @@ protected $buttonGroup = "";
 			$plainTitle = $title;
 		}
 
-		switch ($this->emailId) {
+		switch (trim($this->emailId)) {
 			case "settings.Welcome":
 				$this->htmlBody = "";
 				$this->heading = "";
@@ -320,7 +318,7 @@ protected $buttonGroup = "";
 		// To DO:- Add condtions based on email event later this is test only
 
 
-		switch ($this->emailId) {
+		switch (trim($this->emailId)) {
 		  case "settings.Welcome":
 			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
 			$this->htmlBody .= rtrim($this->bodyText,"1");
@@ -340,7 +338,7 @@ protected $buttonGroup = "";
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
-		  case "quota warning.notifiaiont":
+		  case "quota warning.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "activity.Notification":
