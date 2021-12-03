@@ -30,7 +30,11 @@ OC.L10N.register(
 		"The advantages of the MagentaCLOUD at a glance" : "Die Vorteile der MagentaCLOUD im Überblick",
 		"3 months minimum contract term" : "3 Monate Mindestvertragslaufzeit",
 		"You can find more information as well as frequently asked questions and answers about MagentaCLOUD at" : "Mehr Informationen sowie häufige Fragen und Antworten zur MagentaCLOUD finden Sie unter",
-		"Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available." : "Jetzt auf MagentaCLOUD M <br />upgraden für nur 1,95 € im Monat und sofort über 100 GB Speicher<br /> verfügen."
+		"Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available." : "Jetzt auf MagentaCLOUD M <br />upgraden für nur 1,95 € im Monat und sofort über 100 GB Speicher<br /> verfügen.",
+		"Expand storage" : "Speicher erweitern",
+		"Open the trash" : "Öffne den Papierkorb",
+		"of your storage is currently occupied.Once your memory is used up,you cannot upload any more files.However,you can remove files or empty you recycle bin at any time":"Ihres Speicherplatzes ist derzeit belegt.Sobald Ihr Speicher aufgebraucht ist, können Sie keine weiteren Dateien mehr hochladen.Sie können jedoch jederzeit Dateien entfernen oder den Papierkorb leeren",
+		"with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.": "Mit der MagentaCLOUD-Status-E-Mail informieren wir Sie einmal im Monat über Ihren belegten Speicherplatz und die von Ihnen erstellten Shares."
 
 },
 "nplurals=2; plural=(n != 1);");
