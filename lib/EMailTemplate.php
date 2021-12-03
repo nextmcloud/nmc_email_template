@@ -29,6 +29,7 @@ use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
 	protected $urlPath = "";
+	protected $bodyText ='%s';
 	protected $heading = <<<EOF
 <table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
@@ -222,8 +223,10 @@ protected $buttonGroup = "";
 		if ($this->headerAdded) {
 			return;
 		}
+		// $host = $_SERVER['HTTP_HOST'];
+		$this->urlPath = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
+		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
-		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
 		$this->header = str_replace('host_name',$this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
@@ -245,7 +248,7 @@ protected $buttonGroup = "";
 			$plainTitle = $title;
 		}
 
-		switch (trim($this->emailId)) {
+		switch ($this->emailId) {
 			case "settings.Welcome":
 				$this->htmlBody = "";
 				$this->heading = "";
@@ -264,7 +267,7 @@ protected $buttonGroup = "";
 			case "quote.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
-			case "quota warning.notifiaiont":
+			case "quota_warning.Notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "activity.Notification":
@@ -318,7 +321,7 @@ protected $buttonGroup = "";
 		// To DO:- Add condtions based on email event later this is test only
 
 
-		switch (trim($this->emailId)) {
+		switch ($this->emailId) {
 		  case "settings.Welcome":
 			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
 			$this->htmlBody .= rtrim($this->bodyText,"1");
@@ -338,10 +341,11 @@ protected $buttonGroup = "";
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
-		  case "quota warning.notification":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+		  case "quota_warning.Notification":
+			$this->bodyText =  include_once 'nmc_email_template/template/welcome_mail.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");			
 			break;
-		  case "activity.Notification":
+		case "activity.Notification":
 			$this->bodyText = "";
 			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
@@ -392,8 +396,8 @@ protected $buttonGroup = "";
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		 $this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+	    //   $this->htmlBody .= $this->footer;
+		 $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
