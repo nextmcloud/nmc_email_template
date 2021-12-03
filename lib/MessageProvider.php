@@ -217,7 +217,6 @@ EOF,
 		$quota = $this->humanFileSize((int)$storageInfo['quota']);
 		$usedSpace = $this->humanFileSize( (int) $storageInfo['used']);
 		$percentage = $this->humanFileSize( (int) $storageInfo['relative']);
-		print_r($quota);
 		if($quota[0]=="?"){
 			$quota[0]="Unlimited";
 		}
