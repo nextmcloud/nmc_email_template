@@ -267,7 +267,7 @@ protected $buttonGroup = "";
 			case "quote.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
-			case "quota warning.notification":
+			case "quota_warning.Notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "activity.Notification":
@@ -341,10 +341,13 @@ protected $buttonGroup = "";
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
-		  case "quota warning.notification":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+		  case "quota_warning.Notification":
+			echo "ashish ";
+			$this->bodyText =  include_once 'nmc_email_template/template/welcome_mail.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
+			
 			break;
-		  case "activity.Notification":
+		case "activity.Notification":
 			$this->bodyText = "";
 			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
@@ -395,8 +398,8 @@ protected $buttonGroup = "";
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-	       $this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+	    //   $this->htmlBody .= $this->footer;
+		 $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
