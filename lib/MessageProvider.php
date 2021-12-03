@@ -133,7 +133,7 @@ class MessageProvider {
 	public function writeStorageFull(IEMailTemplate $emailTemplate, array $storageInfo): void {
 		$quota = $this->humanFileSize($storageInfo['quota']);
 		$usedSpace = $this->humanFileSize($storageInfo['used']);
-
+		$percentage = $this->humanFileSize($storageInfo['relative']);
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -142,20 +142,26 @@ class MessageProvider {
 		// Warning no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
-<table style="background-color: #f8f8f8; padding: 20px; width: 100%">
-	<tr>
-		<td style="padding-right: 20px; text-align: center">
-			<span style="font-size: 35px; color: red">$usedSpace[0]</span>&nbsp;<span style="font-size: larger">$usedSpace[1]</span>
-			<hr />
-			<span style="font-size: 35px">$quota[0]</span>&nbsp;<span style="font-size: larger">$quota[1]</span>
-		</td>
-		<td>
-			<h3 style="font-weight: bold">Speicherplatz</h3>
-			<p>Sie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1].</p>
-			$requestMoreStorageLink
-		</td>a
-	</tr>
-</table>
+			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+
+			<!-- START MAIN CONTENT AREA -->
+			<tr>
+			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				  <tr>
+					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
+					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+						<span style="font-size: 32px;color:#e20074">$usedSpace[0] </span><span style="font-size: 16px;"> $usedSpace[1]</span>
+						<br />
+						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+						<br />
+						<span style="font-weight: bold;">Storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
+						  a fee.</p>
+						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+					  </div>
+					  </td>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
 		);
@@ -168,6 +174,7 @@ EOF,
 	public function writeStorageWarning(IEMailTemplate $emailTemplate, array $storageInfo): void {
 		$quota = $this->humanFileSize($storageInfo['quota']);
 		$usedSpace = $this->humanFileSize($storageInfo['used']);
+		$percentage = $this->humanFileSize($storageInfo['relative']);
 
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
@@ -176,20 +183,26 @@ EOF,
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
-<table style="background-color: #f8f8f8; padding: 20px; width: 100%">
-	<tr>
-		<td style="padding-right: 20px; text-align: center">
-			<span style="font-size: 35px; color: orange">$usedSpace[0]</span>&nbsp;<span style="font-size: larger">$usedSpace[1]</span>
-			<hr />
-			<span style="font-size: 35px">$quota[0]</span>&nbsp;<span style="font-size: larger">$quota[1]</span>
-		</td>
-		<td>
-			<h3 style="font-weight: bold">Speicherplatz</h3>
-			<p>Sie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1].</p>
-			$requestMoreStorageLink
-		</td>
-	</tr>
-</table>
+			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+
+			<!-- START MAIN CONTENT AREA -->
+			<tr>
+			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				  <tr>
+					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
+					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+						<br />
+						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+						<br />
+						<span style="font-weight: bold;">Storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
+						  a fee.</p>
+						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+					  </div>
+					  </td>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
 		);
@@ -200,21 +213,33 @@ EOF,
 	}
 
 	public function writeStorageNoQuota(IEMailTemplate $emailTemplate, array $storageInfo): void {
+		$quota = $this->humanFileSize($storageInfo['quota']);
 		$usedSpace = $this->humanFileSize($storageInfo['used']);
+		$percentage = $this->humanFileSize($storageInfo['relative']);
+
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
-<table style="background-color: #f8f8f8; padding: 20px; width: 100%">
-	<tr>
-		<td style="padding-right: 20px; text-align: center">
-			<span style="font-size: 35px">$usedSpace[0]</span>&nbsp;<span style="font-size: larger">$usedSpace[1]</span>
-		</td>
-		<td>
-			<h3 style="font-weight: bold">Speicherplatz</h3>
-			<p>Sie nutzen im Moment $usedSpace[0] $usedSpace[1].</p>
-		</td>
-	</tr>
-</table>
+			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+
+			<!-- START MAIN CONTENT AREA -->
+			<tr>
+			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				  <tr>
+					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
+					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+						<br />
+						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+						<br />
+						<span style="font-weight: bold;">Storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
+						  a fee.</p>
+						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+					  </div>
+					  </td>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]"
 		);
@@ -223,7 +248,8 @@ EOF,
 	public function writeStorageSpaceLeft(IEMailTemplate $emailTemplate, array $storageInfo): void {
 		$quota = $this->humanFileSize($storageInfo['quota']);
 		$usedSpace = $this->humanFileSize($storageInfo['used']);
-
+		$percentage = $this->humanFileSize($storageInfo['relative']);
+		
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -231,21 +257,27 @@ EOF,
 
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-			<table id="part1"><td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-			
-			<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>    
-			  <br>                    
-			  <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-			  <br>        
-			  <span style="font-weight: bold;">Storage</span>
-			  <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]</span>% of your memory is currently occupied. You can expand your storage space at any time for 
-				a fee.</p>
-				$requestMoreStorageLink
-			  <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
-			  </td></table>
-			  </div>
-			
+			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+
+			<!-- START MAIN CONTENT AREA -->
+			<tr>
+			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				  <tr>
+					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
+					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+						<br />
+						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+						<br />
+						<span style="font-weight: bold;">Storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
+						  a fee.</p>
+						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+					  </div>
+					  </td>
+
 EOF,
 			"."
 		);
@@ -266,58 +298,27 @@ EOF,
 	}
 
 	public function writeShareMessage(IEMailTemplate $emailTemplate, int $shareCount) {
-		if ($shareCount > 100) {
-			$emailTemplate->addBodyText(
-				<<<EOF
-<div style="background-color: #f8f8f8; padding: 20px; float: right; margin-top: 50px">
-	<h3 style="font-weight: bold">Freigaben</h3>
-	<p>Sie haben mehr als $shareCount Dateien freigegeben.</p>
-</div>
-EOF,
-				"Freigabeben\n\nSie haben mehr als $shareCount Dateien freigegeben."
-			);
-		} elseif ($shareCount === 0) {
-			$emailTemplate->addBodyText(
-				<<<EOF
-<div style="background-color: #f8f8f8; padding: 20px; float: right; margin-top: 50px">
-	<h3 style="font-weight: bold">Freigaben</h3>
-	<p>Sie haben keine Dateien freigegeben.</p>
-</div>
-EOF,
-				"Freigabeben\n\nSie haben kein Dateien freigegeben."
-			);
-		} elseif ($shareCount === 1) {
-			$emailTemplate->addBodyText(
-				<<<EOF
-<div style="background-color: #f8f8f8; padding: 20px; float: right; margin-top: 50px">
-	<h3 style="font-weight: bold">Freigaben</h3>
-	<p>Sie haben eine Datei freigegeben.</p>
-</div>
-EOF,
-				"Freigabeben\n\nSie haben eine Datei freigegeben."
-			);
-		} else {
+
 			$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
 			// $host = 'https://dev1.next.magentacloud.de'; // for test only
-			
+			$home = $this->generator->getAbsoluteURL('/');
 			$emailTemplate->addBodyText(
 				<<<EOF
-				<div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-				<table id="part2">
-				<td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
-				<img src="$host/themes/nextmagentacloud21/core/img/icons/add.svg" height="48px" width="48px">
-				  <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  Shares</span></div>
-				  <div style="margin-top: 32px;"><span style="font-weight: bold;">Shares</span></div>
-				  <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">You have shared $shareCount items of content you can manage your shares with once click.</p>
-				  <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">My Share</a>
-				  </td>
-				  <table>
-				  </div>
-				
+				</td>
+                        <td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
+                          <div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+                            <img src="$home/themes/nextmagentacloud21/core/img/icons/add.svg" height="48px" width="48px">
+                            <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  Shares</span></div>
+                            <div style="margin-top: 32px;"><span style="font-weight: bold;">Shares</span></div>
+                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">You have shared $shareCount items of content you can manage your shares with once click.</p>
+                            <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">My Share</a>
+                          </div>
+                          </td>
+                      </tr>
+                   </table>
 EOF,
 				"."
 			);
-		}
 	}
 
 	public function writeOptOutMessage(IEMailTemplate $emailTemplate, NotificationTracker $trackedNotification) {
@@ -340,38 +341,45 @@ EOF,
 	}
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
-		$emailTemplate->addHeading('Hello ' . $user->getDisplayName() . ',');
+		$username = $user->getDisplayNameOtherUser();
 		$home = $this->generator->getAbsoluteURL('/');
 
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table><tr>
-		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-		  <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello "Display Name of recipient",</p>
-		  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.</p>
-		  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">We also give you tips and tricks for the daily use of you <br>MagentaCLOUD.You can find out how to upload,move,share etc.files<br>
-		  here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">First Steps</a></p>
-		  <p style="margin-top:16px;margin-bottom:32px">Your Telekom</p>
-		  <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-			  <tbody>
-				<tr>
-				  <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
-					<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-					  <tbody>
-						<tr>
-						  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a> </td>
-						</tr>
-					  </tbody>
-					</table>
-				  </td>
-				</tr>
-			  </tbody>
-			</table>
-		  </td>
-	  </tr></table>
+			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+			<tr>
+			  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello '$username',</p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.</p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">We also give you tips and tricks for the daily use of you <br/>MagentaCLOUD.You can find out how to upload,move,share etc.files<br/>
+				here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">First Steps</a></p>
+				<p style="margin-top:16px;margin-bottom:32px">Your Telekom</p>
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+					<tbody>
+					  <tr>
+						<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
+						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+							<tbody>
+							  <tr>
+								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a> </td>
+							  </tr>
+							</tbody>
+						  </table>
+						</td>
+					  </tr>
+					</tbody>
+				  </table>
+				</td>
+			</tr>
+		  </table>
+		</td>
+	  </tr>
+
+	<!-- END MAIN CONTENT AREA -->
+	</table>
 EOF,
 			"."
 		);
-	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');	
+	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
 	}
 }
