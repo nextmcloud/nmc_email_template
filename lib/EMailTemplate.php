@@ -29,6 +29,7 @@ use OCP\IL10N;
 
 class EMailTemplate extends ParentTemplate {
 	protected $urlPath = "";
+	protected $bodyText ='%s';
 	protected $heading = <<<EOF
 <table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
@@ -264,7 +265,7 @@ protected $buttonGroup = "";
 			case "quote.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
-			case "quota warning.notifiaiont":
+			case "quota warning.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "activity.Notification":
@@ -392,7 +393,7 @@ protected $buttonGroup = "";
 		$this->ensureBodyIsClosed();
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-		 $this->htmlBody .= $this->footer;
+	       $this->htmlBody .= $this->footer;
 		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
