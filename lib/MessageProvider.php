@@ -131,9 +131,9 @@ class MessageProvider {
 	 * @param array $storageInfo
 	 */
 	public function writeStorageFull(IEMailTemplate $emailTemplate, array $storageInfo): void {
-		$quota = $this->humanFileSize($storageInfo['quota']);
-		$usedSpace = $this->humanFileSize($storageInfo['used']);
-		$percentage = $this->humanFileSize($storageInfo['relative']);
+		$quota = $this->humanFileSize((int) $storageInfo['quota']);
+		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -172,9 +172,9 @@ EOF,
 	}
 
 	public function writeStorageWarning(IEMailTemplate $emailTemplate, array $storageInfo): void {
-		$quota = $this->humanFileSize($storageInfo['quota']);
-		$usedSpace = $this->humanFileSize($storageInfo['used']);
-		$percentage = $this->humanFileSize($storageInfo['relative']);
+		$quota = $this->humanFileSize((int) $storageInfo['quota']);
+		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
@@ -213,10 +213,14 @@ EOF,
 	}
 
 	public function writeStorageNoQuota(IEMailTemplate $emailTemplate, array $storageInfo): void {
-		$quota = $this->humanFileSize($storageInfo['quota']);
-		$usedSpace = $this->humanFileSize($storageInfo['used']);
-		$percentage = $this->humanFileSize($storageInfo['relative']);
-
+		
+		$quota = $this->humanFileSize((int)$storageInfo['quota']);
+		$usedSpace = $this->humanFileSize( (int) $storageInfo['used']);
+		$percentage = $this->humanFileSize( (int) $storageInfo['relative']);
+		print_r($quota);
+		if($quota[0]=="?"){
+			$quota[0]="Unlimited";
+		}
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -246,9 +250,9 @@ EOF,
 	}
 
 	public function writeStorageSpaceLeft(IEMailTemplate $emailTemplate, array $storageInfo): void {
-		$quota = $this->humanFileSize($storageInfo['quota']);
-		$usedSpace = $this->humanFileSize($storageInfo['used']);
-		$percentage = $this->humanFileSize($storageInfo['relative']);
+		$quota = $this->humanFileSize((int) $storageInfo['quota']);
+		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
