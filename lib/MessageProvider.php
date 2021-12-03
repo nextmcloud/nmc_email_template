@@ -156,7 +156,7 @@ class MessageProvider {
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
+						<span style="font-weight: bold;">$this->l10n->t('Storage')</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
 						  a fee.</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
