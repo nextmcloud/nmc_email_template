@@ -259,7 +259,6 @@ protected $buttonGroup = "";
 			case "files_sharing.RecipientNotification":
 				$this->heading = "";
 				break;
-
 			case "settings.TestEmail":
 				$this->htmlBody = "";
 				$this->heading = "";
@@ -268,7 +267,7 @@ protected $buttonGroup = "";
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quota_warning.Notification":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->heading = "";
 				break;
 			case "activity.Notification":
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
@@ -342,8 +341,8 @@ protected $buttonGroup = "";
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "quota_warning.Notification":
-			$this->bodyText =  include_once 'nmc_email_template/template/welcome_mail.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");			
+			$this->bodyText =  include_once 'nmc_email_template/template/quota_warning.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		case "activity.Notification":
 			$this->bodyText = "";
