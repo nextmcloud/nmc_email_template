@@ -311,7 +311,7 @@ EOF,
 				</td>
                         <td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
                           <div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-                            <img src="$home/themes/nextmagentacloud21/core/img/icons/add.svg" height="48px" width="48px">
+                            <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.svg" height="48px" width="48px">
                             <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  Shares</span></div>
                             <div style="margin-top: 32px;"><span style="font-weight: bold;">Shares</span></div>
                             <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">You have shared $shareCount items of content you can manage your shares with once click.</p>
@@ -365,7 +365,7 @@ EOF,
 						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
 							<tbody>
 							  <tr>
-								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a> </td>
+								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a> </td>
 							  </tr>
 							</tbody>
 						  </table>
