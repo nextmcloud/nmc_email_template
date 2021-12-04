@@ -30,7 +30,7 @@ OC.L10N.register(
 		"The advantages of the MagentaCLOUD at a glance" : "Die Vorteile der MagentaCLOUD im Überblick",
 		"3 months minimum contract term" : "3 Monate Mindestvertragslaufzeit",
 		"You can find more information as well as frequently asked questions and answers about MagentaCLOUD at" : "Mehr Informationen sowie häufige Fragen und Antworten zur MagentaCLOUD finden Sie unter",
-		"Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available." : "Jetzt auf MagentaCLOUD M <br />upgraden für nur 1,95 € im Monat und sofort über 100 GB Speicher<br /> verfügen."
-
+		"Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available." : "Jetzt auf MagentaCLOUD M <br />upgraden für nur 1,95 € im Monat und sofort über 100 GB Speicher<br /> verfügen.",
+		"of your memory is currently occupied. You can expand your storage space at any time for a fee.":"Ihres Speichers sind derzeit belegt. Sie können Ihren Speicherplatz jederzeit gegen eine Gebühr erweitern."
 },
 "nplurals=2; plural=(n != 1);");
