@@ -224,10 +224,8 @@ protected $buttonGroup = "";
 		if ($this->headerAdded) {
 			return;
 		}
-		// $host = $_SERVER['HTTP_HOST'];
-		$this->urlPath = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
-		$host = 'https://dev1.next.magentacloud.de'; // for test only
 
+		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
 		$this->header = str_replace('host_name',$this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
