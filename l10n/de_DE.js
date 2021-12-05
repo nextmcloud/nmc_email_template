@@ -34,13 +34,13 @@ OC.L10N.register(
 		"Shares" : "Anteile",
 		"Storage" : "Storage",
 		"My Share" : "Mein Anteil",
-		"of your memory is currently occupied. You can expand your storage space at any time for a fee.":"Ihres Speichers ist derzeit belegt. Sie können Ihren Speicherplatz jederzeit gegen eine Gebühr erweitern.",
-		"You have shared" : "Sie haben geteilt",
-		"items of content you can manage your shares with once click.": "Inhalte können Sie Ihre Shares mit einem Klick verwalten.",
-		"We also give you tips and tricks for the daily use of you" : "Außerdem geben wir dir Tipps und Tricks für den täglichen Gebrauch von dir",
-		"MagentaCLOUD.You can find out how to upload,move,share etc.files" : "MagentaCLOUD.Sie können herausfinden, wie Sie Dateien hochladen, verschieben, teilen usw",
-		"here" : "Hier",
-		"Erste Schritte" : "Erste Schritte"
-
+		"of your memory is currently occupied. You can expand your storage space at any time for a fee.":"Ihres Speichers sind derzeit belegt. Sie können Ihren Speicherplatz jederzeit gegen eine Gebühr erweitern.",
+		"We also give you tips and tricks for the daily use of you":"Außerdem geben wir dir Tipps und Tricks für den täglichen Gebrauch von dir",
+		"First Steps":"Erste Schritte",
+		"You have shared":"Sie haben geteilt",
+		"items of content you can manage your shares with once click.":"Inhalte können Sie Ihre Shares mit einem Klick verwalten.",
+		"My share":"Mein Anteil",
+		"Quota warning":"Kontingentwarnung",
+		"of your storage is currently occupied.Once your memory is used up,you cannot upload any more files.However,you can remove files or empty you recycle bin at any time":"Ihres Speicherplatzes ist derzeit belegt.Sobald Ihr Speicher aufgebraucht ist, können Sie keine weiteren Dateien mehr hochladen.Sie können jedoch jederzeit Dateien entfernen oder den Papierkorb leeren"
 },
 "nplurals=2; plural=(n != 1);");

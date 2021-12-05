@@ -26,6 +26,7 @@ namespace OCA\EmailTemplateExample;
 use Exception;
 use OC\Mail\EMailTemplate as ParentTemplate;
 use OCP\IL10N;
+use OCP\IConfig;
 
 class EMailTemplate extends ParentTemplate {
 	protected $urlPath = "";
@@ -246,7 +247,7 @@ protected $buttonGroup = "";
 			$plainTitle = $title;
 		}
 
-		switch (trim($this->emailId)) {
+		switch ($this->emailId) {
 			case "settings.Welcome":
 				$this->htmlBody = "";
 				$this->heading = "";
@@ -264,7 +265,16 @@ protected $buttonGroup = "";
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quota_warning.Notification":
-				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				$this->heading = "";
+				if(isset($this->data['userId'])){
+					$config = \OC::$server->get(IConfig::class);
+					$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
+					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
+				}elseif(isset($this->data['owner'])){
+					$config = \OC::$server->get(IConfig::class);
+					$langCurrent = $config->getUserValue($this->data['owner'], 'core', 'lang', null);
+					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
+				}
 				break;
 			case "activity.Notification":
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
@@ -317,7 +327,7 @@ protected $buttonGroup = "";
 		// To DO:- Add condtions based on email event later this is test only
 
 
-		switch (trim($this->emailId)) {
+		switch ($this->emailId) {
 		  case "settings.Welcome":
 			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
 			$this->htmlBody .= rtrim($this->bodyText,"1");
@@ -337,9 +347,10 @@ protected $buttonGroup = "";
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "quota_warning.Notification":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText =  include_once 'nmc_email_template/template/quota_warning.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
-		  case "activity.Notification":
+		case "activity.Notification":
 			$this->bodyText = "";
 			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
