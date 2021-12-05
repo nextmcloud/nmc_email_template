@@ -26,6 +26,7 @@ namespace OCA\EmailTemplateExample;
 use Exception;
 use OC\Mail\EMailTemplate as ParentTemplate;
 use OCP\IL10N;
+use OCP\IConfig;
 
 class EMailTemplate extends ParentTemplate {
 	protected $urlPath = "";
@@ -268,6 +269,11 @@ protected $buttonGroup = "";
 				break;
 			case "quota_warning.Notification":
 				$this->heading = "";
+				if(isset($this->data['userId'])){
+					$config = \OC::$server->get(IConfig::class);
+					$langCurrent = $config->getUserValue("test", 'core', 'lang', null);
+					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
+				}
 				break;
 			case "activity.Notification":
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
@@ -396,7 +402,7 @@ protected $buttonGroup = "";
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
 	       $this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
+		// $this->htmlBody .= $this->footer. " Data of owner is - ".json_encode($this->data)."array org".json_encode($this->data)."->>>>>>>>>>>>This is current lang ********".$langCurrent;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
