@@ -259,8 +259,7 @@ protected $buttonGroup = "";
 				$this->heading = "";
 				break;
 			case "settings.TestEmail":
-				$this->htmlBody = "";
-				$this->heading = "";
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quote.notification":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
@@ -269,7 +268,11 @@ protected $buttonGroup = "";
 				$this->heading = "";
 				if(isset($this->data['userId'])){
 					$config = \OC::$server->get(IConfig::class);
-					$langCurrent = $config->getUserValue("test", 'core', 'lang', null);
+					$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
+					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
+				}elseif(isset($this->data['owner'])){
+					$config = \OC::$server->get(IConfig::class);
+					$langCurrent = $config->getUserValue($this->data['owner'], 'core', 'lang', null);
 					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
 				}
 				break;
@@ -338,8 +341,7 @@ protected $buttonGroup = "";
 			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "settings.TestEmail":
-			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -400,7 +402,7 @@ protected $buttonGroup = "";
 		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
 		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
 	       $this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data of owner is - ".json_encode($this->data)."array org".json_encode($this->data)."->>>>>>>>>>>>This is current lang ********".$langCurrent;
+		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
 		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
 
 	}
