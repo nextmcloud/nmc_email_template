@@ -219,17 +219,9 @@ protected $buttonGroup = "";
 	 */
 
 	public function addHeader(?string $lang = null) {
-		$this->l10n = $this->l10nFactory->get('nmc_email_template',$lang);
-		// replace translation here with replace method
+		$this->setLanguage();
 		if ($this->headerAdded) {
 			return;
-		}
-		if($this->emailId=="activity.Notification"){
-			if(isset($this->data['userId'])){
-				$config = \OC::$server->get(IConfig::class);
-				$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
-				$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
-			}
 		}
 		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
@@ -272,15 +264,6 @@ protected $buttonGroup = "";
 				break;
 			case "quota_warning.Notification":
 				$this->heading = "";
-				if(isset($this->data['userId'])){
-					$config = \OC::$server->get(IConfig::class);
-					$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
-					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
-				}elseif(isset($this->data['owner'])){
-					$config = \OC::$server->get(IConfig::class);
-					$langCurrent = $config->getUserValue($this->data['owner'], 'core', 'lang', null);
-					$this->l10n = $this->l10nFactory->get('nmc_email_template',$langCurrent);
-				}
 				break;
 			case "activity.Notification":
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
@@ -347,7 +330,8 @@ protected $buttonGroup = "";
 			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "settings.TestEmail":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -405,11 +389,24 @@ protected $buttonGroup = "";
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
-		// $this->footer = "Details ".json_encode($this->data).include 'nmc_email_template/template/footer.php';
-		// $this->htmlBody .= str_replace('<str_repalce>',$text, $this->emailId."**************".$this->footer);
-	       $this->htmlBody .= $this->footer;
-		// $this->htmlBody .= $this->footer. " Data is - ".json_encode($this->data)." ------- and text is ".$text."-----------text end Heading strat--Evrnt name is ".$this->emailId." List Item ".$this->listItem;
-		// $this->htmlBody .= vsprintf($this->footer." Data is - ".json_encode($this->data['activityEvents'])." ------- and text is ".$text."-----------text end Heading strat", [$text]);
+	    $this->htmlBody .= $this->footer;
+	}
 
+	public function setLanguage() {
+		if ($this->l10n) {
+			return;
+		}
+		$userSession = \OC::$server->getUserSession();
+		$config = \OC::$server->get(IConfig::class);
+
+		$langCurrent = $config->getSystemValue('default_language', 'de');
+		if(isset($this->data['userId'])){
+			$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
+		}elseif(isset($this->data['userid'])){ // Welcome email
+			$langCurrent = $config->getUserValue($this->data['userid'], 'core', 'lang', null);
+		}elseif ($userSession->getUser() !== null) {
+			$langCurrent = $config->getUserValue($userSession->getUser()->getUID(), 'core', 'lang', null);
+		}
+		$this->l10n = $this->l10nFactory->get('nmc_email_template', $langCurrent);
 	}
 }
