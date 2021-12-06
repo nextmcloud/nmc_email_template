@@ -29,7 +29,7 @@
 	 <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 	   <tr>
 		 <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').' "'.$this->data['displayName'].'",</p>
+		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').' '.$this->data['displayName'].',</p>
 		   <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.').'</p>
 		   <p style="margin-top:16px;margin-bottom:32px">'.$this->l10n->t('Your Telekom').'</p>
 		   <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">

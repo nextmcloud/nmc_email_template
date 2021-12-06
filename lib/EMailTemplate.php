@@ -273,7 +273,7 @@ protected $buttonGroup = "";
 					  <tr>
 						<td style="font-family: sans-serif; vertical-align: top;">
 						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').'
-						  "'.$this->data["displayname"].'",</p>
+						  '.$this->data["displayname"].',</p>
 						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('There were the following activities in your').' <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
 						</td>
 					  </tr>
