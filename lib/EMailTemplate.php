@@ -247,25 +247,34 @@ protected $buttonGroup = "";
 
 		switch ($this->emailId) {
 			case "settings.Welcome":
+				$this->subject = $this->l10n->t('Welcome to the MagentaCLOUD');
 				$this->htmlBody = "";
 				$this->heading = "";
 				break;
 			case "sharebymail.RecipientNotification":
+				$this->subject = $this->data['initiator']." ".$this->l10n->t('shared').' "'.$this->data['filename'].'" '.$this->l10n->t('with you');
 				$this->heading = "";
 				break;
 			case "files_sharing.RecipientNotification":
+				$this->subject = $this->data['initiator']." ".$this->l10n->t('shared').' "'.$this->data['filename'].'" '.$this->l10n->t('with you');
 				$this->heading = "";
 				break;
 			case "settings.TestEmail":
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quote.notification":
+				$this->subject = $this->l10n->t('Your MagentaCLOUD status mail');
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quota_warning.Notification":
+				$this->subject = $this->l10n->t('Nearing your storage quota');
 				$this->heading = "";
 				break;
 			case "activity.Notification":
+				$this->subject = $this->l10n->t('Activity notification for MagentaCLOUD');
+				if(isset($this->data['dialyActivity'])){
+					$this->subject = $this->l10n->t('Daily activity summary for MagentaCLOUD');
+				}
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
 				<tr>
 				  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
@@ -389,7 +398,7 @@ protected $buttonGroup = "";
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
-	    $this->htmlBody .= $this->footer;
+	    $this->htmlBody .= $this->footer." ".json_encode($this->emailId);
 	}
 
 	public function setLanguage() {

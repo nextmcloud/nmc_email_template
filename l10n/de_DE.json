@@ -42,7 +42,14 @@
 	"Quota warning":"Kontingentwarnung",
 	"Shares" : "Anteile",
 	"Storage" : "Storage",
-	"My Share" : "Mein Anteil"
+	"My Share" : "Mein Anteil",
+	"Welcome to the MagentaCLOUD": "Willkommen in der MagentaCLOUD",
+	"Daily activity summary for MagentaCLOUD" : "Zusammenfassung der täglichen Aktivitäten für MagentaCLOUD",
+	"Activity notification for MagentaCLOUD" : "Benachrichtigung über Aktivitäten auf Ihrer MagentaCLOUD",
+	"Your MagentaCLOUD status mail" : "Ihre MagentaCLOUD Statusmail",
+	"Nearing your storage quota" : "Ihr Speicherplatz ist fast verbraucht",
+	"shared" : "hat mit Ihnen",
+	"with you" : "geteilt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
 

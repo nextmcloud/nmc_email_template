@@ -41,6 +41,14 @@ OC.L10N.register(
 		"items of content you can manage your shares with once click.":"Inhalte können Sie Ihre Shares mit einem Klick verwalten.",
 		"My share":"Mein Anteil",
 		"Quota warning":"Kontingentwarnung",
-		"of your storage is currently occupied.Once your memory is used up,you cannot upload any more files.However,you can remove files or empty you recycle bin at any time":"Ihres Speicherplatzes ist derzeit belegt.Sobald Ihr Speicher aufgebraucht ist, können Sie keine weiteren Dateien mehr hochladen.Sie können jedoch jederzeit Dateien entfernen oder den Papierkorb leeren"
+		"of your storage is currently occupied.Once your memory is used up,you cannot upload any more files.However,you can remove files or empty you recycle bin at any time":"Ihres Speicherplatzes ist derzeit belegt.Sobald Ihr Speicher aufgebraucht ist, können Sie keine weiteren Dateien mehr hochladen.Sie können jedoch jederzeit Dateien entfernen oder den Papierkorb leeren",
+		"Welcome to the MagentaCLOUD": "Willkommen in der MagentaCLOUD",
+		"Daily activity summary for MagentaCLOUD" : "Zusammenfassung der täglichen Aktivitäten für MagentaCLOUD",
+		"Activity notification for MagentaCLOUD" : "Benachrichtigung über Aktivitäten auf Ihrer MagentaCLOUD",
+		"Your MagentaCLOUD status mail" : "Ihre MagentaCLOUD Statusmail",
+		"Nearing your storage quota" : "Ihr Speicherplatz ist fast verbraucht",
+		"shared" : "hat mit Ihnen",
+		"with you" : "geteilt"
+
 },
 "nplurals=2; plural=(n != 1);");
