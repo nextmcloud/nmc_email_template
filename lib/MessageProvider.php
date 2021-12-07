@@ -213,7 +213,7 @@ EOF,
 	}
 
 	public function writeStorageNoQuota(IEMailTemplate $emailTemplate, array $storageInfo): void {
-		
+
 		$quota = $this->humanFileSize((int)$storageInfo['quota']);
 		$usedSpace = $this->humanFileSize( (int) $storageInfo['used']);
 		$percentage = $this->humanFileSize( (int) $storageInfo['relative']);
@@ -253,7 +253,7 @@ EOF,
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
-		
+
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -347,7 +347,7 @@ EOF,
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
 		$home = $this->generator->getAbsoluteURL('/');
-
+		$emailTemplate->setSubject($this->l->t("Your MagentaCLOUD status mail"));
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
