@@ -1,6 +1,6 @@
 { "translations": {
     "Open share" : "Offen teilen",
-	"Life is for sharing" : "Das Leben ist zum Teilen da",
+	"Life is for sharing" : "Erleben, was verbindet.",
 	"has shared" : "hat geteilt",
 	"Hello"	: "Hallo",
 	"with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created." : "Mit der MagentaCLOUD-Status-E-Mail informieren wir Sie einmal im Monat über Ihren belegten Speicherplatz und die von Ihnen erstellten Shares.",
@@ -22,7 +22,7 @@
 	"monthly" : "mtl.",
 	"Online Information" : "Online-Informationen",
 	"Impressum" : "Impressum",
-	"Unsubscribe" : "Unsubscribe",
+	"Unsubscribe" : "Abmelden",
 	"Data Protection" : "Datenschutz",
     "Help & FAQ" : "Hilfe & FAQ",
 	"Software & Apps" : "Software & Apps",
@@ -48,7 +48,8 @@
 	"Your MagentaCLOUD status mail" : "Ihre MagentaCLOUD Statusmail",
 	"Nearing your storage quota" : "Ihr Speicherplatz ist fast verbraucht",
 	"shared" : "hat mit Ihnen",
-	"with you" : "geteilt"
+	"with you" : "geteilt",
+	"Order now" : "Jetzt bestellen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
 

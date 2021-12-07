@@ -19,7 +19,7 @@
 			 <div style="text-align: left;width: 100% ;padding-top: 24px;padding-bottom: 24px;box-sizing: border-box;">
 			 <span style="font-weight: bold;">'.$this->l10n->t('Quota warning').'</span>
 			   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">'.$this->data['quota'].' %</span> '.$this->l10n->t('of your storage is currently occupied.Once your memory is used up,you cannot upload any more files.However,you can remove files or empty you recycle bin at any time').' </p>
-			   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;;margin-right: 8px;">'.$this->l10n->t('Expand storage').'</a>
+			   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;;margin-right: 8px;">'.$this->l10n->t('Order now').'</a>
 			   <a href="'.$this->urlPath.'index.php/apps/files/?dir=/&view=trashbin" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">'.$this->l10n->t('Open the trash').'</a>
 			 </div>
 			 </td>
