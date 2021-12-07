@@ -1,4 +1,5 @@
 <?php
+$displayName = "";
 if(isset($this->data['shareWithDisplayName'])){
 	$displayName = $this->data['shareWithDisplayName'];
 }
