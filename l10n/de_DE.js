@@ -17,7 +17,7 @@ OC.L10N.register(
 		"Expand device memory free of charge" : "Gerätespeicher kostenlos erweitern",
 		"You can find more information and frequently asked questions about MagentaCLOUD at" : "www.telekom.de/magentacloud",
 		"Your Telekom" : "Ihre Telekom",
-		"Expand Storage" : "Speicher erweitern",
+		"Expand storage" : "Speicher erweitern",
 		"Open MagentaCLOUD" : "MagentaCLOUD öffnen",
 		"only" : "nur",
 		"monthly" : "mtl.",

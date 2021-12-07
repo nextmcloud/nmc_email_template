@@ -31,6 +31,7 @@ use OCA\MonthlyStatusEmail\Jobs\SendNotificationsJob;
 use OCP\Files\FileInfo;
 use OCP\IConfig;
 use OCP\IL10N;
+use OCP\L10N\IFactory as L10NFactory;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Mail\IEMailTemplate;
@@ -65,11 +66,26 @@ class MessageProvider {
 	 */
 	private $entity;
 
-	public function __construct(IConfig $config, IURLGenerator $generator) {
+	/**
+	 * @var IL10N
+	 */
+	private $l;
+
+	/** @var L10NFactory */
+	private $l10nFactory;
+
+	/** @var IUser */
+	private $user;
+
+
+
+	public function __construct(IConfig $config, IURLGenerator $generator,IL10N $l,L10NFactory $l10nFactory) {
 		$this->productName = $config->getAppValue('theming', 'productName', 'Nextcloud');
 		$this->entity = $config->getAppValue('theming', 'name', 'Nextcloud');
 		$this->generator = $generator;
 		$this->config = $config;
+		$this->l = $l;
+		$this->l10nFactory = $l10nFactory;
 	}
 
 	/**
@@ -138,7 +154,12 @@ class MessageProvider {
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
+		a fee.");
+		$expendStorage = $this->l->t('Expand storage');
+		$storage =$this->l->t("Storage");
 		// Warning no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -152,14 +173,13 @@ class MessageProvider {
 				  <tr>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0] </span><span style="font-size: 16px;"> $usedSpace[1]</span>
+						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
-						  a fee.</p>
-						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+						<span style="font-weight: bold;">$storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 EOF,
@@ -180,6 +200,12 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
+		a fee.");
+		$expendStorage = $this->l->t('Expand storage');
+		$storage =$this->l->t("Storage");
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -197,10 +223,9 @@ EOF,
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
-						  a fee.</p>
-						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+						<span style="font-weight: bold;">$storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 EOF,
@@ -217,10 +242,15 @@ EOF,
 		$quota = $this->humanFileSize((int)$storageInfo['quota']);
 		$usedSpace = $this->humanFileSize( (int) $storageInfo['used']);
 		$percentage = $this->humanFileSize( (int) $storageInfo['relative']);
-		print_r($quota);
 		if($quota[0]=="?"){
 			$quota[0]="Unlimited";
 		}
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
+		a fee.");
+		$storage =$this->l->t("Storage");
+		$expendStorage = $this->l->t('Expand storage');
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -238,10 +268,9 @@ EOF,
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
-						  a fee.</p>
-						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+						<span style="font-weight: bold;">$storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 EOF,
@@ -253,12 +282,15 @@ EOF,
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
-
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
+		$expendStorage = $this->l->t('Expand storage');
+		$storage =$this->l->t("Storage");
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
@@ -275,10 +307,9 @@ EOF,
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> of your memory is currently occupied. You can expand your storage space at any time for
-						  a fee.</p>
-						<a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
+						<span style="font-weight: bold;">$storage</span>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 
@@ -306,16 +337,22 @@ EOF,
 			$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
 			// $host = 'https://dev1.next.magentacloud.de'; // for test only
 			$home = $this->generator->getAbsoluteURL('/');
+			$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+			 $this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
+			$share = $this->l->t('Shares');
+			$content1 = $this->l->t('You have shared');
+			$content2=$this->l->t('items of content you can manage your shares with once click.');
+			$myShare = $this->l->t('My share');
 			$emailTemplate->addBodyText(
 				<<<EOF
 				</td>
                         <td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
                           <div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-                            <img src="$home/themes/nextmagentacloud21/core/img/icons/add.svg" height="48px" width="48px">
-                            <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  Shares</span></div>
-                            <div style="margin-top: 32px;"><span style="font-weight: bold;">Shares</span></div>
-                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">You have shared $shareCount items of content you can manage your shares with once click.</p>
-                            <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">My Share</a>
+                            <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.svg" height="48px" width="48px">
+                            <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
+                            <div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
+                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">$content1 $shareCount $content2</p>
+                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$myShare</a>
                           </div>
                           </td>
                       </tr>
@@ -346,18 +383,28 @@ EOF,
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$l = $this->l10nFactory->get('nmc_email_template', $userLang);
+		$this->l = $l;
 		$home = $this->generator->getAbsoluteURL('/');
 		$emailTemplate->setSubject($this->l->t("Your MagentaCLOUD status mail"));
+		$hello = $l->t('Hello');
+		$content1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
+		$content2 = $this->l->t('We also give you tips and tricks for the daily use of you');
+		$content3 = $this->l->t('You can find out how to upload,move,share etc.files');
+		$content4 =$this->l->t('First Steps');
+		$yourTelekom= $this->l->t('Your Telekom');
+		$OpenMagentaCLOUD = $this->l->t('Open MagentaCLOUD');
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr>
 			  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">Hello '$username',</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">We also give you tips and tricks for the daily use of you <br/>MagentaCLOUD.You can find out how to upload,move,share etc.files<br/>
-				here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">First Steps</a></p>
-				<p style="margin-top:16px;margin-bottom:32px">Your Telekom</p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2 <br/>MagentaCLOUD.$content3<br/>
+				here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">$content4</a></p>
+				<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
 					<tbody>
 					  <tr>
@@ -365,7 +412,7 @@ EOF,
 						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
 							<tbody>
 							  <tr>
-								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a> </td>
+								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
 							  </tr>
 							</tbody>
 						  </table>
@@ -385,5 +432,12 @@ EOF,
 			"."
 		);
 	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
+	}
+
+	public function setUser(IUser $user) {
+		$this->user = $user;
+		$this->l10n = $this->l10nFactory->get('monthly_status_email',
+			$this->config->getUserValue($user->getUID(), 'lang', null)
+		);
 	}
 }
