@@ -17,7 +17,7 @@ OC.L10N.register(
 		"Expand device memory free of charge" : "Gerätespeicher kostenlos erweitern",
 		"You can find more information and frequently asked questions about MagentaCLOUD at" : "www.telekom.de/magentacloud",
 		"Your Telekom" : "Ihre Telekom",
-		"Expand Storage" : "Speicher erweitern",
+		"Expand storage" : "Speicher erweitern",
 		"Open MagentaCLOUD" : "MagentaCLOUD öffnen",
 		"only" : "nur",
 		"monthly" : "mtl.",
@@ -36,6 +36,9 @@ OC.L10N.register(
 		"First Steps":"Erste Schritte",
 		"You have shared":"Sie haben geteilt",
 		"items of content you can manage your shares with once click.":"Inhalte können Sie Ihre Shares mit einem Klick verwalten.",
-		"My shares":"Mein Anteil"
+		"My shares":"Mein Anteil",
+		"Shares":"Anteile",
+		"Storage":"Lagerung"
+
 },
 "nplurals=2; plural=(n != 1);");

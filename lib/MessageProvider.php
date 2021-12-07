@@ -31,6 +31,7 @@ use OCA\MonthlyStatusEmail\Jobs\SendNotificationsJob;
 use OCP\Files\FileInfo;
 use OCP\IConfig;
 use OCP\IL10N;
+use OCP\L10N\IFactory as L10NFactory;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Mail\IEMailTemplate;
@@ -70,13 +71,21 @@ class MessageProvider {
 	 */
 	private $l;
 	
+	/** @var L10NFactory */
+	private $l10nFactory;
 
-	public function __construct(IConfig $config, IURLGenerator $generator,IL10N $l,) {
+	/** @var IUser */
+	private $user;
+
+	
+
+	public function __construct(IConfig $config, IURLGenerator $generator,IL10N $l,L10NFactory $l10nFactory) {
 		$this->productName = $config->getAppValue('theming', 'productName', 'Nextcloud');
 		$this->entity = $config->getAppValue('theming', 'name', 'Nextcloud');
 		$this->generator = $generator;
 		$this->config = $config;
 		$this->l = $l;
+		$this->l10nFactory = $l10nFactory;		
 	}
 
 	/**
@@ -145,7 +154,8 @@ class MessageProvider {
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
@@ -169,7 +179,7 @@ class MessageProvider {
 						<br />
 						<span style="font-weight: bold;">Storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 EOF,
@@ -190,7 +200,8 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
@@ -214,7 +225,7 @@ EOF,
 						<br />
 						<span style="font-weight: bold;">Storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 EOF,
@@ -234,6 +245,8 @@ EOF,
 		if($quota[0]=="?"){
 			$quota[0]="Unlimited";
 		}
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
@@ -256,7 +269,7 @@ EOF,
 						<br />
 						<span style="font-weight: bold;">Storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 EOF,
@@ -268,13 +281,13 @@ EOF,
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
-		
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
-		a fee.");
+		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 
 		$emailTemplate->addBodyText(
@@ -295,7 +308,7 @@ EOF,
 						<br />
 						<span style="font-weight: bold;">Storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
 
@@ -323,6 +336,8 @@ EOF,
 			$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
 			// $host = 'https://dev1.next.magentacloud.de'; // for test only
 			$home = $this->generator->getAbsoluteURL('/');
+			$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+			 $this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 			$share = $this->l->t('Shares');
 			$var1 = $this->l->t('You have shared');
 			$var2=$this->l->t('items of content you can manage your shares with once click.');
@@ -336,7 +351,7 @@ EOF,
                             <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
                             <div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
                             <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">$var1 $shareCount $var2</p>
-                            <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$myShare</a>
+                            <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$myShare</a>
                           </div>
                           </td>
                       </tr>
@@ -367,13 +382,17 @@ EOF,
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$l = $this->l10nFactory->get('nmc_email_template', $userLang);
+		$this->l = $l;
 		$home = $this->generator->getAbsoluteURL('/');
-		$hello = $this->l->t('Hello');
+		$hello = $l->t('Hello');
 		$var1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
 		$var2 = $this->l->t('We also give you tips and tricks for the daily use of you');
 		$var3 = $this->l->t('You can find out how to upload,move,share etc.files');
 		$var5 =$this->l->t('First Steps');
 		$yourTelekom= $this->l->t('Your Telekom');
+		$OpenMagentaCLOUD = $this->l->t('Open MagentaCLOUD');
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
@@ -391,7 +410,7 @@ EOF,
 						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
 							<tbody>
 							  <tr>
-								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">Open MagentaCLOUD</a> </td>
+								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
 							  </tr>
 							</tbody>
 						  </table>
@@ -411,5 +430,12 @@ EOF,
 			"."
 		);
 	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
+	}
+
+	public function setUser(IUser $user) {
+		$this->user = $user;
+		$this->l10n = $this->l10nFactory->get('monthly_status_email',
+			$this->config->getUserValue($user->getUID(), 'lang', null)
+		);
 	}
 }
