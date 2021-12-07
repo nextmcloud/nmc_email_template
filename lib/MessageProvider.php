@@ -159,7 +159,7 @@ class MessageProvider {
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
-		
+		$storage =$this->l->t("Storage");
 		// Warning no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -177,7 +177,7 @@ class MessageProvider {
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
+						<span style="font-weight: bold;">$storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
@@ -205,7 +205,7 @@ EOF,
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
-
+		$storage =$this->l->t("Storage");
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -223,7 +223,7 @@ EOF,
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
+						<span style="font-weight: bold;">$storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
@@ -249,6 +249,7 @@ EOF,
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
+		$storage =$this->l->t("Storage");
 		$expendStorage = $this->l->t('Expand storage');
 		// Message no quota
 		$emailTemplate->addBodyText(
@@ -267,7 +268,7 @@ EOF,
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
+						<span style="font-weight: bold;">$storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
@@ -289,7 +290,7 @@ EOF,
 		}
 		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
 		$expendStorage = $this->l->t('Expand storage');
-
+		$storage =$this->l->t("Storage");
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
@@ -306,7 +307,7 @@ EOF,
 						<br />
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
-						<span style="font-weight: bold;">Storage</span>
+						<span style="font-weight: bold;">$storage</span>
 						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
