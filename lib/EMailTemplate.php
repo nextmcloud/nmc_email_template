@@ -398,7 +398,7 @@ protected $buttonGroup = "";
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
-	    $this->htmlBody .= $this->footer." ".json_encode($this->emailId);
+	    $this->htmlBody .= $this->footer;
 	}
 
 	public function setLanguage() {
