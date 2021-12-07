@@ -29,7 +29,7 @@ if(isset($this->data['shareWithDisplayName'])){
 			   </tr>
 			 </tbody>
 		   </table>
-		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 0;">Message from '.$this->data['initiator'].':</p>
+		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 0;">'.$this->l10n->t('Message from"').' '.$this->data['initiator'].':</p>
 		   <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">'.$text.'</p>
 		 </td>
 	   </tr>

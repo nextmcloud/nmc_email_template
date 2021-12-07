@@ -1,7 +1,7 @@
 OC.L10N.register(
     "nmc_email_templates",
     {
-		"Open share" : "Offen teilen",
+		"Open share" : "Freigabe öffnen",
 		"Life is for sharing" : "Erleben, was verbindet.",
 		"has shared" : "hat geteilt",
 		"Hello"	: "Hallo",
@@ -49,7 +49,8 @@ OC.L10N.register(
 		"Nearing your storage quota" : "Ihr Speicherplatz ist fast verbraucht",
 		"shared" : "hat mit Ihnen",
 		"with you" : "geteilt",
-		"Order now" : "Jetzt bestellen"
+		"Order now" : "Jetzt bestellen",
+		"Message from" : "Nachricht von"
 
 },
 "nplurals=2; plural=(n != 1);");

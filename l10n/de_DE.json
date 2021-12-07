@@ -1,5 +1,5 @@
 { "translations": {
-    "Open share" : "Offen teilen",
+    "Open share" : "Freigabe öffnen",
 	"Life is for sharing" : "Erleben, was verbindet.",
 	"has shared" : "hat geteilt",
 	"Hello"	: "Hallo",
@@ -49,7 +49,8 @@
 	"Nearing your storage quota" : "Ihr Speicherplatz ist fast verbraucht",
 	"shared" : "hat mit Ihnen",
 	"with you" : "geteilt",
-	"Order now" : "Jetzt bestellen"
+	"Order now" : "Jetzt bestellen",
+	"Message from" : "Nachricht von"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
 
