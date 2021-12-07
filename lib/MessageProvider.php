@@ -156,7 +156,7 @@ class MessageProvider {
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 		$storage =$this->l->t("Storage");
@@ -178,7 +178,7 @@ class MessageProvider {
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
 						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
@@ -202,7 +202,7 @@ EOF,
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 		$storage =$this->l->t("Storage");
@@ -224,7 +224,7 @@ EOF,
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
 						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
@@ -247,7 +247,7 @@ EOF,
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
 		a fee.");
 		$storage =$this->l->t("Storage");
 		$expendStorage = $this->l->t('Expand storage');
@@ -269,7 +269,7 @@ EOF,
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
 						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
@@ -288,7 +288,7 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-		$var1 = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 		$storage =$this->l->t("Storage");
 		$emailTemplate->addBodyText(
@@ -308,7 +308,7 @@ EOF,
 						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
 						<br />
 						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $var1</p>
+						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
 						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
 					  </div>
 					  </td>
@@ -340,8 +340,8 @@ EOF,
 			$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 			 $this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 			$share = $this->l->t('Shares');
-			$var1 = $this->l->t('You have shared');
-			$var2=$this->l->t('items of content you can manage your shares with once click.');
+			$content1 = $this->l->t('You have shared');
+			$content2=$this->l->t('items of content you can manage your shares with once click.');
 			$myShare = $this->l->t('My share');
 			$emailTemplate->addBodyText(
 				<<<EOF
@@ -351,8 +351,8 @@ EOF,
                             <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.svg" height="48px" width="48px">
                             <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
                             <div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
-                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">$var1 $shareCount $var2</p>
-                            <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$myShare</a>
+                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">$content1 $shareCount $content2</p>
+                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$myShare</a>
                           </div>
                           </td>
                       </tr>
@@ -388,10 +388,10 @@ EOF,
 		$this->l = $l;
 		$home = $this->generator->getAbsoluteURL('/');
 		$hello = $l->t('Hello');
-		$var1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
-		$var2 = $this->l->t('We also give you tips and tricks for the daily use of you');
-		$var3 = $this->l->t('You can find out how to upload,move,share etc.files');
-		$var5 =$this->l->t('First Steps');
+		$content1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
+		$content2 = $this->l->t('We also give you tips and tricks for the daily use of you');
+		$content3 = $this->l->t('You can find out how to upload,move,share etc.files');
+		$content4 =$this->l->t('First Steps');
 		$yourTelekom= $this->l->t('Your Telekom');
 		$OpenMagentaCLOUD = $this->l->t('Open MagentaCLOUD');
 		$emailTemplate->addBodyText(
@@ -400,9 +400,9 @@ EOF,
 			<tr>
 			  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
 				<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$var1</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$var2 <br/>MagentaCLOUD.$var3<br/>
-				here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">$var5</a></p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2 <br/>MagentaCLOUD.$content3<br/>
+				here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">$content4</a></p>
 				<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
 					<tbody>
@@ -411,7 +411,7 @@ EOF,
 						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
 							<tbody>
 							  <tr>
-								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
+								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
 							  </tr>
 							</tbody>
 						  </table>
