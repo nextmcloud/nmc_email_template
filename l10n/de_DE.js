@@ -3,11 +3,11 @@ OC.L10N.register(
     {
 		"Open share" : "Freigabe öffnen",
 		"Life is for sharing" : "Erleben, was verbindet.",
-		"has shared" : "hat geteilt",
+		"has shared" : "hat",
 		"Hello"	: "Hallo",
 		"with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created." : "Mit der MagentaCLOUD-Status-E-Mail informieren wir Sie einmal im Monat über Ihren belegten Speicherplatz und die von Ihnen erstellten Shares.",
 		"There were the following activities in your": "Folgende Aktivitäten gab es in Ihrer",
-		"With You. Click button below to accept and open it." : "Mit dir. Klicken Sie auf die Schaltfläche unten, um sie zu akzeptieren und zu öffnen.",
+		"With You. Click button below to accept and open it." : "mit dir geteilt. Klicken Sie auf die Schaltfläche unten, um die Freigabe zu akzeptieren und zu öffnen.",
 		"All data securely in one place" : "Alle Daten sicher an einem Ort",
 		"we have activated your MagentaCLOUD, Telekom's online storage. Just click the link, log in and you are ready to go." : "wir haben ihre MagentaCLOUD, den Online-Speicher der Telekom, freigeschaltet. Einfach den Link anklicken, einloggen und Sie sind startklar. ",
 		"With MagentaCLOUD, you can store your photos, videos, documents and much more securely online and access them from anywhere using your personal access data.": "Mit der MagentaCLOUD können Sie Ihre Fotos, Videos, Dokumente und vieles mehr sicher online speichern und mit Ihren persönlichen Zugangsdaten von überall abrufen.",
