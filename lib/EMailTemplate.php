@@ -408,7 +408,7 @@ protected $buttonGroup = "";
 		$userSession = \OC::$server->getUserSession();
 		$config = \OC::$server->get(IConfig::class);
 
-		$langCurrent = $config->getSystemValue('default_language', 'de');
+		$langCurrent = $config->getSystemValue('default_language', 'en');
 		if(isset($this->data['userId'])){
 			$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
 		}elseif(isset($this->data['userid'])){ // Welcome email
