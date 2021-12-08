@@ -132,7 +132,7 @@
 				<tr style="background-color: #f1f1f1;">
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 					<div style="Width: 100%;padding-top: 32px;padding-bottom: 24px;padding-left: 24px;box-sizing: border-box;">
-						<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/email/mobile.svg" width="48px" height="48px">
+						<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/email/mobile.png" width="48px" height="48px">
 						<div style="display: inline-block;vertical-align: top;padding-top: 2px;">
 						<span style="font-size: 16px;color:#191919">'.$this->l10n->t('Software & Apps').':</span>
 						<br/>
@@ -142,7 +142,7 @@
 					</td>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 						<div style="width: 100%;padding-top: 32px;padding-bottom: 24px;padding-right: 24px;box-sizing: border-box;">
-						<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/email/computer.svg" width="48px" height="48px" style="margin-right: 8px;">
+						<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/email/computer.png" width="48px" height="48px" style="margin-right: 8px;">
 						<div style="display: inline-block;vertical-align: super;padding-top: 2px;">
 							<span style="font-size: 16px;color:#191919">'.$this->l10n->t('Online Information').':</span>
 							<br/>
