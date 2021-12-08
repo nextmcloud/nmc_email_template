@@ -339,8 +339,7 @@ protected $buttonGroup = "";
 			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "settings.TestEmail":
-			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
+			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 			break;
 		  case "quote.notification":
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
@@ -377,7 +376,7 @@ protected $buttonGroup = "";
 			</td>
 			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a href="'.$this->urlPath.'/index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
+				<a href="'.$this->urlPath.'index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
 			</td>
 <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;">
