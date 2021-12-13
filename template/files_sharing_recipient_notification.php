@@ -3,6 +3,15 @@ $displayName = "";
 if(isset($this->data['shareWithDisplayName'])){
 	$displayName = $this->data['shareWithDisplayName'];
 }
+
+$messageFrom ='
+<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 0;">'.$this->l10n->t('Message from').' '.$this->data['initiator'].':</p>
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">'.$text.'</p>';
+
+if($text=="" || $text==null){
+	$messageFrom ='';
+}
+
  return '
  <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
 
@@ -29,9 +38,8 @@ if(isset($this->data['shareWithDisplayName'])){
 			   </tr>
 			 </tbody>
 		   </table>
-		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 0;">'.$this->l10n->t('Message from').' '.$this->data['initiator'].':</p>
-		   <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">'.$text.'</p>
-		 </td>
+		   '.$messageFrom.'
+		   </td>
 	   </tr>
 	 </table>
    </td>
