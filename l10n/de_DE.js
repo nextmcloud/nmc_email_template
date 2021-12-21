@@ -50,7 +50,8 @@ OC.L10N.register(
 		"shared" : "hat mit Ihnen",
 		"with you" : "geteilt",
 		"Order now" : "Jetzt bestellen",
-		"Message from" : "Nachricht von"
+		"Message from" : "Nachricht von",
+		"Sender has added a message to a file shared with you": "Sender hat eine Nachricht zu einer mit Ihnen geteilten Datei hinzugfügt"
 
 },
 "nplurals=2; plural=(n != 1);");

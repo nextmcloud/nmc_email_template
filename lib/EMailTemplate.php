@@ -250,6 +250,12 @@ protected $buttonGroup = "";
 				$this->htmlBody = "";
 				$this->heading = "";
 				break;
+			case "defaultShareProvider.sendNote":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
+			case "shareByMail.sendNote":
+				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
+				break;
 			case "sharebymail.RecipientNotification":
 				$this->subject = $this->data['initiator']." ".$this->l10n->t('shared').' "'.$this->data['filename'].'" '.$this->l10n->t('with you');
 				$this->heading = "";
@@ -396,6 +402,14 @@ protected $buttonGroup = "";
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
+		if($this->emailId == "defaultShareProvider.sendNote" || $this->emailId == "shareByMail.sendNote"){
+			$this->htmlBody = str_replace('style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;float:left !important"', $this->htmlBody);
+			$this->htmlBody = str_replace("'Segoe UI'", '', $this->htmlBody);
+			$this->htmlBody = str_replace("'Helvetica Neue'", "", $this->htmlBody);
+			$this->htmlBody = str_replace('style="Margin:0;margin-top:20px !important;Margin-bottom:10px;color:inherit;font-family:-apple-system,BlinkMacSystemFont,,Roboto,Oxygen-Sans,Ubuntu,Cantarell,,Arial,sans-serif;font-size:24px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal"', 'style="Margin:0;margin-top:20px !important;Margin-bottom:10px;color:inherit;font-family:TeleNeo, sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;padding: 0 0 0 24px !important;text-align:left;word-wrap:normal;color:#191919"', $this->htmlBody);
+			$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;padding: 0 0 0 24px !important;margin-bottom:80px"', $this->htmlBody);
+			$this->htmlBody = str_replace("</h1>", ":</h1>", $this->htmlBody);
+		}
 	    $this->htmlBody .= $this->footer;
 	}
 
