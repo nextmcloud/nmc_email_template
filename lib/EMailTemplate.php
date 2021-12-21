@@ -252,14 +252,10 @@ protected $buttonGroup = "";
 				$this->heading = "";
 				break;
 			case "defaultShareProvider.sendNote":
-				$this->subject = $this->l10n->t('Sender has added a message to a file shared with you');
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
-				$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:24px;font-weight:bold"', $this->htmlBody);
 				break;
 			case "shareByMail.sendNote":
-				$this->subject = $this->l10n->t('Sender has added a message to a file shared with you');
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
-				$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:24px;font-weight:bold"', $this->htmlBody);
 				break;
 			case "sharebymail.RecipientNotification":
 				$this->subject = $this->data['initiator']." ".$this->l10n->t('shared').' "'.$this->data['filename'].'" '.$this->l10n->t('with you');
