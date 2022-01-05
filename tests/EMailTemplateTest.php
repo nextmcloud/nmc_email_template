@@ -91,17 +91,17 @@ class EMailTemplateTest extends TestCase {
 		$rendredHTML = rtrim($rendredHTML,"1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
-/*
-	public function testCustomInternalShareWithOutNote() {
+
+	public function testCustomInternalShareWithoutNote() {
 		$this->data = array("shareWithDisplayName"=>"TEST", "initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
 		$this->text = "";
 
-		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification.html');
-		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification.php';
+		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification_without_note.html');
+		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification_without_note.php';
 		$rendredHTML = rtrim($rendredHTML,"1");
-		$this->assertSame($expectedHTML, $rendredHTML);
+		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
-
+/*
 	public function testCustomExternalShareWithNote() {
 		$this->data = array("shareWithDisplayName"=>"TEST", "initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
 		$this->text = "This is note";
@@ -109,7 +109,7 @@ class EMailTemplateTest extends TestCase {
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification.php';
 		$rendredHTML = rtrim($rendredHTML,"1");
-		$this->assertSame($expectedHTML, $rendredHTML);
+		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
 	public function testCustomExternalShareWithOutNote() {
@@ -119,7 +119,8 @@ class EMailTemplateTest extends TestCase {
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification.php';
 		$rendredHTML = rtrim($rendredHTML,"1");
-		$this->assertSame($expectedHTML, $rendredHTML);
+		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 */
+
 }
