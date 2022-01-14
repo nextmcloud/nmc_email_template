@@ -45,7 +45,7 @@ class EMailTemplateTest extends TestCase {
 	protected $data;
 	protected $l;
 	protected $text;
-
+	protected $footer;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -53,22 +53,12 @@ class EMailTemplateTest extends TestCase {
 		$this->defaults = $this->createMock(Defaults::class);
 		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 		$this->l10n = $this->createMock(IL10N::class);
-
+        \OC::$server->getL10NFactory()->get('nmc_email_template');
 		$this->l10n->expects($this->any())
 			->method('t')
 			->willReturnCallback(function ($text, $parameters = []) {
 				return vsprintf($text, $parameters);
 			});
-
-
-/*		$lang = 'de_DE';
-		$l = $this->createMock(IL10N::class);
-
-		$this->l10n->expects($this->once())
-			->method('get')
-			->with('nmc_email_template', $lang)
-			->willReturn($l);
-*/
 
 		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
 	}
@@ -101,26 +91,56 @@ class EMailTemplateTest extends TestCase {
 		$rendredHTML = rtrim($rendredHTML,"1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
-/*
+
 	public function testCustomExternalShareWithNote() {
-		$this->data = array("shareWithDisplayName"=>"TEST", "initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
+		$this->data = array("initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
 		$this->text = "This is note";
 
-		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification.html');
-		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification.php';
+		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/external_share_with_note.html');
+		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/external_share_with_note.php';
 		$rendredHTML = rtrim($rendredHTML,"1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
 	public function testCustomExternalShareWithOutNote() {
-		$this->data = array("shareWithDisplayName"=>"TEST", "initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
+		$this->data = array("initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
 		$this->text = "";
 
-		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification.html');
-		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification.php';
+		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/external_share_without_note.html');
+		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/external_share_without_note.php';
 		$rendredHTML = rtrim($rendredHTML,"1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
+	}
+/*
+	public function testEMailTemplateDefaultFooter() {
+		$this->footer = '<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
+		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+		  <tr>
+			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #191919; text-align: left;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Telekom Deutschland GmbH</span>
+			</td>
+			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
+				<a href="'.$this->urlPath.'index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;">
+				<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <a href="https://static.magentacloud.de/Datenschutz">'.$this->l10n->t('Data Protection').'</a></span>
+			</td>
+<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a></span>
+			</td>
+		  </tr>
+
+		</table>
+	  </div>';
 	}
 */
 
 }
+
+
+
