@@ -51,7 +51,11 @@
 	"with you" : "geteilt",
 	"Order now" : "Jetzt bestellen",
 	"Message from" : "Nachricht von",
-	"Sender has added a message to a file shared with you": "Sender hat eine Nachricht zu einer mit Ihnen geteilten Datei hinzugfügt"
+	"Sender has added a message to a file shared with you": "Sender hat eine Nachricht zu einer mit Ihnen geteilten Datei hinzugfügt",
+	"Email verification" : "E-Mail-Überprüfung",
+	"You have entered a new alternative e-mail address. Click the following button to confirm." : "Sie haben eine neue alternative E-Mail-Adresse angegeben. Bitte bestätigen Sie ihre Angabe per Klick auf den folgenden Button.",
+	"Confirm your email" : "Bestätige deine E-Mail",
+	"MagentaCLOUD email verification" : "MagentaCLOUD E-Mail-Überprüfung"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
 

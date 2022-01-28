@@ -210,6 +210,7 @@ protected $buttonGroup = "";
 			parent::addBodyButton($textLeft, $urlLeft, $plainTextLeft);
 			return;
 		}
+
 		parent::addBodyButtonGroup($textLeft, $urlLeft, $textRight, $urlRight, $plainTextLeft, $plainTextRight);
 	}
 
@@ -297,6 +298,10 @@ protected $buttonGroup = "";
 			   </table>';
 				$this->htmlBody .= $this->heading;
 				break;
+			case "core.EmailVerification":
+				$this->subject = $this->l10n->t('MagentaCLOUD email verification');
+				$this->heading =  '';
+				break;
 			default:
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 			}
@@ -356,6 +361,10 @@ protected $buttonGroup = "";
 		case "activity.Notification":
 			$this->bodyText = "";
 			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			break;
+		case "core.EmailVerification":
+			$this->bodyText =  include_once 'nmc_email_template/template/email_verification.php';
+			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  default:
 			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
