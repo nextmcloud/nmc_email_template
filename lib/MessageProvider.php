@@ -445,7 +445,7 @@ EOF,
 			echo $clientConditions[$statement];
 			$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
 			$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
-			$content3 = $this->l->t('Practical&colon; With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
+			$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
 			break;
 			case 3:
 				echo $clientConditions[$statement];
