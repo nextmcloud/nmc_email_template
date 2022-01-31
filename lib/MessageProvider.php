@@ -34,7 +34,12 @@ use OCP\IL10N;
 use OCP\L10N\IFactory as L10NFactory;
 use OCP\IURLGenerator;
 use OCP\IUser;
+use OCP\Share\IShare;
+use OCP\Share\IManager;
 use OCP\Mail\IEMailTemplate;
+use OCA\MonthlyStatusEmail\Service\ClientDetector;
+use OCA\MonthlyStatusEmail\Service\StorageInfoProvider;
+
 
 class MessageProvider {
 	public const NO_SHARE_AVAILABLE = 0;
@@ -77,15 +82,35 @@ class MessageProvider {
 	/** @var IUser */
 	private $user;
 
+	/**
+	 * @var ClientDetector
+	 */
+	private $clientDetector;
+
+	/**
+	 * @var StorageInfoProvider
+	 */
+	private $storageInfoProvider;
+
+	 /**
+	 * @var IManager
+	 */
+	private $shareManager;
 
 
-	public function __construct(IConfig $config, IURLGenerator $generator,IL10N $l,L10NFactory $l10nFactory) {
+	public function __construct(IConfig $config, IURLGenerator $generator,IL10N $l,L10NFactory $l10nFactory,
+	ClientDetector $clientDetector,StorageInfoProvider $storageInfoProvider,IManager $shareManager) {
 		$this->productName = $config->getAppValue('theming', 'productName', 'Nextcloud');
 		$this->entity = $config->getAppValue('theming', 'name', 'Nextcloud');
 		$this->generator = $generator;
 		$this->config = $config;
 		$this->l = $l;
+		$this->shareManager = $shareManager;
 		$this->l10nFactory = $l10nFactory;
+		$this->clientDetector = $clientDetector;
+		$this->storageInfoProvider = $storageInfoProvider;
+		
+		
 	}
 
 	/**
@@ -351,8 +376,8 @@ EOF,
                             <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.svg" height="48px" width="48px">
                             <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
                             <div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
-                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">$content1 $shareCount $content2</p>
-                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$myShare</a>
+                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 16px;">$content1 $shareCount $content2</p>
+                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 16px;width:158px">$myShare</a>
                           </div>
                           </td>
                       </tr>
@@ -383,27 +408,126 @@ EOF,
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
+		$clientConditions = $this->ClientCondition($user);
+		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
+		$quota = $this->humanFileSize((int) $storageInfo['quota']);
+		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
+		$shareCount = $this->handleShare($user);
+		/* if doesn't have upload anything */
+		if($usedSpace[0] <1 && $usedSpace[1]=="MB"){
+			array_push($clientConditions,5);
+		}
+		/* if doesn't share anything */
+		if($shareCount<1){
+			array_push($clientConditions,4);
+		}
+
+		$statement = array_rand($clientConditions,1);
+		switch($clientConditions[$statement]){
+			case 1:
+				$randomNumber = rand(2,3);
+				switch($randomNumber){
+					case 2:
+						$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
+						$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
+						$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
+					break;
+					case 3:
+						$content1 = $this->l->t('do you already know the free MagentaCLOUD synchronization software?');
+						$content2 = $this->l->t('After downloading the free software, your MagentaCLOUD is created as a folder on your Windows PC or Mac. All files that you move to this folder are automatically synchronized with your cloud - so everything stays up to date. Open the files from your MagentaCLOUD with your usual applications (e.g. Office) and make quickly changes available on all devices.');
+						$content4Link ="https://cloud.telekom-dienste.de/software-apps";
+						$content4 =$this->l->t('Here you can find our software for download.');
+					break;
+				}
+				break;
+			case 2:
+			echo $clientConditions[$statement];
+			$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
+			$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
+			$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
+			break;
+			case 3:
+				echo $clientConditions[$statement];
+				$content1 = $this->l->t('do you already know the free MagentaCLOUD synchronization software?');
+				$content2 = $this->l->t('After downloading the free software, your MagentaCLOUD is created as a folder on your Windows PC or Mac. All files that you move to this folder are automatically synchronized with your cloud - so everything stays up to date. Open the files from your MagentaCLOUD with your usual applications (e.g. Office) and make quickly changes available on all devices.');
+				$content4Link ="https://cloud.telekom-dienste.de/software-apps";
+				$content4 =$this->l->t('Here you can find our software for download.');
+				break;
+			case 4:				
+				$content1 = $this->l->t('you have not shared any files or folders yet.');
+				$content2 = $this->l->t('Weddings, family celebrations, vacations spent together - easily share your most beautiful moments with your loved ones. This works without the hassle of sharing media. Even files that are too large for an e-mail attachment can be conveniently made available to others via a link with your MagentaCLOUD.');
+				$content3 = $this->l->t('');
+				$content4Link ="";
+				$content4 =$this->l->t('');
+				break;
+
+			case 5:
+				$content1 = $this->l->t('This is how easy it is to upload files to MagentaCLOUD: Log in, click on \'Upload\' and select a file (e.g. your best vacation photo). As soon as the file is uploaded, you can access it anywhere - for example, comfortably at home on your PC, on the road in the bus, or at a friend\'s house on your tablet.');
+				break;
+
+			default:
+				$content1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
+				$content2 = $this->l->t('We also give you tips and tricks for the daily use of you');
+				$content3 = $this->l->t('You can find out how to upload,move,share etc.files');				
+				break;
+
+		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$l = $this->l10nFactory->get('nmc_email_template', $userLang);
+
 		$this->l = $l;
 		$home = $this->generator->getAbsoluteURL('/');
 		$emailTemplate->setSubject($this->l->t("Your MagentaCLOUD status mail"));
 		$hello = $l->t('Hello');
-		$content1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
-		$content2 = $this->l->t('We also give you tips and tricks for the daily use of you');
-		$content3 = $this->l->t('You can find out how to upload,move,share etc.files');
-		$content4 =$this->l->t('First Steps');
 		$yourTelekom= $this->l->t('Your Telekom');
 		$OpenMagentaCLOUD = $this->l->t('Open MagentaCLOUD');
-		$emailTemplate->addBodyText(
+		if($clientConditions[$statement]==5){
+			$emailTemplate->addBodyText(
+				<<<EOF
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				<tr>
+				  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
+					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
+					<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
+					<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+						<tbody>
+						  <tr>
+							<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
+							  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+								<tbody>
+								  <tr>
+									<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
+								  </tr>
+								</tbody>
+							  </table>
+							</td>
+						  </tr>
+						</tbody>
+					  </table>
+					</td>
+				</tr>
+			  </table>
+			</td>
+		  </tr>
+	
+		<!-- END MAIN CONTENT AREA -->
+		</table>
+	EOF,
+				"."
+			);
+		}
+		else{
+			$emailTemplate->addBodyText(
 			<<<EOF
 			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr>
 			  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
 				<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
 				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2 <br/>MagentaCLOUD.$content3<br/>
-				here <a style="color:#e20074;text-decoration: none;" href="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte">$content4</a></p>
+				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2 </p><p>$content3</p>
+				 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
 				<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
 					<tbody>
@@ -431,6 +555,7 @@ EOF,
 EOF,
 			"."
 		);
+	}
 	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
 	}
 
@@ -439,5 +564,55 @@ EOF,
 		$this->l10n = $this->l10nFactory->get('monthly_status_email',
 			$this->config->getUserValue($user->getUID(), 'lang', null)
 		);
+	}
+
+	private function ClientCondition(IUser $user): array {
+		try {
+			$hasDesktopClient = $this->clientDetector->hasDesktopConnection($user);
+			$hasMobileClient = $this->clientDetector->hasMobileConnection($user);
+		} catch (Exception $e) {
+			$this->logger->error('There was an error when trying to detect mobile/desktop connection' . $e->getMessage(), [
+				'exception' => $e
+			]);
+			return -1;
+		}
+		$availableGenericMessages = [];
+		
+		if (!$hasDesktopClient && !$hasMobileClient) {
+			$availableGenericMessages[] = self::NO_CLIENT_CONNECTION;
+		} elseif (!$hasMobileClient) {
+			$availableGenericMessages[] = self::NO_MOBILE_CLIENT_CONNECTION;
+		} elseif (!$hasDesktopClient) {
+			$availableGenericMessages[] = self::NO_DESKTOP_CLIENT_CONNECTION;
+		}
+		return $availableGenericMessages;
+	}
+
+	private function handleShare(IUser $user): int {
+		$requestedShareTypes = [
+			IShare::TYPE_USER,
+			IShare::TYPE_GROUP,
+			IShare::TYPE_LINK,
+			IShare::TYPE_REMOTE,
+			IShare::TYPE_EMAIL,
+			IShare::TYPE_ROOM,
+			IShare::TYPE_CIRCLE,
+			IShare::TYPE_DECK,
+		];
+		$shareCount = 0;
+		foreach ($requestedShareTypes as $requestedShareType) {
+			$shares = $this->shareManager->getSharesBy(
+				$user->getUID(),
+				$requestedShareType,
+				null,
+				false,
+				100
+			);
+			$shareCount += count($shares);
+			if ($shareCount > 100) {
+				break; // don't
+			}
+		}
+		return $shareCount;
 	}
 }
