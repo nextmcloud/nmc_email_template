@@ -52,7 +52,7 @@ OC.L10N.register(
 		"Order now" : "Jetzt bestellen",
 		"Message from" : "Nachricht von",
 		"Sender has added a message to a file shared with you": "Sender hat eine Nachricht zu einer mit Ihnen geteilten Datei hinzugfügt",
-		
+
 		"you have not shared any files or folders yet.":"bisher haben Sie noch keine Dateien oder Ordner freigegeben.",
 		"Weddings, family celebrations, vacations spent together - easily share your most beautiful moments with your loved ones. This works without the hassle of sharing media. Even files that are too large for an e-mail attachment can be conveniently made available to others via a link with your MagentaCLOUD.":"Hochzeiten, Familienfeiern, gemeinsam verbrachte Urlaube - teilen Sie Ihre schönsten Momente ganz einfach mit Ihren Liebsten. Dies funktioniert ohne den umständlichen Austausch von Datenträgern. Auch Dateien, die für einen E-Mail-Anhang zu groß sind, können Sie mit Ihrer MagentaCLOUD anderen bequem per Link zur Verfügung stellen.",
 
@@ -62,9 +62,15 @@ OC.L10N.register(
 
 		"Do you already know the free MagentaCLOUD app?":"kennen Sie schon die kostenlose MagentaCLOUD App?",
 		"Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend's house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.":"Schauen Sie sich überall Ihre schönsten Momente an – z. B. unterwegs im Bus auf dem Mobilgerät oder bei Freunden auf dem Tablet. Dank Ihrer MagentaCLOUD sind Ihre Bilder immer da, wo Sie sind.",
-		
+
 		"Practical&colon; With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.":"Praktisch Mit der App sichern Sie auf Wunsch Ihre Fotos und Videos automatisch in Ihrer MagentaCLOUD.",
 
-		"This is how easy it is to upload files to MagentaCLOUD: Log in, click on 'Upload' and select a file (e.g. your best vacation photo). As soon as the file is uploaded, you can access it anywhere - for example, comfortably at home on your PC, on the road in the bus, or at a friend's house on your tablet.":"so einfach können Sie Dateien in die MagentaCLOUD hochladen: Loggen Sie sich ein, klicken Sie auf 'Hochladen' und wählen Sie eine Datei (z. B. Ihr schönstes Urlaubsfoto) aus. Sobald die Datei hochgeladen ist, können Sie diese überall abrufen – z. B. bequem zu Hause auf dem PC, unterwegs im Bus oder bei Freunden auf dem Tablet."
+		"This is how easy it is to upload files to MagentaCLOUD: Log in, click on 'Upload' and select a file (e.g. your best vacation photo). As soon as the file is uploaded, you can access it anywhere - for example, comfortably at home on your PC, on the road in the bus, or at a friend's house on your tablet.":"so einfach können Sie Dateien in die MagentaCLOUD hochladen: Loggen Sie sich ein, klicken Sie auf 'Hochladen' und wählen Sie eine Datei (z. B. Ihr schönstes Urlaubsfoto) aus. Sobald die Datei hochgeladen ist, können Sie diese überall abrufen – z. B. bequem zu Hause auf dem PC, unterwegs im Bus oder bei Freunden auf dem Tablet.",
+
+		"Email verification" : "MagentaCLOUD Bestätigung",
+		"You have entered a new alternative e-mail address. Click the following button to confirm." : "Sie haben eine neue alternative E-Mail-Adresse angegeben. Bitte bestätigen Sie ihre Angabe per Klick auf den folgenden Button.",
+		"Confirm your email" : "E-Mail-Adresse bestätigen",
+		"MagentaCLOUD email verification" : "MagentaCLOUD Bestätigung"
 },
 "nplurals=2; plural=(n != 1);");
+
