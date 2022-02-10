@@ -419,7 +419,7 @@ protected $buttonGroup = "";
 			$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;padding: 0 0 0 24px !important;margin-bottom:80px"', $this->htmlBody);
 			$this->htmlBody = str_replace("</h1>", ":</h1>", $this->htmlBody);
 		}
-	    $this->htmlBody .= $this->footer;
+	    $this->htmlBody .= $this->footer.$this->tail;
 	}
 
 	public function setLanguage() {
