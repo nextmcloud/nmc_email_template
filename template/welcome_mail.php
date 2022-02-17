@@ -121,7 +121,7 @@
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').' '.$this->data['displayname'].',</p>
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t("we have activated your MagentaCLOUD, Telekom's online storage. Just click the link, log in and you are ready to go.").'
 					</p>
-					<a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">'.$this->l10n->t('Open MagentaCLOUD').'</a>
+					<a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">'.$this->l10n->t('Open MagentaCLOUD').'</a>
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin-top: 32px; Margin-bottom: 24px;">'.$this->l10n->t('With MagentaCLOUD, you can store your photos, videos, documents and much more securely online and access them from anywhere using your personal access data.').'
 					</p>
 					</td>
@@ -175,7 +175,7 @@
 						<p style="font-size: 10px;margin-top: 8px;margin-bottom: 16px;text-align: left;">'.$this->l10n->t('Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available.').'
 							<br /> '.$this->l10n->t('3 months minimum contract term').'</p>
 							<span style="display:inline-block; font-size:20px;margin-top: 16px;margin-bottom: 16px;">'.$this->l10n->t('only').' <span style="font-weight: bolder;">1,95 €</span> '.$this->l10n->t('monthly').'</span>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #ffffff;background-color: #e20074 !important;border: solid 1px #e20074;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">'.$this->l10n->t('Order now').'</a>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #ffffff;background-color: #e20074;border: solid 1px #e20074;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">'.$this->l10n->t('Order now').'</a>
 						</div>
 						</td>
 					</tr>
