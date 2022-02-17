@@ -3,10 +3,10 @@
  <tr>
    <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
 
-	 <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+	 <table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 	   <tr>
-		 <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-		   <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+		 <td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+		   <div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
 			 <span style="font-size: 32px;color:#e20074">64,7</span><span style="font-size: 16px;"> GB</span>
 			 <br />
 			 <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">500</span><span style="font-size: 16px;"> GB</span></div>
@@ -17,8 +17,8 @@
 			 <a href="#" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">Expand Storage</a>
 		   </div>
 		   </td>
-		   <td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
-			 <div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+		   <td class="monthly-storage" style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;width: 50%;">
+			 <div style="background: #f1f1f1;width: 100%;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
 			   <img src="https://dev1.next.magentacloud.de//themes/nextmagentacloud21/core/img/icons/add.svg" height="48px" width="48px">
 			   <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">47</span>  Shares</span></div>
 			   <div style="margin-top: 32px;"><span style="font-weight: bold;">Shares</span></div>
