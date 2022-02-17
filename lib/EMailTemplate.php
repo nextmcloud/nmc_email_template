@@ -103,8 +103,10 @@ EOF;
 			box-sizing: border-box;
 		}
 		table[class=footer-section] .footer-link {
-			width: 22%;
+			width: 25%;
 			float: left;
+			box-sizing: border-box;
+			padding-right: 0 !important;
 		}
 	 
 		table[class=monthly-details] .monthly-storage{
