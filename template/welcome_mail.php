@@ -105,13 +105,18 @@
 		<!-- START Header -->
 		<div class="header" style="clear: both;text-align: center; width: 100%;">
 		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-			<tr>
-			<td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;
-">
+			<tr style="background: #e20074;">
+			<td class="content-block" style="padding: 16px 24px;">
 			<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/logo-new.png" width="72px" height="35px"/>
-			<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;">'.$this->l10n->t('Life is for sharing').'</span>
+			</td>
+			<td style="width: 100%; padding: 16px 0;text-align: left;">
+			<span style="color: #fff;font-size: 16px;font-weight:bold;">'.$this->l10n->t('Life is for sharing').'</span>
 			</td>
 			</tr>
+			</tbody>
+			</table>
+			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+			<tbody>
 			<tr>
 			<td class="content-block" style="font-family: sans-serif; vertical-align: top;">
 			<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/email/welcome-banner.png" width="100%" style="margin-top: 16px;"/>
