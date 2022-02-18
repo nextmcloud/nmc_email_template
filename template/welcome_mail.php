@@ -12,18 +12,6 @@
 	font-size: 28px !important;
 	margin-bottom: 10px !important;
 	}
-	table[class=body] p,
-		table[class=body] ul,
-		table[class=body] ol,
-		table[class=body] td,
-		table[class=body] span,
-		table[class=body] a {
-	font-size: 16px !important;
-	}
-	table[class=body] .wrapper,
-		table[class=body] .article {
-	padding: 10px !important;
-	}
 	table[class=body] .content {
 	padding: 0 !important;
 	}
