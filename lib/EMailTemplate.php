@@ -92,7 +92,7 @@ EOF;
 			box-sizing: border-box;
 		}
 		table[class=footer-section] .footer-link {
-			width: 25%;
+			width: 23%;
 			float: left;
 			box-sizing: border-box;
 			padding-right: 0 !important;

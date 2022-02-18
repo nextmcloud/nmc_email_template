@@ -47,6 +47,17 @@
 	max-width: 100% !important;
 	width: auto !important;
 	}
+	table[class=footer-section] .copy-right {
+		width: 100%;
+		float: left;
+		box-sizing: border-box;
+	}
+	table[class=footer-section] .footer-link {
+		width: 23%;
+		float: left;
+		box-sizing: border-box;
+		padding-right: 0 !important;
+	}
 }
 @media all {
 	.ExternalClass {
