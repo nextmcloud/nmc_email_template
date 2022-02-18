@@ -62,18 +62,7 @@ EOF;
 		font-size: 28px !important;
 		margin-bottom: 10px !important;
 		}
-		table[class=body] p,
-			table[class=body] ul,
-			table[class=body] ol,
-			table[class=body] td,
-			table[class=body] span,
-			table[class=body] a {
-		font-size: 16px !important;
-		}
-		table[class=body] .wrapper,
-			table[class=body] .article {
-		padding: 10px !important;
-		}
+		
 		table[class=body] .content {
 		padding: 0 !important;
 		}
@@ -115,6 +104,18 @@ EOF;
 			padding: 0 !important;
 			margin-bottom: 16px;
 		}
+		table[class=quota-details] .quota-info{
+			box-sizing: border-box;
+			width: 100% !important;
+			float: left;
+		}
+		table[class=quota-details] .warning-info{
+			text-align: center !important;
+		}
+		table[class=quota-details] .warning-info a{
+			padding: 12px !important;
+		}
+
 	}
 	@media all {
 		.ExternalClass {
