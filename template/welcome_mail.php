@@ -12,18 +12,6 @@
 	font-size: 28px !important;
 	margin-bottom: 10px !important;
 	}
-	table[class=body] p,
-		table[class=body] ul,
-		table[class=body] ol,
-		table[class=body] td,
-		table[class=body] span,
-		table[class=body] a {
-	font-size: 16px !important;
-	}
-	table[class=body] .wrapper,
-		table[class=body] .article {
-	padding: 10px !important;
-	}
 	table[class=body] .content {
 	padding: 0 !important;
 	}
@@ -46,6 +34,17 @@
 	height: auto !important;
 	max-width: 100% !important;
 	width: auto !important;
+	}
+	table[class=footer-section] .copy-right {
+		width: 100%;
+		float: left;
+		box-sizing: border-box;
+	}
+	table[class=footer-section] .footer-link {
+		width: 23%;
+		float: left;
+		box-sizing: border-box;
+		padding-right: 0 !important;
 	}
 }
 @media all {
@@ -94,13 +93,18 @@
 		<!-- START Header -->
 		<div class="header" style="clear: both;text-align: center; width: 100%;">
 		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-			<tr>
-			<td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;
-">
+			<tr style="background: #e20074;">
+			<td class="content-block" style="padding: 16px 24px;">
 			<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/logo-new.png" width="72px" height="35px"/>
-			<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;">'.$this->l10n->t('Life is for sharing').'</span>
+			</td>
+			<td style="width: 100%; padding: 16px 0;text-align: left;">
+			<span style="color: #fff;font-size: 16px;font-weight:bold;">'.$this->l10n->t('Life is for sharing').'</span>
 			</td>
 			</tr>
+			</tbody>
+			</table>
+			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+			<tbody>
 			<tr>
 			<td class="content-block" style="font-family: sans-serif; vertical-align: top;">
 			<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/email/welcome-banner.png" width="100%" style="margin-top: 16px;"/>
@@ -121,7 +125,7 @@
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').' '.$this->data['displayname'].',</p>
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t("we have activated your MagentaCLOUD, Telekom's online storage. Just click the link, log in and you are ready to go.").'
 					</p>
-					<a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">'.$this->l10n->t('Open MagentaCLOUD').'</a>
+					<a href="https://www.magentacloud.de/" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">'.$this->l10n->t('Open MagentaCLOUD').'</a>
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin-top: 32px; Margin-bottom: 24px;">'.$this->l10n->t('With MagentaCLOUD, you can store your photos, videos, documents and much more securely online and access them from anywhere using your personal access data.').'
 					</p>
 					</td>
@@ -175,7 +179,7 @@
 						<p style="font-size: 10px;margin-top: 8px;margin-bottom: 16px;text-align: left;">'.$this->l10n->t('Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available.').'
 							<br /> '.$this->l10n->t('3 months minimum contract term').'</p>
 							<span style="display:inline-block; font-size:20px;margin-top: 16px;margin-bottom: 16px;">'.$this->l10n->t('only').' <span style="font-weight: bolder;">1,95 €</span> '.$this->l10n->t('monthly').'</span>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #ffffff;background-color: #e20074 !important;border: solid 1px #e20074;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">'.$this->l10n->t('Order now').'</a>
+						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #ffffff;background-color: #e20074;border: solid 1px #e20074;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">'.$this->l10n->t('Order now').'</a>
 						</div>
 						</td>
 					</tr>

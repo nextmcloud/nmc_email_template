@@ -62,18 +62,7 @@ EOF;
 		font-size: 28px !important;
 		margin-bottom: 10px !important;
 		}
-		table[class=body] p,
-			table[class=body] ul,
-			table[class=body] ol,
-			table[class=body] td,
-			table[class=body] span,
-			table[class=body] a {
-		font-size: 16px !important;
-		}
-		table[class=body] .wrapper,
-			table[class=body] .article {
-		padding: 10px !important;
-		}
+		
 		table[class=body] .content {
 		padding: 0 !important;
 		}
@@ -97,6 +86,36 @@ EOF;
 		max-width: 100% !important;
 		width: auto !important;
 		}
+		table[class=footer-section] .copy-right {
+			width: 100%;
+			float: left;
+			box-sizing: border-box;
+		}
+		table[class=footer-section] .footer-link {
+			width: 23%;
+			float: left;
+			box-sizing: border-box;
+			padding-right: 0 !important;
+		}
+	 
+		table[class=monthly-details] .monthly-storage{
+			width: 100% !important;
+			float: left;
+			padding: 0 !important;
+			margin-bottom: 16px;
+		}
+		table[class=quota-details] .quota-info{
+			box-sizing: border-box;
+			width: 100% !important;
+			float: left;
+		}
+		table[class=quota-details] .warning-info{
+			text-align: center !important;
+		}
+		table[class=quota-details] .warning-info a{
+			padding: 12px !important;
+		}
+
 	}
 	@media all {
 		.ExternalClass {
@@ -158,18 +177,23 @@ protected $header = <<<EOF
 <!-- START Header -->
 <div class="header" style="clear: both;text-align: center; width: 100%;border-bottom:2px solid #e5e5e5;">
   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-	<tr>
-	  <td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
+  	<tr style="background: #e20074;">
+	  <td class="content-block" style="padding: 16px 24px;">
 	  <img src="host_namethemes/nextmagentacloud21/core/img/logo-new.png" width="72px" height="35px"/>
-	<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;">Life is for sharing.</span>
+	  </td>
+	  <td style="width: 100%; padding: 16px 0;text-align: left;">
+	  <span style="color: #fff;font-size: 16px;font-weight:bold;">Life is for sharing.</span>
 	  </td>
 	</tr>
+	</tbody>
+	</table>
+	<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+	<tbody>
 	<tr>
 	  <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; text-align: center;border-top-right-radius:8px;border-top-left-radius:8px">
 	  <p style="color: #191919; font-size: 25px; text-align: left;font-weight: bold;margin:4px 0">Magenta<span style="font-size: 25px; font-weight: normal;">CLOUD</span></p>
 	  </td>
 	</tr>
-
   </table>
 </div>
 <!-- END Header -->
@@ -383,23 +407,23 @@ protected $buttonGroup = "";
 
 	public function addFooter(string $text = '', ?string $lang = null) {
 		$this->footer = '<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
-		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+		<table class="footer-section" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 		  <tr>
-			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #191919; text-align: left;">
+			<td class="copy-right" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #191919; text-align: left;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Telekom Deutschland GmbH</span>
 			</td>
-			<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
 				<a href="'.$this->urlPath.'index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
 			</td>
-<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;">
 				<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a></span>
 			</td>
-<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <a href="https://static.magentacloud.de/Datenschutz">'.$this->l10n->t('Data Protection').'</a></span>
 			</td>
-<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
+<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a></span>
 			</td>
 		  </tr>
@@ -419,7 +443,7 @@ protected $buttonGroup = "";
 			$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;padding: 0 0 0 24px !important;margin-bottom:80px"', $this->htmlBody);
 			$this->htmlBody = str_replace("</h1>", ":</h1>", $this->htmlBody);
 		}
-	    $this->htmlBody .= $this->footer;
+	    $this->htmlBody .= $this->footer.$this->tail;
 	}
 
 	public function setLanguage() {
