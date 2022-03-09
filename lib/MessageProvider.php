@@ -188,25 +188,19 @@ class MessageProvider {
 		// Warning no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
-
-			<!-- START MAIN CONTENT AREA -->
-			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+	   		<tbody>
+			   <tr>
+			   		<td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+					   <div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+					   <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+					   <br>
+					   <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+					   <br>
+					   <span style="font-weight: bold;">$storage</span>
+					   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+					   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+					 </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
 		);
@@ -234,25 +228,19 @@ EOF,
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
-
-			<!-- START MAIN CONTENT AREA -->
-			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+	   		<tbody>
+			   <tr>
+			   		<td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+					   <div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+					   <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+					   <br>
+					   <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+					   <br>
+					   <span style="font-weight: bold;">$storage</span>
+					   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+					   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+					 </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
 		);
@@ -279,25 +267,19 @@ EOF,
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
-
-			<!-- START MAIN CONTENT AREA -->
-			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+	   		<tbody>
+			   <tr>
+			   		<td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+					   <div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+					   <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+					   <br>
+					   <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+					   <br>
+					   <span style="font-weight: bold;">$storage</span>
+					   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+					   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+					 </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]"
 		);
@@ -318,25 +300,19 @@ EOF,
 		$storage =$this->l->t("Storage");
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
-
-			<!-- START MAIN CONTENT AREA -->
-			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+	   		<tbody>
+			   <tr>
+			   		<td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+					   <div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+					   <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
+					   <br>
+					   <div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+					   <br>
+					   <span style="font-weight: bold;">$storage</span>
+					   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+					   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+					 </div>
 
 EOF,
 			"."
