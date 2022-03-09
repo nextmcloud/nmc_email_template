@@ -346,18 +346,19 @@ EOF,
 			$myShare = $this->l->t('My share');
 			$emailTemplate->addBodyText(
 				<<<EOF
+
 				</td>
-                        <td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
-                          <div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-                            <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.svg" height="48px" width="48px">
-                            <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
-                            <div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
-                            <p style="margin-top: 8px;font-size: 12px;margin-bottom: 16px;">$content1 $shareCount $content2</p>
-                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 16px;width:158px">$myShare</a>
-                          </div>
-                          </td>
-                      </tr>
-                   </table>
+				<td class="monthly-storage" style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;width: 50%;">
+				  <div style="background: #f1f1f1;width: 100%;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+					<img src="$home/themes/nextmagentacloud21/core/img/icons/add.svg" height="48px" width="48px">
+					<div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
+					<div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
+					<p style="margin-top: 8px;font-size: 12px;margin-bottom: 32px;">$content1 $shareCount $content2</p>
+					<a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$myShare</a>
+				  </div>
+				  </td>
+			  </tr>
+		   </tbody></table>
 EOF,
 				"."
 			);
@@ -467,21 +468,20 @@ EOF,
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
 					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
 					<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
-					<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-						<tbody>
-						  <tr>
-							<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
-							  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-								<tbody>
-								  <tr>
-									<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
-								  </tr>
-								</tbody>
-							  </table>
-							</td>
-						  </tr>
-						</tbody>
-					  </table>
+					table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+					  <tbody>
+						<tr>
+						  <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
+							<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+							  <tbody>
+								<tr>
+								  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
+								</tr>
+							  </tbody>
+							</table>
+						  </td>
+						</tr>
+					  </tbody>
 					</td>
 				</tr>
 			  </table>
@@ -511,9 +511,9 @@ EOF,
 						<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
 						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
 							<tbody>
-							  <tr>
-								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
-							  </tr>
+							<tr>
+								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074; border-radius: 8px; text-align: center;"> <a href="#" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
+							</tr>
 							</tbody>
 						  </table>
 						</td>
