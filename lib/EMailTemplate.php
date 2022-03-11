@@ -88,15 +88,17 @@ EOF;
 		}
 		table[class=footer-section] .copy-right {
 			width: 100%;
+			text-align: center !important;
 			float: left;
 			box-sizing: border-box;
-		}
-		table[class=footer-section] .footer-link {
-			width: 23%;
+		  }
+		  table[class=footer-section] .footer-link {
+			width: 100%;
 			float: left;
+			text-align: center !important;
 			box-sizing: border-box;
 			padding-right: 0 !important;
-		}
+		  }
 	 
 		table[class=monthly-details] .monthly-storage{
 			width: 100% !important;

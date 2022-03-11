@@ -188,25 +188,26 @@ class MessageProvider {
 		// Warning no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+			<div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
+            <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
 
-			<!-- START MAIN CONTENT AREA -->
-			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+                  
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+                    <tr>
+                      <td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+                        <div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+                          <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>    
+                          <br />                    
+                          <div style="width:110px;display: inline-block;padding-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+                          <br />        
+                          <span style="font-weight: bold;">$storage</span>
+                          <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+                        </div>
 
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
 		);
@@ -234,25 +235,25 @@ EOF,
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+			<div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
+            <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
 
-			<!-- START MAIN CONTENT AREA -->
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+                  
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			  <td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+				<div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+				  <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>    
+				  <br />                    
+				  <div style="width:110px;display: inline-block;padding-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+				  <br />        
+				  <span style="font-weight: bold;">$storage</span>
+				  <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+				  <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+				</div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
 		);
@@ -279,25 +280,25 @@ EOF,
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+			<div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
+            <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
 
-			<!-- START MAIN CONTENT AREA -->
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+                  
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			  <td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+				<div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+				  <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>    
+				  <br />                    
+				  <div style="width:110px;display: inline-block;padding-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+				  <br />        
+				  <span style="font-weight: bold;">$storage</span>
+				  <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+				  <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+				</div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]"
 		);
@@ -318,25 +319,25 @@ EOF,
 		$storage =$this->l->t("Storage");
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+			<div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
+            <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
 
-			<!-- START MAIN CONTENT AREA -->
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
+                  
+			<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr>
-			  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
-
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				  <tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
-					  <div style="text-align: center;background: #f1f1f1;width: 266px;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-						<span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>
-						<br />
-						<div style="width:110px;display: inline-block;margin-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
-						<br />
-						<span style="font-weight: bold;">$storage</span>
-						<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-						<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;width:158px">$expendStorage</a>
-					  </div>
-					  </td>
+			  <td class="monthly-storage" style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;width: 50%;">
+				<div style="text-align: center;background: #f1f1f1;width: 100%;padding-top: 48px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+				  <span style="font-size: 32px;color:#e20074">$usedSpace[0]</span><span style="font-size: 16px;"> $usedSpace[1]</span>    
+				  <br />                    
+				  <div style="width:110px;display: inline-block;padding-bottom: 32px;border-top: 1px solid #191919;"><span style="font-size: 32px;color:#191919;">$quota[0]</span><span style="font-size: 16px;"> $quota[1]</span></div>
+				  <br />        
+				  <span style="font-weight: bold;">$storage</span>
+				  <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
+				  <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+				</div>
 
 EOF,
 			"."
@@ -371,13 +372,13 @@ EOF,
 			$emailTemplate->addBodyText(
 				<<<EOF
 				</td>
-                        <td style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;">
-                          <div style="background: #f1f1f1;width: 266px;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
-                            <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.svg" height="48px" width="48px">
-                            <div style="margin-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
-                            <div style="margin-top: 32px;"><span style="font-weight: bold;">$share</span></div>
+                        <td class="monthly-storage" style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;width: 50%;">
+                          <div style="background: #f1f1f1;width: 100%;padding-top: 42px;padding-bottom: 24px;padding-right: 24px;padding-left: 24px;box-sizing: border-box;">
+                            <img src="$home/themes/nextmagentacloud21/core/img/email/user-share.png" height="48px" width="48px">
+							<div style="padding-top: 8px;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
+                            <div style="padding-top: 32px;"><span style="font-weight: bold;">$share</span></div>
                             <p style="margin-top: 8px;font-size: 12px;margin-bottom: 16px;">$content1 $shareCount $content2</p>
-                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1 !important;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 16px;width:158px">$myShare</a>
+                            <a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$myShare</a>
                           </div>
                           </td>
                       </tr>
@@ -485,35 +486,42 @@ EOF,
 		if($clientConditions[$statement]==5){
 			$emailTemplate->addBodyText(
 				<<<EOF
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 				<tr>
-				  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
-					<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
-					<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
-					<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-						<tbody>
-						  <tr>
-							<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
-							  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-								<tbody>
-								  <tr>
-									<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
-								  </tr>
-								</tbody>
-							  </table>
-							</td>
-						  </tr>
-						</tbody>
+					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
+						<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',,</p>
+						<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
+						<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2</p><p>$content3 </p>
+						 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
+						<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
+
+
+						<table role="presentation" border="0" 
+						cellpadding="0" cellspacing="0" class="btn btn-primary" 
+						style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+							<tbody>
+								<tr>
+									<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
+										<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+											<tbody>
+												<tr>
+													<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
+												</tr>
+											</tbody>
+										</table>
+										</td>
+										</tr>
+									  </tbody>
+									</table>
+								  </td>
+							  </tr>
+							</table>
+						  </td>
+						</tr>
+		  
+					  <!-- END MAIN CONTENT AREA -->
 					  </table>
-					</td>
-				</tr>
-			  </table>
-			</td>
-		  </tr>
-	
-		<!-- END MAIN CONTENT AREA -->
-		</table>
+		
 	EOF,
 				"."
 			);
@@ -521,37 +529,42 @@ EOF,
 		else{
 			$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top:32px;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-			<tr>
-			  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">$hello '$username',</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
-				<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2 </p><p>$content3</p>
-				 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
-				<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
-				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-					<tbody>
-					  <tr>
-						<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
-						  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-							<tbody>
-							  <tr>
-								<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074 !important; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074 !important; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
-							  </tr>
-							</tbody>
-						  </table>
-						</td>
-					  </tr>
-					</tbody>
-				  </table>
-				</td>
-			</tr>
-		  </table>
-		</td>
-	  </tr>
+			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+					<tr>
+						<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',,</p>
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2</p><p>$content3 </p>
+							 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
+							<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
 
-	<!-- END MAIN CONTENT AREA -->
-	</table>
+
+							<table role="presentation" border="0" 
+							cellpadding="0" cellspacing="0" class="btn btn-primary" 
+							style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+								<tbody>
+									<tr>
+										<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
+											<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+												<tbody>
+													<tr>
+														<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
+													</tr>
+												</tbody>
+											</table>
+											</td>
+											</tr>
+										  </tbody>
+										</table>
+									  </td>
+								  </tr>
+								</table>
+							  </td>
+							</tr>
+			  
+						  <!-- END MAIN CONTENT AREA -->
+						  </table>
+	
 EOF,
 			"."
 		);
