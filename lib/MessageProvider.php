@@ -26,7 +26,6 @@ declare(strict_types=1);
 
 namespace OCA\EmailTemplateExample;;
 
-use OC\KnownUser\KnownUserService;
 use OCA\MonthlyStatusEmail\Db\NotificationTracker;
 use OCA\MonthlyStatusEmail\Jobs\SendNotificationsJob;
 use OCP\Files\FileInfo;
