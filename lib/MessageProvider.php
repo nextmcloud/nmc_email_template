@@ -359,9 +359,6 @@ EOF,
 	}
 
 	public function writeShareMessage(IEMailTemplate $emailTemplate, int $shareCount) {
-
-			$host = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'];
-			// $host = 'https://dev1.next.magentacloud.de'; // for test only
 			$home = $this->generator->getAbsoluteURL('/');
 			$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 			 $this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
@@ -489,7 +486,7 @@ EOF,
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 				<tr>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-						<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',,</p>
+						<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',</p>
 						<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
 						<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2</p><p>$content3 </p>
 						 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
@@ -532,7 +529,7 @@ EOF,
 			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 					<tr>
 						<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-							<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',,</p>
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',</p>
 							<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
 							<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2</p><p>$content3 </p>
 							 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
