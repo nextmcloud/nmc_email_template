@@ -214,7 +214,7 @@ EOF,
 		$emailTemplate->addHeading('Hallo,');
 		$emailTemplate->addBodyText('Ihr Speicherplatz in der ' . $this->entity . ' ist vollständing belegt. Sie können Ihren Speicherplatz jederzeit kostenpflichtig erweitern und dabei zwischen verschiedenen Speichergrößen wählen.');
 		$this->writeClosing($emailTemplate);
-		$emailTemplate->addBodyButton('Jetzt Speicher erweitern', 'TODO');
+		//$emailTemplate->addBodyButton('Jetzt Speicher erweitern', 'TODO');
 	}
 
 	public function writeStorageWarning(IEMailTemplate $emailTemplate, array $storageInfo): void {
@@ -260,7 +260,7 @@ EOF,
 		$emailTemplate->addHeading('Hallo,');
 		$emailTemplate->addBodyText('Ihr Speicherplatz in der ' . $this->entity . ' ist fast vollständing belegt. Sie können Ihren Speicherplatz jederzeit kostenpflichtig erweitern und dabei zwischen verschiedenen Speichergrößen wählen.');
 		$this->writeClosing($emailTemplate);
-		$emailTemplate->addBodyButton('Jetzt Speicher erweitern', 'TODO');
+		//$emailTemplate->addBodyButton('Jetzt Speicher erweitern', 'TODO');
 	}
 
 	public function writeStorageNoQuota(IEMailTemplate $emailTemplate, array $storageInfo): void {
@@ -403,9 +403,17 @@ EOF,
 			$sendFromDomain
 		]);
 	}
-
+	/*
+	*In this section we put switch statement to differentiate the body content from different scenarios
+	* 1. if user have no data upload.
+	* 2. if user have no shares.
+	* 3. if user doesn't install desktop app.
+	* 4. if user doesn't install mobile app 
+	* 5. if user fulfill all conditions.
+	*/
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
+		$clientConditions = [];
 		$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
@@ -420,7 +428,9 @@ EOF,
 		if($shareCount<1){
 			array_push($clientConditions,4);
 		}
-
+		if(count($clientConditions) ==0 || count($clientConditions)<2 ){
+			$clientConditions[]=0;
+		}
 		$statement = array_rand($clientConditions,1);
 		switch($clientConditions[$statement]){
 			case 1:
@@ -440,13 +450,11 @@ EOF,
 				}
 				break;
 			case 2:
-			echo $clientConditions[$statement];
 			$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
 			$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
 			$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
 			break;
 			case 3:
-				echo $clientConditions[$statement];
 				$content1 = $this->l->t('do you already know the free MagentaCLOUD synchronization software?');
 				$content2 = $this->l->t('After downloading the free software, your MagentaCLOUD is created as a folder on your Windows PC or Mac. All files that you move to this folder are automatically synchronized with your cloud - so everything stays up to date. Open the files from your MagentaCLOUD with your usual applications (e.g. Office) and make quickly changes available on all devices.');
 				$content4Link ="https://cloud.telekom-dienste.de/software-apps";
@@ -566,7 +574,7 @@ EOF,
 			"."
 		);
 	}
-	$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
+	//$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
 	}
 
 	public function setUser(IUser $user) {
