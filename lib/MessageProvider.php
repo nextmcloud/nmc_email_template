@@ -403,7 +403,14 @@ EOF,
 			$sendFromDomain
 		]);
 	}
-
+	/*
+	*In this section we put switch statement to differentiate the body content from different scenarios
+	* 1. if user have no data upload.
+	* 2. if user have no shares.
+	* 3. if user doesn't install desktop app.
+	* 4. if user doesn't install mobile app 
+	* 5. if user fulfill all conditions.
+	*/
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
 		$clientConditions = [];
