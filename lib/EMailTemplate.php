@@ -62,7 +62,7 @@ EOF;
 		font-size: 28px !important;
 		margin-bottom: 10px !important;
 		}
-		
+
 		table[class=body] .content {
 		padding: 0 !important;
 		}
@@ -99,7 +99,7 @@ EOF;
 			box-sizing: border-box;
 			padding-right: 0 !important;
 		  }
-	 
+
 		table[class=monthly-details] .monthly-storage{
 			width: 100% !important;
 			float: left;
@@ -211,9 +211,9 @@ protected $bodyEnd = <<<EOF
 EOF;
 protected $l10n = null;
 
-protected $button = "";
+// protected $button = "";
 
-protected $buttonGroup = "";
+// protected $buttonGroup = "";
 
 // protected $listEnd = "";
 
@@ -273,21 +273,31 @@ protected $buttonGroup = "";
 
 		switch ($this->emailId) {
 			case "settings.Welcome":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('Welcome to the MagentaCLOUD');
 				$this->htmlBody = "";
 				$this->heading = "";
 				break;
 			case "defaultShareProvider.sendNote":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "shareByMail.sendNote":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "sharebymail.RecipientNotification":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->data['initiator']." ".$this->l10n->t('shared').' "'.$this->data['filename'].'" '.$this->l10n->t('with you');
 				$this->heading = "";
 				break;
 			case "files_sharing.RecipientNotification":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->data['initiator']." ".$this->l10n->t('shared').' "'.$this->data['filename'].'" '.$this->l10n->t('with you');
 				$this->heading = "";
 				break;
@@ -295,14 +305,20 @@ protected $buttonGroup = "";
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quote.notification":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('Your MagentaCLOUD status mail');
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 				break;
 			case "quota_warning.Notification":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('Nearing your storage quota');
 				$this->heading = "";
 				break;
 			case "activity.Notification":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('Activity notification for MagentaCLOUD');
 				if(isset($this->data['dialyActivity'])){
 					$this->subject = $this->l10n->t('Daily activity summary for MagentaCLOUD');
@@ -325,6 +341,8 @@ protected $buttonGroup = "";
 				$this->htmlBody .= $this->heading;
 				break;
 			case "core.EmailVerification":
+				$this->button = "";
+				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('MagentaCLOUD email verification');
 				$this->heading =  '';
 				break;
