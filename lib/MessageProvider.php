@@ -370,7 +370,7 @@ EOF,
 					</td>
 					<td class="monthly-storage" style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;width: 50%;">
 						<div style="background: #f1f1f1;border-top: 48px solid #f1f1f1;border-right: 24px solid #f1f1f1;border-left: 24px solid #f1f1f1;border-bottom: 24px solid #f1f1f1;">
-							<img src="$home/themes/nextmagentacloud21/core/img/email/add.svg" height="48" width="48">
+							<img src="$home/themes/nextmagentacloud21/core/img/email/user-share.png" height="48" width="48">
 							<div style="border-top: 8px solid #f1f1f1;border-bottom: 8px solid #f1f1f1;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
 							<br>
 								<span style="font-weight: bold;">$share</span>
