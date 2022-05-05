@@ -175,10 +175,14 @@ class MessageProvider {
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
+
+		$error =\OC::$server->getLogger()->error( 'usedSpace : '.$usedSpace[0]. " ".$usedSpace[1]);
+
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
+		$error =\OC::$server->getLogger()->error( $this->user->getUID(). '<-----------usedSpace : '.$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
@@ -220,11 +224,12 @@ EOF,
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
-
+		$error =\OC::$server->getLogger()->error( 'usedSpace : '.$usedSpace[0]. " ".$usedSpace[1]);
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
+		$error =\OC::$server->getLogger()->error( $this->user->getUID(). '<-----------usedSpace : '.$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
@@ -270,6 +275,7 @@ EOF,
 		if($quota[0]=="?"){
 			$quota[0]="Unlimited";
 		}
+		$error =\OC::$server->getLogger()->error( $this->user->getUID(). '<-----------usedSpace : '.$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
@@ -313,6 +319,7 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
+		$error =\OC::$server->getLogger()->error( $this->user->getUID(). '<-----------usedSpace : '.$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 		$storage =$this->l->t("Storage");
@@ -414,14 +421,14 @@ EOF,
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$username = $user->getDisplayNameOtherUser();
 		$clientConditions = [];
-		$clientConditions = $this->ClientCondition($user);
+		//$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		$shareCount = $this->handleShare($user);
 		/* if doesn't have upload anything */
-		if($usedSpace[0] <1 && $usedSpace[1]=="MB"){
+		if($usedSpace[0] <100 && $usedSpace[1]=="MB"){
 			array_push($clientConditions,5);
 		}
 		/* if doesn't share anything */
