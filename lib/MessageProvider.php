@@ -422,12 +422,20 @@ EOF,
 		$clientConditions = [];
 		$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
+		
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		$shareCount = $this->handleShare($user);
+		$content4Link ="";
+		$content1 ="";
+		$content2="";
+		$content3="";
+		$content4="";
+		$content5="";
+
 		/* if doesn't have upload anything */
-		if($usedSpace[0] <1 && $usedSpace[1]=="MB"){
+		if($usedSpace[0] <2 && $usedSpace[1]=="MB"){
 			array_push($clientConditions,5);
 		}
 		/* if doesn't share anything */
@@ -475,6 +483,7 @@ EOF,
 				break;
 
 			case 5:
+			case 9:
 				$content1 = $this->l->t('This is how easy it is to upload files to MagentaCLOUD: Log in, click on \'Upload\' and select a file (e.g. your best vacation photo). As soon as the file is uploaded, you can access it anywhere - for example, comfortably at home on your PC, on the road in the bus, or at a friend\'s house on your tablet.');
 				break;
 
