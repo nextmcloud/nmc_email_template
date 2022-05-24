@@ -435,7 +435,7 @@ EOF,
 		$content5="";
 
 		/* if doesn't have upload anything */
-		if($usedSpace[0] <2 && $usedSpace[1]=="MB"){
+		if($usedSpace[0] <5 && $usedSpace[1]=="MB"){
 			array_push($clientConditions,5);
 		}
 		/* if doesn't share anything */
@@ -443,7 +443,8 @@ EOF,
 			array_push($clientConditions,4);
 		}
 		if(count($clientConditions) ==0 || count($clientConditions)<2 ){
-			$clientConditions[]=0;
+			if($clientConditions[0]!=5 && count($clientConditions)==0)
+			{$clientConditions[]=0;}
 		}
 		$statement = array_rand($clientConditions,1);
 		switch($clientConditions[$statement]){
