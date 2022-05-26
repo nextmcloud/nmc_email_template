@@ -176,8 +176,6 @@ class MessageProvider {
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 
-		$error =\OC::$server->getLogger()->error( 'usedSpace : '.$usedSpace[0]. " ".$usedSpace[1]);
-
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -228,7 +226,6 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-		$error =\OC::$server->getLogger()->error( '<----------- '. $this->user->getUID() . " --used space : ".$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
@@ -274,7 +271,6 @@ EOF,
 		if($quota[0]=="?"){
 			$quota[0]="Unlimited";
 		}
-		$error =\OC::$server->getLogger()->error( '<----------- '. $this->user->getUID() . " --used space : ".$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
@@ -318,7 +314,6 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-		$error =\OC::$server->getLogger()->error( '<----------- '. $this->user->getUID() . " --used space : ".$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 		$storage =$this->l->t("Storage");
@@ -425,6 +420,7 @@ EOF,
 		
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		$shareCount = $this->handleShare($user);
 		$content4Link ="";
