@@ -175,6 +175,7 @@ class MessageProvider {
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
+
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -220,7 +221,6 @@ EOF,
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
-
 		$requestMoreStorageLink = $this->getRequestMoreStorageLink();
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
@@ -416,20 +416,30 @@ EOF,
 		$clientConditions = [];
 		$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
+		
 		$quota = $this->humanFileSize((int) $storageInfo['quota']);
 		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		$shareCount = $this->handleShare($user);
+		$content4Link ="";
+		$content1 ="";
+		$content2="";
+		$content3="";
+		$content4="";
+		$content5="";
 		/* if doesn't have upload anything */
-		if($usedSpace[0] <1 && $usedSpace[1]=="MB"){
+		if($storageInfo['used'] < 1049666){
 			array_push($clientConditions,5);
 		}
 		/* if doesn't share anything */
 		if($shareCount<1){
 			array_push($clientConditions,4);
 		}
+
 		if(count($clientConditions) ==0 || count($clientConditions)<2 ){
-			$clientConditions[]=0;
+			if($clientConditions[0]!=5 && count($clientConditions)==0)
+			{$clientConditions[]=0;}
 		}
 		$statement = array_rand($clientConditions,1);
 		switch($clientConditions[$statement]){
@@ -469,6 +479,7 @@ EOF,
 				break;
 
 			case 5:
+			case 9:
 				$content1 = $this->l->t('This is how easy it is to upload files to MagentaCLOUD: Log in, click on \'Upload\' and select a file (e.g. your best vacation photo). As soon as the file is uploaded, you can access it anywhere - for example, comfortably at home on your PC, on the road in the bus, or at a friend\'s house on your tablet.');
 				break;
 
