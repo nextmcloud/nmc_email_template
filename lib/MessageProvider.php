@@ -180,7 +180,6 @@ class MessageProvider {
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-		$error =\OC::$server->getLogger()->error( '<----------- '. $this->user->getUID() . " --used space : ".$usedSpace[0]. " ".$usedSpace[1].'------------------->');
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
