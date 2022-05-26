@@ -433,15 +433,15 @@ EOF,
 		$content3="";
 		$content4="";
 		$content5="";
-
 		/* if doesn't have upload anything */
-		if($usedSpace[0] <5 && $usedSpace[1]=="MB"){
+		if($storageInfo['used'] < 1049666){
 			array_push($clientConditions,5);
 		}
 		/* if doesn't share anything */
 		if($shareCount<1){
 			array_push($clientConditions,4);
 		}
+
 		if(count($clientConditions) ==0 || count($clientConditions)<2 ){
 			if($clientConditions[0]!=5 && count($clientConditions)==0)
 			{$clientConditions[]=0;}
