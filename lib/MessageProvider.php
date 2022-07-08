@@ -206,7 +206,7 @@ class MessageProvider {
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
                         </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
@@ -251,7 +251,7 @@ EOF,
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
                         </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
@@ -296,7 +296,7 @@ EOF,
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
                         </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]"
@@ -335,7 +335,7 @@ EOF,
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$expendStorage</a>
+                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
                         </div>
 
 EOF,
@@ -371,11 +371,11 @@ EOF,
 					<td class="monthly-storage" style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;width: 50%;">
 						<div style="background: #f1f1f1;border-top: 48px solid #f1f1f1;border-right: 24px solid #f1f1f1;border-left: 24px solid #f1f1f1;border-bottom: 24px solid #f1f1f1;">
 							<img src="$home/themes/nextmagentacloud21/core/img/email/user-share.png" height="48" width="48">
-							<div style="border-top: 8px solid #f1f1f1;border-bottom: 8px solid #f1f1f1;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span>  $share</span></div>
+							<div style="border-top: 8px solid #f1f1f1;border-bottom: 8px solid #f1f1f1;"><span style="font-size: 25px;"><span style="color: #e20074;">$shareCount</span> </span></div>
 							<br>
 								<span style="font-weight: bold;">$share</span>
 								<p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;">$content1 $shareCount $content2</p>
-									<a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;text-transform: capitalize;">$myShare</a>
+									<a href="$home/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$myShare</a>
 							</div>
 					</td>
 				</tr>
