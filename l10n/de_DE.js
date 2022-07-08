@@ -33,7 +33,7 @@ OC.L10N.register(
 		"Upgrade now to MagentaCLOUD M <br /> for only 1.95 € per month and immediately have 100 GB of storage <br /> available." : "Jetzt auf MagentaCLOUD M <br />upgraden für nur 1,95 € im Monat und sofort über 100 GB Speicher<br /> verfügen.",
 		"Shares" : "Freigaben",
 		"Storage" : "Speicherplatz",
-		"My share":"Mein geteilten Inhalte",
+		"My share":"Meine geteilten Inhalte",
 		"of your memory is currently occupied. You can expand your storage space at any time for a fee.":"Ihres Speichers sind derzeit belegt. Sie können Ihren Speicherplatz jederzeit gegen eine Gebühr erweitern.",
 		"We also give you tips and tricks for the daily use of you":"Außerdem geben wir dir Tipps und Tricks für den täglichen Gebrauch von dir",
 		"First Steps":"Erste Schritte",
