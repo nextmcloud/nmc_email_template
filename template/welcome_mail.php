@@ -95,10 +95,10 @@
 		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr style="background: #e20074;">
 			<td class="content-block" style="padding: 16px 24px;">
-			<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/logo-new.png" width="72px" height="35px"/>
+			<img src="'.$this->urlPath.'themes/nextmagentacloud21/core/img/logo-new.png" height="35px"/>
 			</td>
 			<td style="width: 100%; padding: 16px 0;text-align: left;">
-			<span style="color: #fff;font-size: 16px;font-weight:bold;">'.$this->l10n->t('Life is for sharing').'</span>
+			<span style="color: #fff;font-size: 16px;font-weight:bold;"></span>
 			</td>
 			</tr>
 			</tbody>
