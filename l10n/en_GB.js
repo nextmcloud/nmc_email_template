@@ -9,6 +9,7 @@ OC.L10N.register(
 		"With You. Click button below to accept and open it." : "With You. Click button below to accept and open it.",
 		"Email verification" : "Email verification",
 		"You have entered a new alternative e-mail address. Click the following button to confirm." : "You have entered a new alternative e-mail address. Click the following button to confirm.",
-		"Confirm your email" : "Confirm your email"
+		"Confirm your email" : "Confirm your email",
+		"Open Source licences" : "Open Source licences"
 },
 "nplurals=2; plural=(n != 1);");

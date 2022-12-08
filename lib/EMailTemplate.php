@@ -434,19 +434,36 @@ protected $l10n = null;
 			</td>
 			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
+				<a>&nbsp;</a></span>
+			</td>
+			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
+				<a>&nbsp;</a></span>
+			</td>
+			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;padding-right: 24px;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
 				<a href="'.$this->urlPath.'index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
 			</td>
-<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+
+
+			</tr>
+<tr>
+			<td class="footer-link" style="padding-left:24px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
+			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
+				<a href="https://static.magentacloud.de/licence/webui.htm">'.$this->l10n->t('Open Source licences').'</a></span>
+			</td>
+<td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;">
 				<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a></span>
 			</td>
-<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+
+<td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <a href="https://static.magentacloud.de/Datenschutz">'.$this->l10n->t('Data Protection').'</a></span>
 			</td>
-<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
+<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a></span>
 			</td>
-		  </tr>
+</tr>
 
 		</table>
 	  </div>';

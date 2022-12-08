@@ -70,7 +70,8 @@ OC.L10N.register(
 		"Email verification" : "MagentaCLOUD Bestätigung",
 		"You have entered a new alternative e-mail address. Click the following button to confirm." : "Sie haben eine neue alternative E-Mail-Adresse angegeben. Bitte bestätigen Sie ihre Angabe per Klick auf den folgenden Button.",
 		"Confirm your email" : "E-Mail-Adresse bestätigen",
-		"MagentaCLOUD email verification" : "MagentaCLOUD Bestätigung"
+		"MagentaCLOUD email verification" : "MagentaCLOUD Bestätigung",
+		"Open Source licences" : "Open Source Lizenzen"
 },
 "nplurals=2; plural=(n != 1);");
 
