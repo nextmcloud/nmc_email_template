@@ -450,7 +450,7 @@ protected $l10n = null;
 <tr>
 			<td class="footer-link" style="padding-left:24px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a href="https://static.magentacloud.de/licence/webui.htm">'.$this->l10n->t('Open Source licences').'</a></span>
+				<a href="https://static.magentacloud.de/licences/webui.htm">'.$this->l10n->t('Open Source licences').'</a></span>
 			</td>
 <td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px;">
