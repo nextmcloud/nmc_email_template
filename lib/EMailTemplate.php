@@ -385,6 +385,9 @@ protected $l10n = null;
 			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
 		  case "sharebymail.RecipientNotification":
+			if($this->data['note'] == null || $this->data['note']== ""){
+				$text = "";
+			}
 			$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
 			$this->htmlBody .= rtrim($this->bodyText,"1");
 			break;
