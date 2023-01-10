@@ -445,7 +445,7 @@ protected $l10n = null;
 			</td>
 			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;padding-right: 24px;">
 			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a href="'.$this->urlPath.'index.php/settings/user/activity">'.$this->l10n->t('Unsubscribe').'</a></span>
+				<a href="'.$this->urlPath.'index.php/settings/user">'.$this->l10n->t('Unsubscribe').'</a></span>
 			</td>
 
 
