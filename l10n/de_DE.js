@@ -23,7 +23,7 @@ OC.L10N.register(
 		"monthly" : "mtl.",
 		"Online Information" : "Online-Informationen",
 		"Impressum" : "Impressum",
-		"Unsubscribe" : "Abmelden",
+		"Unsubscribe" : "Abbestellen",
 		"Data Protection" : "Datenschutz",
 		"Help & FAQ" : "Hilfe & FAQ",
 		"Software & Apps" : "Software & Apps",
