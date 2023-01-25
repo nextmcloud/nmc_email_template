@@ -413,7 +413,7 @@ EOF,
 	*/
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		
-		$username = '';//$user->getDisplayNameOtherUser();
+		$username = $user->getDisplayNameOtherUser();
 		$clientConditions = [];
 		$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
@@ -443,7 +443,6 @@ EOF,
 			{$clientConditions[]=0;}
 		}
 		$statement = array_rand($clientConditions,1);
-		$statement=22;
 		switch($clientConditions[$statement]){
 			case 1:
 				$randomNumber = rand(2,3);
