@@ -412,7 +412,8 @@ EOF,
 	* 5. if user fulfill all conditions.
 	*/
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
-		$username = $user->getDisplayNameOtherUser();
+		
+		$username = '';//$user->getDisplayNameOtherUser();
 		$clientConditions = [];
 		$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
@@ -442,6 +443,7 @@ EOF,
 			{$clientConditions[]=0;}
 		}
 		$statement = array_rand($clientConditions,1);
+		$statement=22;
 		switch($clientConditions[$statement]){
 			case 1:
 				$randomNumber = rand(2,3);
@@ -484,9 +486,11 @@ EOF,
 				break;
 
 			default:
-				$content1 = $this->l->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.');
-				$content2 = $this->l->t('We also give you tips and tricks for the daily use of you');
-				$content3 = $this->l->t('You can find out how to upload,move,share etc.files');				
+				$content1 = $this->l->t('With the MagentaCLOUD status e-mail, we will inform you once a month about the storage space you have used and the permissions you have been granted.');
+				$content2 = $this->l->t('We also give you tips and tricks on how to use your MagentaCLOUD on a daily basis.');
+				$content3 = $this->l->t('You can find out how to upload, move, share, etc. files here:');	
+				$content4Link ="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte";
+				$content4 =$this->l->t('First steps');			
 				break;
 
 		}
