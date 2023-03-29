@@ -209,12 +209,8 @@ class MessageProvider {
                           <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
                         </div>
 EOF,
-			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1] von insgesammt $quota[0] $quota[1]."
+					"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
 		);
-		$emailTemplate->addHeading('Hallo,');
-		$emailTemplate->addBodyText('Ihr Speicherplatz in der ' . $this->entity . ' ist vollständing belegt. Sie können Ihren Speicherplatz jederzeit kostenpflichtig erweitern und dabei zwischen verschiedenen Speichergrößen wählen.');
-		$this->writeClosing($emailTemplate);
-		//$emailTemplate->addBodyButton('Jetzt Speicher erweitern', 'TODO');
 	}
 
 	public function writeStorageWarning(IEMailTemplate $emailTemplate, array $storageInfo): void {
@@ -255,10 +251,6 @@ EOF,
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
 		);
-		// $emailTemplate->addHeading('Hallo,');
-		// $emailTemplate->addBodyText('Ihr Speicherplatz in der ' . $this->entity . ' ist fast vollständing belegt. Sie können Ihren Speicherplatz jederzeit kostenpflichtig erweitern und dabei zwischen verschiedenen Speichergrößen wählen.');
-		// $this->writeClosing($emailTemplate);
-		//$emailTemplate->addBodyButton('Jetzt Speicher erweitern', 'TODO');
 	}
 
 	public function writeStorageNoQuota(IEMailTemplate $emailTemplate, array $storageInfo): void {
@@ -437,7 +429,7 @@ EOF,
 		}
 
 		if(count($clientConditions) ==0 || count($clientConditions)<2 ){
-			if($clientConditions[0]!=5 && count($clientConditions)==0)
+			if(isset($clientConditions[0])!=5 && count($clientConditions)==0)
 			{$clientConditions[]=0;}
 		}
 		$statement = array_rand($clientConditions,1);
