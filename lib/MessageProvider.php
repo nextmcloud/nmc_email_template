@@ -182,8 +182,7 @@ class MessageProvider {
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
-		a fee.");
+		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
 		$expendStorage = $this->l->t('Expand storage');
 		$storage =$this->l->t("Storage");
 		// Warning no storage left
