@@ -18,7 +18,7 @@
 		   <td class="quota-info" style="font-family: sans-serif; font-size: 12px; vertical-align: top;width: 70%;">
 		   <div class="warning-info" style="text-align: left;width: 100% ;padding-top: 24px;padding-bottom: 24px;box-sizing: border-box;">
 			 <span style="font-weight: bold;">'.$this->l10n->t('Quota warning').'</span>
-			   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;padding: 0 16px;"><span style="font-size: 12px;font-weight: bold;">'.$this->data['quota'].' %</span> '.$this->l10n->t('of your storage is currently occupied. Once your memory is used up, you cannot upload any more files. However, you can remove files or empty you recycle bin at any time').' </p>
+			   <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;padding: 0 16px;"><span style="font-size: 12px;font-weight: bold;">'.$this->data['quota'].' %</span> '.$this->l10n->t('of your storage is currently occupied.Once your memory is used up,you cannot upload any more files.However,you can remove files or empty you recycle bin at any time').' </p>
 			   <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;;margin-right: 8px;">'.$this->l10n->t('Order now').'</a>
 			   <a href="'.$this->urlPath.'index.php/apps/files/?dir=/&view=trashbin" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">'.$this->l10n->t('Open the trash').'</a>
 			 </div>
@@ -30,7 +30,7 @@
 	   <tr>
 		 <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
 		   <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').' '.$this->data['displayName'].',</p>
-		   <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('with the MagentaCLOUD status email, we inform you once a month about the storage space you have used and the shares you have created.').'</p>
+		   <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('with the MagentaCLOUD status email,we inform you once a month about the storage space you have used and the shares you have created.').'</p>
 		   <p style="margin-top:16px;margin-bottom:32px">'.$this->l10n->t('Your Telekom').'</p>
 		   <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
 			   <tbody>
