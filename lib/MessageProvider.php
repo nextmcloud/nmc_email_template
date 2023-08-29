@@ -182,8 +182,13 @@ class MessageProvider {
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
-		$expendStorage = $this->l->t('Expand storage');
+		$expandStorage = $this->l->t('Expand storage');
+		if ($quota[0] == "5" && $quota[1] == "TB") {
+			$content = $this->l->t("of your memory is currently occupied.");
+		} else {
+			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
+			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
+		}
 		$storage =$this->l->t("Storage");
 		// Warning no storage left
 		$emailTemplate->addBodyText(
@@ -205,7 +210,7 @@ class MessageProvider {
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+                          $expandable
                         </div>
 EOF,
 					"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
@@ -222,8 +227,13 @@ EOF,
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
-		$expendStorage = $this->l->t('Expand storage');
+		$expandStorage = $this->l->t('Expand storage');
+		if ($quota[0] == "5" && $quota[1] == "TB") {
+			$content = $this->l->t("of your memory is currently occupied.");
+		} else {
+			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
+			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
+		}
 		$storage =$this->l->t("Storage");
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
@@ -245,7 +255,7 @@ EOF,
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+                          $expandable
                         </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
@@ -262,10 +272,14 @@ EOF,
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for
-		a fee.");
+		$expandStorage = $this->l->t('Expand storage');
+		if ($quota[0] == "5" && $quota[1] == "TB") {
+			$content = $this->l->t("of your memory is currently occupied.");
+		} else {
+			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
+			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
+		}
 		$storage =$this->l->t("Storage");
-		$expendStorage = $this->l->t('Expand storage');
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -286,7 +300,7 @@ EOF,
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+                          $expandable
                         </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]"
@@ -303,8 +317,13 @@ EOF,
 		if ($requestMoreStorageLink !== '') {
 			$requestMoreStorageLink = '<p>' . $requestMoreStorageLink . '</p>';
 		}
-		$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time for a fee.");
-		$expendStorage = $this->l->t('Expand storage');
+		$expandStorage = $this->l->t('Expand storage');
+		if ($quota[0] == "5" && $quota[1] == "TB") {
+			$content = $this->l->t("of your memory is currently occupied.");
+		} else {
+			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
+			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
+		}
 		$storage =$this->l->t("Storage");
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -325,7 +344,7 @@ EOF,
                           <br />        
                           <span style="font-weight: bold;">$storage</span>
                           <p style="font-size: 12px;margin-top: 8px;margin-bottom: 16px;"><span style="font-size: 12px;font-weight: bold;">$percentage[0]%</span> $content</p>
-                          <a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">$expendStorage</a>
+                          $expandable
                         </div>
 EOF,
 			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
