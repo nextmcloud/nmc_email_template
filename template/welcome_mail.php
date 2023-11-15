@@ -107,7 +107,7 @@
 			<tbody>
 			<tr>
 			<td class="content-block" style="font-family: sans-serif; vertical-align: top;">
-			<img src="'.$this->urlPath.'customapps/nmctheme/img/email/welcome-banner.png" width="100%" style="margin-top: 16px;"/>
+			<img src="'.$this->urlPath.'customapps/nmc_email_template/img/welcome-banner.png" width="100%" style="margin-top: 16px;"/>
 			</td>
 			</tr>
 		</table>
