@@ -39,6 +39,7 @@ use OCP\Share\IManager;
 use OCP\Mail\IEMailTemplate;
 use OCA\MonthlyStatusEmail\Service\ClientDetector;
 use OCA\MonthlyStatusEmail\Service\StorageInfoProvider;
+use Psr\Log\LoggerInterface;
 
 
 class MessageProvider {
@@ -98,8 +99,14 @@ class MessageProvider {
 	private $shareManager;
 
 
-	public function __construct(IConfig $config, IURLGenerator $generator,IL10N $l,L10NFactory $l10nFactory,
-	ClientDetector $clientDetector,StorageInfoProvider $storageInfoProvider,IManager $shareManager) {
+	 /**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+
+	public function __construct(IConfig $config, IURLGenerator $generator, IL10N $l, L10NFactory $l10nFactory,
+	ClientDetector $clientDetector, StorageInfoProvider $storageInfoProvider, IManager $shareManager, LoggerInterface $logger) {
 		$this->productName = $config->getAppValue('theming', 'productName', 'Nextcloud');
 		$this->entity = $config->getAppValue('theming', 'name', 'Nextcloud');
 		$this->generator = $generator;
@@ -109,8 +116,7 @@ class MessageProvider {
 		$this->l10nFactory = $l10nFactory;
 		$this->clientDetector = $clientDetector;
 		$this->storageInfoProvider = $storageInfoProvider;
-		
-		
+		$this->logger = $logger;
 	}
 
 	/**
@@ -368,7 +374,7 @@ EOF,
 	public function writeShareMessage(IEMailTemplate $emailTemplate, int $shareCount) {
 			$home = $this->generator->getAbsoluteURL('/');
 			$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
-			 $this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
+			$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
 			$share = $this->l->t('Shares');
 			$content1 = $this->l->t('You have shared');
 			$content2=$this->l->t('items of content you can manage your shares with once click.');
@@ -421,7 +427,7 @@ EOF,
 	*/
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		
-		$username = $user->getDisplayNameOtherUser();
+		$username = $user->getDisplayName();
 		$clientConditions = [];
 		$clientConditions = $this->ClientCondition($user);
 		$storageInfo = $this->storageInfoProvider->getStorageInfo($user);
@@ -514,41 +520,41 @@ EOF,
 			$emailTemplate->addBodyText(
 				<<<EOF
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-				<tr>
-					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-						<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',</p>
-						<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
-						<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2</p><p>$content3 </p>
-						 <p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
-						<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
+					<tr>
+						<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 16px;margin-top:32px;">$hello '$username',</p>
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content1</p>
+							<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 16px;">$content2</p><p>$content3 </p>
+							<p><a style="color:#e20074;text-decoration: none;" href="$content4Link">$content4</a></p>
+							<p style="margin-top:16px;margin-bottom:32px">$yourTelekom</p>
 
 
-						<table role="presentation" border="0" 
-						cellpadding="0" cellspacing="0" class="btn btn-primary" 
-						style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-							<tbody>
-								<tr>
-									<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
-										<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-											<tbody>
-												<tr>
-													<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074; border-radius: 8px; text-align: center;"> <a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a> </td>
-												</tr>
-											</tbody>
-										</table>
+							<table role="presentation" border="0" 
+							cellpadding="0" cellspacing="0" class="btn btn-primary" 
+							style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+								<tbody>
+									<tr>
+										<td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 32px;">
+											<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+												<tbody>
+													<tr>
+														<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #e20074; border-radius: 8px; text-align: center;">
+															<a href="$home" target="_blank" style="display: inline-block; color: #ffffff; background-color: #e20074; border: solid 1px #e20074; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px; text-transform: capitalize;">$OpenMagentaCLOUD</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
 										</td>
-										</tr>
-									  </tbody>
-									</table>
-								  </td>
-							  </tr>
+									</tr>
+								</tbody>
 							</table>
-						  </td>
-						</tr>
-		  
-					  <!-- END MAIN CONTENT AREA -->
-					  </table>
-		
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	<!-- END MAIN CONTENT AREA -->
+	</table>
 	EOF,
 				"."
 			);
@@ -601,7 +607,7 @@ EOF,
 
 	public function setUser(IUser $user) {
 		$this->user = $user;
-		$this->l10n = $this->l10nFactory->get('monthly_status_email',
+		$this->l = $this->l10nFactory->get('monthly_status_email',
 			$this->config->getUserValue($user->getUID(), 'lang', null)
 		);
 	}
