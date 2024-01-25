@@ -1,6 +1,6 @@
 {
-    "name": "NMC E-Mail Template",
-    "description": "general",
+    "name": "nextmcloud/nmc_email_template",
+    "description": "NMC E-Mail Template",
     "type": "project",
     "license": "AGPL",
     "authors": [
