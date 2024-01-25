@@ -1,16 +1,17 @@
 <?php
+
 $displayName = "";
-if(isset($this->data['shareWithDisplayName'])){
+if(isset($this->data['shareWithDisplayName'])) {
 	$displayName = $this->data['shareWithDisplayName'];
 }
 
-$messageFrom ='<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 0;">'.$this->l10n->t('Message from').' '.$this->data['initiator'].':</p><p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">'.$this->text.'</p>';
+$messageFrom = '<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 0;">'.$this->l10n->t('Message from').' '.$this->data['initiator'].':</p><p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">'.$this->text.'</p>';
 
-if($this->text=="" || $this->text==null){
-	$messageFrom ='';
+if($this->text == "" || $this->text == null) {
+	$messageFrom = '';
 }
 
- return '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
+return '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
  <!-- START MAIN CONTENT AREA -->
 	<tr>
 		<td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 32px 24px;">
@@ -42,4 +43,3 @@ if($this->text=="" || $this->text==null){
 	</tr>
 <!-- END MAIN CONTENT AREA -->
 </table>';
-?>

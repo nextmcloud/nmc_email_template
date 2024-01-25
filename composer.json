@@ -1,0 +1,24 @@
+{
+    "name": "nextmcloud/nmc_email_template",
+    "description": "NMC E-Mail Template",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Marius Blüm"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "classmap-authoritative": true
+    },
+    "require-dev": {
+        "nextcloud/coding-standard": "^1.1",
+        "phpunit/phpunit": "^9.6"
+    },
+    "scripts": {
+        "lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+        "cs:check": "php-cs-fixer fix --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix"
+    }
+}
