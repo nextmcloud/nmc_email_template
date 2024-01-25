@@ -29,7 +29,6 @@ use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\L10N\IFactory;
 use Test\TestCase;
-use OCA\EmailTemplateExample;
 
 class EMailTemplateTest extends TestCase {
 	/** @var Defaults|\PHPUnit\Framework\MockObject\MockObject */
@@ -54,7 +53,7 @@ class EMailTemplateTest extends TestCase {
 		$this->defaults = $this->createMock(Defaults::class);
 		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 		$this->l10n = $this->createMock(IL10N::class);
-        \OC::$server->getL10NFactory()->get('nmc_email_template');
+		\OC::$server->getL10NFactory()->get('nmc_email_template');
 		$this->l10n->expects($this->any())
 			->method('t')
 			->willReturnCallback(function ($text, $parameters = []) {
@@ -66,50 +65,50 @@ class EMailTemplateTest extends TestCase {
 
 
 	public function testCustomWelcomeEmail() {
-		$this->data = array("displayname"=>"TEST");
+		$this->data = array("displayname" => "TEST");
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/welcome_mail.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/welcome_mail.php';
-		$rendredHTML = rtrim($rendredHTML,"1");
+		$rendredHTML = rtrim($rendredHTML, "1");
 		$this->assertSame($expectedHTML, $rendredHTML);
 	}
 
 	public function testCustomInternalShareWithNote() {
-		$this->data = array("shareWithDisplayName"=>"TEST", "initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
+		$this->data = array("shareWithDisplayName" => "TEST", "initiator" => "TEST1", "filename" => "TEST.file","link" => "#");
 		$this->text = "This is note";
 
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification.php';
-		$rendredHTML = rtrim($rendredHTML,"1");
+		$rendredHTML = rtrim($rendredHTML, "1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
 	public function testCustomInternalShareWithoutNote() {
-		$this->data = array("shareWithDisplayName"=>"TEST", "initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
+		$this->data = array("shareWithDisplayName" => "TEST", "initiator" => "TEST1", "filename" => "TEST.file","link" => "#");
 		$this->text = "";
 
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/file_sharing_notification_without_note.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/files_sharing_notification_without_note.php';
-		$rendredHTML = rtrim($rendredHTML,"1");
+		$rendredHTML = rtrim($rendredHTML, "1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
 	public function testCustomExternalShareWithNote() {
-		$this->data = array("initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
+		$this->data = array("initiator" => "TEST1", "filename" => "TEST.file","link" => "#");
 		$this->text = "This is note";
 
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/external_share_with_note.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/external_share_with_note.php';
-		$rendredHTML = rtrim($rendredHTML,"1");
+		$rendredHTML = rtrim($rendredHTML, "1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
 	public function testCustomExternalShareWithOutNote() {
-		$this->data = array("initiator"=>"TEST1", "filename"=>"TEST.file","link"=>"#");
+		$this->data = array("initiator" => "TEST1", "filename" => "TEST.file","link" => "#");
 		$this->text = "";
 
 		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/external_share_without_note.html');
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/external_share_without_note.php';
-		$rendredHTML = rtrim($rendredHTML,"1");
+		$rendredHTML = rtrim($rendredHTML, "1");
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
@@ -137,9 +136,9 @@ class EMailTemplateTest extends TestCase {
 		</tr>
 	</table>
 </div>';
-	  $expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/footer.html');
-	  $rendredHTML = $this->footer;
-	  $this->assertSame(trim($expectedHTML), $rendredHTML);
+		$expectedHTML = file_get_contents(\OC::$SERVERROOT . '/apps/nmc_email_template/tests/data/emails/footer.html');
+		$rendredHTML = $this->footer;
+		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}
 
 	public function testEMailTemplateDefaultHeader() {
@@ -161,10 +160,10 @@ class EMailTemplateTest extends TestCase {
 	</div>
 		';
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
-		$this->header = str_replace('host_name',$this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
+		$this->header = str_replace('host_name', $this->urlPath, str_replace('Life is for sharing', $sloganTranslated, $this->header));
 
 		$rendredHTML = include_once 'nmc_email_template/tests/data/emails/header.php';
-		$rendredHTML = rtrim($rendredHTML,"1");
+		$rendredHTML = rtrim($rendredHTML, "1");
 		$expectedHTML = $this->header;
 		$this->assertSame(trim($expectedHTML), $rendredHTML);
 	}

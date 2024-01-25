@@ -23,14 +23,12 @@
 
 namespace OCA\EmailTemplateExample;
 
-use Exception;
 use OC\Mail\EMailTemplate as ParentTemplate;
-use OCP\IL10N;
 use OCP\IConfig;
 
 class EMailTemplate extends ParentTemplate {
 	protected $urlPath = "";
-	protected $bodyText ='%s';
+	protected $bodyText = '%s';
 	protected $heading = <<<EOF
 <table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
@@ -165,7 +163,7 @@ EOF;
 EOF;
 
 
-protected $tail = <<<EOF
+	protected $tail = <<<EOF
 </div>
 </td>
 <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
@@ -175,7 +173,7 @@ protected $tail = <<<EOF
 </html>
 EOF;
 
-protected $header = <<<EOF
+	protected $header = <<<EOF
 <!-- START Header -->
 <div class="header" style="clear: both;text-align: center; width: 100%;border-bottom:2px solid #e5e5e5;">
   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
@@ -201,25 +199,25 @@ protected $header = <<<EOF
 <!-- END Header -->
 EOF;
 
-protected $bodyBegin = <<<EOF
+	protected $bodyBegin = <<<EOF
 <div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
 EOF;
 
 
-protected $bodyEnd = <<<EOF
+	protected $bodyEnd = <<<EOF
 </div>
 EOF;
-protected $l10n = null;
+	protected $l10n = null;
 
-// protected $button = "";
+	// protected $button = "";
 
-// protected $buttonGroup = "";
+	// protected $buttonGroup = "";
 
-// protected $listEnd = "";
+	// protected $listEnd = "";
 
-// protected $listItem = "";
+	// protected $listItem = "";
 
-// protected $listBegin = "";
+	// protected $listBegin = "";
 
 	/**
 	 * the following method overwrites the add button group method and
@@ -252,7 +250,7 @@ protected $l10n = null;
 		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
 		$sloganTranslated = $this->l10n->t('Life is for sharing');
 
-		$this->header = str_replace('host_name',$this->urlPath, $this->header);
+		$this->header = str_replace('host_name', $this->urlPath, $this->header);
 
 		$this->headerAdded = true;
 		$this->htmlBody .= $this->header;
@@ -320,7 +318,7 @@ protected $l10n = null;
 				$this->button = "";
 				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('Activity notification for MagentaCLOUD');
-				if(isset($this->data['dialyActivity'])){
+				if(isset($this->data['dialyActivity'])) {
 					$this->subject = $this->l10n->t('Daily activity summary for MagentaCLOUD');
 				}
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
@@ -344,11 +342,11 @@ protected $l10n = null;
 				$this->button = "";
 				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('MagentaCLOUD email verification');
-				$this->heading =  '';
+				$this->heading = '';
 				break;
 			default:
 				$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
-			}
+		}
 
 		if ($plainTitle !== false) {
 			$this->plainBody .= $plainTitle . PHP_EOL . PHP_EOL;
@@ -380,41 +378,41 @@ protected $l10n = null;
 
 
 		switch ($this->emailId) {
-		  case "settings.Welcome":
-			$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
-			break;
-		  case "sharebymail.RecipientNotification":
-			if($this->data['note'] == null || $this->data['note']== ""){
-				$text = "";
-			}
-			$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
-			break;
-		  case "files_sharing.RecipientNotification":
-			$this->bodyText = include_once 'nmc_email_template/template/files_sharing_recipient_notification.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
-			break;
-		  case "settings.TestEmail":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
-			break;
-		  case "quote.notification":
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
-			break;
-		  case "quota_warning.Notification":
-			$this->bodyText =  include_once 'nmc_email_template/template/quota_warning.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
-			break;
-		case "activity.Notification":
-			$this->bodyText = "";
-			 $this->htmlBody .= vsprintf($this->bodyText, [$text]);
-			break;
-		case "core.EmailVerification":
-			$this->bodyText =  include_once 'nmc_email_template/template/email_verification.php';
-			$this->htmlBody .= rtrim($this->bodyText,"1");
-			break;
-		  default:
-			$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+			case "settings.Welcome":
+				$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
+				$this->htmlBody .= rtrim($this->bodyText, "1");
+				break;
+			case "sharebymail.RecipientNotification":
+				if($this->data['note'] == null || $this->data['note'] == "") {
+					$text = "";
+				}
+				$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
+				$this->htmlBody .= rtrim($this->bodyText, "1");
+				break;
+			case "files_sharing.RecipientNotification":
+				$this->bodyText = include_once 'nmc_email_template/template/files_sharing_recipient_notification.php';
+				$this->htmlBody .= rtrim($this->bodyText, "1");
+				break;
+			case "settings.TestEmail":
+				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+				break;
+			case "quote.notification":
+				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+				break;
+			case "quota_warning.Notification":
+				$this->bodyText = include_once 'nmc_email_template/template/quota_warning.php';
+				$this->htmlBody .= rtrim($this->bodyText, "1");
+				break;
+			case "activity.Notification":
+				$this->bodyText = "";
+				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+				break;
+			case "core.EmailVerification":
+				$this->bodyText = include_once 'nmc_email_template/template/email_verification.php';
+				$this->htmlBody .= rtrim($this->bodyText, "1");
+				break;
+			default:
+				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
 		}
 		// $this->htmlBody .= vsprintf($this->bodyText, [$text]);
 		if ($plainText !== false) {
@@ -475,7 +473,7 @@ protected $l10n = null;
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
-		if($this->emailId == "defaultShareProvider.sendNote" || $this->emailId == "shareByMail.sendNote"){
+		if($this->emailId == "defaultShareProvider.sendNote" || $this->emailId == "shareByMail.sendNote") {
 			$this->htmlBody = str_replace('style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;float:left !important"', $this->htmlBody);
 			$this->htmlBody = str_replace("'Segoe UI'", '', $this->htmlBody);
 			$this->htmlBody = str_replace("'Helvetica Neue'", "", $this->htmlBody);
@@ -483,7 +481,7 @@ protected $l10n = null;
 			$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;padding: 0 0 0 24px !important;margin-bottom:80px"', $this->htmlBody);
 			$this->htmlBody = str_replace("</h1>", ":</h1>", $this->htmlBody);
 		}
-	    $this->htmlBody .= $this->footer.$this->tail;
+		$this->htmlBody .= $this->footer.$this->tail;
 	}
 
 	public function setLanguage() {
@@ -494,11 +492,11 @@ protected $l10n = null;
 		$config = \OC::$server->get(IConfig::class);
 
 		$langCurrent = $config->getSystemValue('default_language', 'en');
-		if(isset($this->data['userId'])){
+		if(isset($this->data['userId'])) {
 			$langCurrent = $config->getUserValue($this->data['userId'], 'core', 'lang', null);
-		}elseif(isset($this->data['userid'])){ // Welcome email
+		} elseif(isset($this->data['userid'])) { // Welcome email
 			$langCurrent = $config->getUserValue($this->data['userid'], 'core', 'lang', null);
-		}elseif ($userSession->getUser() !== null) {
+		} elseif ($userSession->getUser() !== null) {
 			$langCurrent = $config->getUserValue($userSession->getUser()->getUID(), 'core', 'lang', null);
 		}
 		$this->l10n = $this->l10nFactory->get('nmc_email_template', $langCurrent);

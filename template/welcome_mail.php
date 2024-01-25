@@ -1,5 +1,6 @@
 <?php
- return '
+
+return '
 <!doctype html>
 <html>
 <head>
@@ -191,4 +192,3 @@
 		<!-- END MAIN CONTENT AREA -->
 		</table>
  ';
-?>

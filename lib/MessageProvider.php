@@ -24,23 +24,22 @@
 
 declare(strict_types=1);
 
-namespace OCA\EmailTemplateExample;;
+namespace OCA\EmailTemplateExample;
+
+;
 
 use OCA\MonthlyStatusEmail\Db\NotificationTracker;
-use OCA\MonthlyStatusEmail\Jobs\SendNotificationsJob;
-use OCP\Files\FileInfo;
-use OCP\IConfig;
-use OCP\IL10N;
-use OCP\L10N\IFactory as L10NFactory;
-use OCP\IURLGenerator;
-use OCP\IUser;
-use OCP\Share\IShare;
-use OCP\Share\IManager;
-use OCP\Mail\IEMailTemplate;
 use OCA\MonthlyStatusEmail\Service\ClientDetector;
 use OCA\MonthlyStatusEmail\Service\StorageInfoProvider;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\IURLGenerator;
+use OCP\IUser;
+use OCP\L10N\IFactory as L10NFactory;
+use OCP\Mail\IEMailTemplate;
+use OCP\Share\IManager;
+use OCP\Share\IShare;
 use Psr\Log\LoggerInterface;
-
 
 class MessageProvider {
 	public const NO_SHARE_AVAILABLE = 0;
@@ -93,20 +92,20 @@ class MessageProvider {
 	 */
 	private $storageInfoProvider;
 
-	 /**
+	/**
 	 * @var IManager
 	 */
 	private $shareManager;
 
 
-	 /**
+	/**
 	 * @var LoggerInterface
 	 */
 	private $logger;
 
 
 	public function __construct(IConfig $config, IURLGenerator $generator, IL10N $l, L10NFactory $l10nFactory,
-	ClientDetector $clientDetector, StorageInfoProvider $storageInfoProvider, IManager $shareManager, LoggerInterface $logger) {
+		ClientDetector $clientDetector, StorageInfoProvider $storageInfoProvider, IManager $shareManager, LoggerInterface $logger) {
 		$this->productName = $config->getAppValue('theming', 'productName', 'Nextcloud');
 		$this->entity = $config->getAppValue('theming', 'name', 'Nextcloud');
 		$this->generator = $generator;
@@ -195,7 +194,7 @@ class MessageProvider {
 			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
 			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
 		}
-		$storage =$this->l->t("Storage");
+		$storage = $this->l->t("Storage");
 		// Warning no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -219,7 +218,7 @@ class MessageProvider {
                           $expandable
                         </div>
 EOF,
-					"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
+			"Speicherplatz\n\nSie nutzen im Moment $usedSpace[0] $usedSpace[1]."
 		);
 	}
 
@@ -240,7 +239,7 @@ EOF,
 			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
 			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
 		}
-		$storage =$this->l->t("Storage");
+		$storage = $this->l->t("Storage");
 		// Warning almost no storage left
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -271,10 +270,10 @@ EOF,
 	public function writeStorageNoQuota(IEMailTemplate $emailTemplate, array $storageInfo): void {
 
 		$quota = $this->humanFileSize((int)$storageInfo['quota']);
-		$usedSpace = $this->humanFileSize( (int) $storageInfo['used']);
-		$percentage = $this->humanFileSize( (int) $storageInfo['relative']);
-		if($quota[0]=="?"){
-			$quota[0]="Unlimited";
+		$usedSpace = $this->humanFileSize((int) $storageInfo['used']);
+		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
+		if($quota[0] == "?") {
+			$quota[0] = "Unlimited";
 		}
 		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
 		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
@@ -285,7 +284,7 @@ EOF,
 			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
 			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
 		}
-		$storage =$this->l->t("Storage");
+		$storage = $this->l->t("Storage");
 		// Message no quota
 		$emailTemplate->addBodyText(
 			<<<EOF
@@ -330,7 +329,7 @@ EOF,
 			$content = $this->l->t("of your memory is currently occupied. You can expand your storage space at any time up to 5 TB as required.");
 			$expandable = '<a href="https://cloud.telekom-dienste.de/tarife" target="_blank" style="display: inline-block;color: #191919;background-color: #f1f1f1;border: 1px solid #191919;border-radius: 8px;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 12px;font-weight: bold;margin: 0;padding: 12px 24px;">' . $expandStorage . '</a>';
 		}
-		$storage =$this->l->t("Storage");
+		$storage = $this->l->t("Storage");
 		$emailTemplate->addBodyText(
 			<<<EOF
 			<div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
@@ -372,15 +371,15 @@ EOF,
 	}
 
 	public function writeShareMessage(IEMailTemplate $emailTemplate, int $shareCount) {
-			$home = $this->generator->getAbsoluteURL('/');
-			$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
-			$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
-			$share = $this->l->t('Shares');
-			$content1 = $this->l->t('You have shared');
-			$content2=$this->l->t('items of content you can manage your shares with once click.');
-			$myShare = $this->l->t('My share');
-			$emailTemplate->addBodyText(
-				<<<EOF
+		$home = $this->generator->getAbsoluteURL('/');
+		$userLang = $this->config->getUserValue($this->user->getUID(), 'core', 'lang', null);
+		$this->l = $this->l10nFactory->get('nmc_email_template', $userLang);
+		$share = $this->l->t('Shares');
+		$content1 = $this->l->t('You have shared');
+		$content2 = $this->l->t('items of content you can manage your shares with once click.');
+		$myShare = $this->l->t('My share');
+		$emailTemplate->addBodyText(
+			<<<EOF
 					</td>
 					<td class="monthly-storage" style="text-align: center;font-family: sans-serif; font-size: 14px; vertical-align: top;padding-left: 12px;width: 50%;">
 						<div style="background: #f1f1f1;border-top: 48px solid #f1f1f1;border-right: 24px solid #f1f1f1;border-left: 24px solid #f1f1f1;border-bottom: 24px solid #f1f1f1;">
@@ -395,8 +394,8 @@ EOF,
 				</tr>
 			</table>
 			EOF,
-				"."
-			);
+			"."
+		);
 	}
 
 	public function writeOptOutMessage(IEMailTemplate $emailTemplate, NotificationTracker $trackedNotification) {
@@ -422,7 +421,7 @@ EOF,
 	* 1. if user have no data upload.
 	* 2. if user have no shares.
 	* 3. if user doesn't install desktop app.
-	* 4. if user doesn't install mobile app 
+	* 4. if user doesn't install mobile app
 	* 5. if user fulfill all conditions.
 	*/
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
@@ -437,60 +436,61 @@ EOF,
 		
 		$percentage = $this->humanFileSize((int) $storageInfo['relative']);
 		$shareCount = $this->handleShare($user);
-		$content4Link ="";
-		$content1 ="";
-		$content2="";
-		$content3="";
-		$content4="";
-		$content5="";
+		$content4Link = "";
+		$content1 = "";
+		$content2 = "";
+		$content3 = "";
+		$content4 = "";
+		$content5 = "";
 		/* if doesn't have upload anything */
-		if($storageInfo['used'] < 1049666){
-			array_push($clientConditions,5);
+		if($storageInfo['used'] < 1049666) {
+			array_push($clientConditions, 5);
 		}
 		/* if doesn't share anything */
-		if($shareCount<1){
-			array_push($clientConditions,4);
+		if($shareCount < 1) {
+			array_push($clientConditions, 4);
 		}
 
-		if(count($clientConditions) ==0 || count($clientConditions)<2 ){
-			if(isset($clientConditions[0])!=5 && count($clientConditions)==0)
-			{$clientConditions[]=0;}
+		if(count($clientConditions) == 0 || count($clientConditions) < 2) {
+			if(isset($clientConditions[0]) != 5 && count($clientConditions) == 0) {
+				$clientConditions[] = 0;
+			}
 		}
-		$statement = array_rand($clientConditions,1);
-		switch($clientConditions[$statement]){
+		$statement = array_rand($clientConditions, 1);
+		switch($clientConditions[$statement]) {
 			case 1:
-				$randomNumber = rand(2,3);
-				switch($randomNumber){
+				$randomNumber = rand(2, 3);
+				switch($randomNumber) {
 					case 2:
 						$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
 						$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
 						$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
-					break;
+						break;
 					case 3:
 						$content1 = $this->l->t('do you already know the free MagentaCLOUD synchronization software?');
 						$content2 = $this->l->t('After downloading the free software, your MagentaCLOUD is created as a folder on your Windows PC or Mac. All files that you move to this folder are automatically synchronized with your cloud - so everything stays up to date. Open the files from your MagentaCLOUD with your usual applications (e.g. Office) and make quickly changes available on all devices.');
-						$content4Link ="https://cloud.telekom-dienste.de/software-apps";
-						$content4 =$this->l->t('Here you can find our software for download.');
-					break;
+						$content4Link = "https://cloud.telekom-dienste.de/software-apps";
+						$content4 = $this->l->t('Here you can find our software for download.');
+						break;
 				}
 				break;
 			case 2:
-			$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
-			$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
-			$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
-			break;
+				$content1 = $this->l->t('Do you already know the free MagentaCLOUD app?');
+				$content2 = $this->l->t('Take a look at your most beautiful moments wherever you are - for example, on the bus on your mobile device or at a friend\'s house on your tablet. Thanks to your MagentaCLOUD, your pictures are always where you are.');
+				$content3 = $this->l->t('Practical- With the app, you can automatically synchronize up your photos and videos to your MagentaCLOUD if you wish.');
+				break;
 			case 3:
 				$content1 = $this->l->t('do you already know the free MagentaCLOUD synchronization software?');
 				$content2 = $this->l->t('After downloading the free software, your MagentaCLOUD is created as a folder on your Windows PC or Mac. All files that you move to this folder are automatically synchronized with your cloud - so everything stays up to date. Open the files from your MagentaCLOUD with your usual applications (e.g. Office) and make quickly changes available on all devices.');
-				$content4Link ="https://cloud.telekom-dienste.de/software-apps";
-				$content4 =$this->l->t('Here you can find our software for download.');
+				$content4Link = "https://cloud.telekom-dienste.de/software-apps";
+				$content4 = $this->l->t('Here you can find our software for download.');
 				break;
-			case 4:				
+			case 4:
 				$content1 = $this->l->t('you have not shared any files or folders yet.');
 				$content2 = $this->l->t('Weddings, family celebrations, vacations spent together - easily share your most beautiful moments with your loved ones. This works without the hassle of sharing media. Even files that are too large for an e-mail attachment can be conveniently made available to others via a link with your MagentaCLOUD.');
 				$content3 = $this->l->t('');
-				$content4Link ="";
-				$content4 =$this->l->t('');
+				$content4Link = "";
+				$content4 = $this->l->t('');
 				break;
 
 			case 5:
@@ -501,9 +501,9 @@ EOF,
 			default:
 				$content1 = $this->l->t('With the MagentaCLOUD status e-mail, we will inform you once a month about the storage space you have used and the permissions you have been granted.');
 				$content2 = $this->l->t('We also give you tips and tricks on how to use your MagentaCLOUD on a daily basis.');
-				$content3 = $this->l->t('You can find out how to upload, move, share, etc. files here:');	
-				$content4Link ="https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte";
-				$content4 =$this->l->t('First steps');			
+				$content3 = $this->l->t('You can find out how to upload, move, share, etc. files here:');
+				$content4Link = "https://cloud.telekom-dienste.de/hilfe/erste-schritte/erste-schritte";
+				$content4 = $this->l->t('First steps');
 				break;
 
 		}
@@ -514,9 +514,9 @@ EOF,
 		$home = $this->generator->getAbsoluteURL('/');
 		$emailTemplate->setSubject($this->l->t("Your MagentaCLOUD status mail"));
 		$hello = $l->t('Hello');
-		$yourTelekom= $this->l->t('Your Telekom');
+		$yourTelekom = $this->l->t('Your Telekom');
 		$OpenMagentaCLOUD = $this->l->t('Open MagentaCLOUD');
-		if($clientConditions[$statement]==5){
+		if($clientConditions[$statement] == 5) {
 			$emailTemplate->addBodyText(
 				<<<EOF
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
@@ -558,10 +558,9 @@ EOF,
 	EOF,
 				"."
 			);
-		}
-		else{
+		} else {
 			$emailTemplate->addBodyText(
-			<<<EOF
+				<<<EOF
 			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 					<tr>
 						<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
@@ -599,10 +598,10 @@ EOF,
 						  </table>
 	
 EOF,
-			"."
-		);
-	}
-	//$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
+				"."
+			);
+		}
+		//$emailTemplate->addBodyButton($this->productName . ' öffnen', $home, strip_tags($this->productName) . ' öffnen');
 	}
 
 	public function setUser(IUser $user) {

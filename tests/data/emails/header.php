@@ -1,4 +1,6 @@
-<?php return '<div class="header" style="clear: both;text-align: center; width: 100%;border-bottom:2px solid #e5e5e5;">
+<?php
+
+return '<div class="header" style="clear: both;text-align: center; width: 100%;border-bottom:2px solid #e5e5e5;">
 		<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 			<tr>
 				<td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;">
@@ -13,4 +15,3 @@
 			</tr>
 		</table>
 	</div>';
-?>

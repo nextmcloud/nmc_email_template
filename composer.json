@@ -12,9 +12,8 @@
         "optimize-autoloader": true,
         "classmap-authoritative": true
     },
-    "require": {},
     "require-dev": {
-        "nextcloud/coding-standard": "^1.0.0",
+        "nextcloud/coding-standard": "^1.1",
         "phpunit/phpunit": "^9.6"
     },
     "scripts": {

@@ -1,5 +1,6 @@
 <?php
- return '
+
+return '
  <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 450px;">
 
  <!-- START MAIN CONTENT AREA -->
@@ -56,4 +57,3 @@
 <!-- END MAIN CONTENT AREA -->
 </table>
   ';
-?>
