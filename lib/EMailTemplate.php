@@ -27,9 +27,9 @@ use OC\Mail\EMailTemplate as ParentTemplate;
 use OCP\IConfig;
 
 class EMailTemplate extends ParentTemplate {
-	protected $urlPath = "";
-	protected $bodyText = '%s';
-	protected $heading = <<<EOF
+	protected string $urlPath = "";
+	protected string $bodyText = '%s';
+	protected string $heading = <<<EOF
 <table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
 	<tr style="padding:0;text-align:left;vertical-align:top;">
@@ -47,7 +47,7 @@ class EMailTemplate extends ParentTemplate {
 	</tbody>
 </table>
 EOF;
-	protected $head = <<<EOF
+	protected string $head = <<<EOF
 <!doctype html>
 <html>
 	<head>
@@ -163,7 +163,7 @@ EOF;
 EOF;
 
 
-	protected $tail = <<<EOF
+	protected string $tail = <<<EOF
 </div>
 </td>
 <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
@@ -173,7 +173,7 @@ EOF;
 </html>
 EOF;
 
-	protected $header = <<<EOF
+	protected string $header = <<<EOF
 <!-- START Header -->
 <div class="header" style="clear: both;text-align: center; width: 100%;border-bottom:2px solid #e5e5e5;">
   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
@@ -199,12 +199,12 @@ EOF;
 <!-- END Header -->
 EOF;
 
-	protected $bodyBegin = <<<EOF
+	protected string $bodyBegin = <<<EOF
 <div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
 EOF;
 
 
-	protected $bodyEnd = <<<EOF
+	protected string $bodyEnd = <<<EOF
 </div>
 EOF;
 	protected $l10n = null;
@@ -224,10 +224,13 @@ EOF;
 	 * manipulates the result for the welcome email to only include one button
 	 */
 	public function addBodyButtonGroup(
-		string $textLeft, string $urlLeft,
-		string $textRight, string $urlRight,
+		string $textLeft,
+		string $urlLeft,
+		string $textRight,
+		string $urlRight,
 		string $plainTextLeft = '',
-		string $plainTextRight = '') {
+		string $plainTextRight = '',
+	): void {
 
 		// for the welcome email we omit the left button ("Install client") and only show the button that links to the instance
 		if ($this->emailId === 'settings.Welcome') {
@@ -242,7 +245,7 @@ EOF;
 	 * Adds a header to the email
 	 */
 
-	public function addHeader(?string $lang = null) {
+	public function addHeader(): void {
 		$this->setLanguage();
 		if ($this->headerAdded) {
 			return;
@@ -264,7 +267,7 @@ EOF;
 	 * @param string|bool $plainTitle Title that is used in the plain text email
 	 *   if empty the $title is used, if false none will be used
 	 */
-	public function addHeading(string $title, $plainTitle = '') {
+	public function addHeading(string $title, $plainTitle = ''): void {
 		if ($plainTitle === '') {
 			$plainTitle = $title;
 		}
@@ -363,7 +366,7 @@ EOF;
 	 * @param string|bool $plainText Text that is used in the plain text email
 	 *   if empty the $text is used, if false none will be used
 	 */
-	public function addBodyText(string $text, $plainText = '') {
+	public function addBodyText(string $text, $plainText = ''): void {
 		if ($this->footerAdded) {
 			return;
 		}
@@ -426,7 +429,7 @@ EOF;
 	 * This method completely overwrites the default behaviour.
 	 */
 
-	public function addFooter(string $text = '', ?string $lang = null) {
+	public function addFooter(string $text = '', ?string $lang = null): void {
 		$this->footer = '<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
 		<table class="footer-section" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 		  <tr>
