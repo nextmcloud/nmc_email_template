@@ -98,7 +98,7 @@ return '
 			<tr>
 			<td class="content-block" style="background: #e20074;font-family: sans-serif; vertical-align: top; padding-bottom: 16px; padding-top: 16px; padding-left:24px; font-size: 12px; color: #999999; text-align: left;
 ">
-			<img src="'.$this->urlPath.'customapps/nmctheme/img/telekom/tlogocarrier.svg" style="width: 35px;" />
+			<img src="'.$this->urlPath.'customapps/nmctheme/img/telekom/tlogocarrier.png" style="width: 35px;" />
 			<span style="color: #fff; font-size: 16px; text-align: left;font-weight:bold;line-height: 40px;padding-left: 24px;vertical-align: top;">'.$this->l10n->t('Life is for sharing').'</span>
 			</td>
 			</tr>
