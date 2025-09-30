@@ -132,7 +132,7 @@ return '
 				<tr style="background-color: #f1f1f1;">
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 					<div style="Width: 100%;padding-top: 32px;padding-bottom: 24px;padding-left: 24px;box-sizing: border-box;">
-						<img src="'.$this->urlPath.'customapps/nmctheme/img/email/mobile.svg" style="width: 48px;">
+						<img src="'.$this->urlPath.'customapps/nmctheme/img/email/mobile.png" style="width: 48px;">
 						<div style="display: inline-block;vertical-align: top;padding-top: 2px;">
 						<span style="font-size: 16px;color:#191919">'.$this->l10n->t('Software & Apps').':</span>
 						<br/>
@@ -142,7 +142,7 @@ return '
 					</td>
 					<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;padding-right: 12px;">
 						<div style="width: 100%;padding-top: 32px;padding-bottom: 24px;padding-right: 24px;box-sizing: border-box;">
-						<img src="'.$this->urlPath.'customapps/nmctheme/img/email/computer.svg" style="margin-right: 8px; width: 48px;">
+						<img src="'.$this->urlPath.'customapps/nmctheme/img/email/computer.png" style="margin-right: 8px; width: 48px;">
 						<div style="display: inline-block;vertical-align: super;padding-top: 2px;">
 							<span style="font-size: 16px;color:#191919">'.$this->l10n->t('Online Information').':</span>
 							<br/>
@@ -158,10 +158,10 @@ return '
 					<div style="">
 						<span style="font-family: sans-serif; font-size: 14px;font-weight: bold;">'.$this->l10n->t('The advantages of the MagentaCLOUD at a glance').':</span>
 						<ul style="margin-top: 16px;margin-bottom: 32px;list-style: none;padding: 0;">
-						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep memories safe').'</li>
-						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Share special moments with family').'</li>
-						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep all files in overview').'</li>
-						<li style="margin-bottom: 0px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.svg); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Expand device memory free of charge').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.png); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep memories safe').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.png); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Share special moments with family').'</li>
+						<li style="margin-bottom: 8px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.png); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Keep all files in overview').'</li>
+						<li style="margin-bottom: 0px;background: url('.$this->urlPath.'customapps/nmctheme/img/email/checkmark.png); background-repeat: no-repeat;text-indent: 32px;">'.$this->l10n->t('Expand device memory free of charge').'</li>
 						</ul>
 						<p style="margin:0"> '.$this->l10n->t('You can find more information as well as frequently asked questions and answers about MagentaCLOUD at').'</p>
 						<a href="www.telekom.de/magentacloud" style="text-decoration: none;">www.telekom.de/magentacloud</a>
