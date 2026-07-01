@@ -14,7 +14,7 @@
     },
     "require-dev": {
         "nextcloud/coding-standard": "^1.1",
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^13.2"
     },
     "scripts": {
         "lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
