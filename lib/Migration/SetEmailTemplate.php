@@ -21,9 +21,9 @@
  *
  */
 
-namespace OCA\EmailTemplateExample\Migration;
+namespace OCA\NmcEmailTemplate\Migration;
 
-use OCA\EmailTemplateExample\EMailTemplate;
+use OCA\NmcEmailTemplate\EMailTemplate;
 use OCP\IConfig;
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;

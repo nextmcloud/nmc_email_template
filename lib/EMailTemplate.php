@@ -21,7 +21,7 @@
  *
  */
 
-namespace OCA\EmailTemplateExample;
+namespace OCA\NmcEmailTemplate;
 
 use OC\Mail\EMailTemplate as ParentTemplate;
 use OCP\IConfig;
@@ -30,19 +30,19 @@ class EMailTemplate extends ParentTemplate {
 	protected string $urlPath = "";
 	protected string $bodyText = '%s';
 	protected string $heading = <<<EOF
-<table align="center" class="container main-heading float-center" style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
+<table align="center" class="container main-heading float-center" style="margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px">
 	<tbody>
 	<tr style="padding:0;text-align:left;vertical-align:top;">
-		<td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
-			<h1 class="text-center" style="Margin:0;margin-top:20px !important;Margin-bottom:10px;color:inherit;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal">%s</h1>
+		<td style="-moz-hyphens:auto;-webkit-hyphens:auto;margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+			<h1 class="text-center" style="margin:0;margin-top:20px !important;margin-bottom:10px;color:inherit;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal">%s</h1>
 		</td>
 	</tr>
 	</tbody>
 </table>
-<table class="spacer float-center" style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:100%%">
+<table class="spacer float-center" style="margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:100%%">
 	<tbody>
 	<tr style="padding:0;text-align:left;vertical-align:top">
-		<td height="36px" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-size:40px;font-weight:400;hyphens:auto;line-height:36px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">&#xA0;</td>
+		<td height="36px" style="-moz-hyphens:auto;-webkit-hyphens:auto;margin:0;border-collapse:collapse!important;color:#0a0a0a;font-size:40px;font-weight:400;hyphens:auto;line-height:36px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">&#xA0;</td>
 	</tr>
 	</tbody>
 </table>
@@ -159,7 +159,7 @@ EOF;
 	<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #fff;">
 		<tr>
 		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
-		<td class="container" style="font-family: sans-serif; font-size: 14px; display: block; Margin: 0 auto; max-width: 600px; width: 600px;">
+		<td class="container" style="font-family: sans-serif; font-size: 14px; display: block; margin: 0 auto; max-width: 600px; width: 600px;">
 EOF;
 
 
@@ -200,7 +200,7 @@ EOF;
 EOF;
 
 	protected string $bodyBegin = <<<EOF
-<div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;">
+<div class="content" style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 600px;">
 EOF;
 
 
@@ -231,7 +231,6 @@ EOF;
 		string $plainTextLeft = '',
 		string $plainTextRight = '',
 	): void {
-
 		// for the welcome email we omit the left button ("Install client") and only show the button that links to the instance
 		if ($this->emailId === 'settings.Welcome') {
 			parent::addBodyButton($textLeft, $urlLeft, $plainTextLeft);
@@ -244,21 +243,17 @@ EOF;
 	/**
 	 * Adds a header to the email
 	 */
-
 	public function addHeader(): void {
 		$this->setLanguage();
 		if ($this->headerAdded) {
 			return;
 		}
-		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
-		$sloganTranslated = $this->l10n->t('Life is for sharing');
-
-		$this->header = str_replace('host_name', $this->urlPath, $this->header);
-
 		$this->headerAdded = true;
+
+		$this->urlPath = $this->urlGenerator->getAbsoluteURL('/');
+		$this->header = str_replace('host_name', $this->urlPath, $this->header);
 		$this->htmlBody .= $this->header;
 	}
-
 
 	/**
 	 * Adds a heading to the email
@@ -321,7 +316,7 @@ EOF;
 				$this->button = "";
 				$this->buttonGroup = "";
 				$this->subject = $this->l10n->t('Activity notification for MagentaCLOUD');
-				if(isset($this->data['dialyActivity'])) {
+				if(isset($this->data['dailyActivity'])) {
 					$this->subject = $this->l10n->t('Daily activity summary for MagentaCLOUD');
 				}
 				$this->heading = '<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;min-height: 50px;">
@@ -330,9 +325,9 @@ EOF;
 					<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
 					  <tr>
 						<td style="font-family: sans-serif; vertical-align: top;">
-						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('Hello').'
+						  <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; margin-bottom: 16px;">'.$this->l10n->t('Hello').'
 						  '.$this->data["displayname"].',</p>
-						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; Margin-bottom: 16px;">'.$this->l10n->t('There were the following activities in your').' <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
+						  <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">'.$this->l10n->t('There were the following activities in your').' <a href="https://www.magentacloud.de/" style="text-decoration:unset;color:#e20074">MagentaCLOUD.</a></p>
 						</td>
 					  </tr>
 					</table>
@@ -356,71 +351,92 @@ EOF;
 		}
 	}
 
-
-
-
 	/**
 	 * Adds a paragraph to the body of the email
 	 *
-	 * @param string $text Note: When $plainText falls back to this, HTML is automatically escaped in the HTML email
-	 * @param string|bool $plainText Text that is used in the plain text email
-	 *   if empty the $text is used, if false none will be used
+	 * @param string $text Note: When $plainText falls back to this,
+	 * HTML is automatically escaped in the HTML email
+	 * @param string|bool $plainText Text used in the plain text email
 	 */
 	public function addBodyText(string $text, $plainText = ''): void {
 		if ($this->footerAdded) {
 			return;
 		}
+
 		if ($plainText === '') {
 			$plainText = $text;
-			$text = htmlspecialchars($text);
+			$text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 		}
 
 		$this->ensureBodyListClosed();
 		$this->ensureBodyIsOpened();
-		// To DO:- Add condtions based on email event later this is test only
-
 
 		switch ($this->emailId) {
-			case "settings.Welcome":
-				$this->bodyText = include_once 'nmc_email_template/template/welcome_mail.php';
-				$this->htmlBody .= rtrim($this->bodyText, "1");
+			case 'settings.Welcome':
+				$this->htmlBody .= $this->renderTemplate('welcome_mail.php');
 				break;
-			case "sharebymail.RecipientNotification":
-				if($this->data['note'] == null || $this->data['note'] == "") {
-					$text = "";
+
+			case 'sharebymail.RecipientNotification':
+				if (empty($this->data['note'])) {
+					$text = '';
 				}
-				$this->bodyText = include_once 'nmc_email_template/template/sharebymail_recipientNotification.php';
-				$this->htmlBody .= rtrim($this->bodyText, "1");
+
+				$this->htmlBody .= $this->renderTemplate(
+					'sharebymail_recipientNotification.php'
+				);
 				break;
-			case "files_sharing.RecipientNotification":
-				$this->bodyText = include_once 'nmc_email_template/template/files_sharing_recipient_notification.php';
-				$this->htmlBody .= rtrim($this->bodyText, "1");
+
+			case 'files_sharing.RecipientNotification':
+				$this->htmlBody .= $this->renderTemplate(
+					'files_sharing_recipient_notification.php'
+				);
 				break;
-			case "settings.TestEmail":
-				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+
+			case 'quota_warning.Notification':
+				$this->htmlBody .= $this->renderTemplate(
+					'quota_warning.php'
+				);
 				break;
-			case "quote.notification":
-				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+
+			case 'core.EmailVerification':
+				$this->htmlBody .= $this->renderTemplate(
+					'email_verification.php'
+				);
 				break;
-			case "quota_warning.Notification":
-				$this->bodyText = include_once 'nmc_email_template/template/quota_warning.php';
-				$this->htmlBody .= rtrim($this->bodyText, "1");
+
+			case 'activity.Notification':
+				// intentionally no body content
 				break;
-			case "activity.Notification":
-				$this->bodyText = "";
-				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
-				break;
-			case "core.EmailVerification":
-				$this->bodyText = include_once 'nmc_email_template/template/email_verification.php';
-				$this->htmlBody .= rtrim($this->bodyText, "1");
-				break;
+
+			case 'settings.TestEmail':
+			case 'quote.notification':
 			default:
 				$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+				break;
 		}
-		// $this->htmlBody .= vsprintf($this->bodyText, [$text]);
+
 		if ($plainText !== false) {
 			$this->plainBody .= $plainText . PHP_EOL . PHP_EOL;
 		}
+	}
+
+	/**
+	 * Render an email template file
+	 */
+	private function renderTemplate(string $templateName): string {
+		$templatePath = __DIR__ . '/../template/' . $templateName;
+
+		if (!is_file($templatePath)) {
+			return '';
+		}
+
+		$template = include $templatePath;
+
+		if (!is_string($template)) {
+			return '';
+		}
+
+		return rtrim($template, '1');
 	}
 
 	/**
@@ -428,60 +444,64 @@ EOF;
 	 *
 	 * This method completely overwrites the default behaviour.
 	 */
-
 	public function addFooter(string $text = '', ?string $lang = null): void {
-		$this->footer = '<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;border-top:1px solid #191919">
-		<table class="footer-section" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-		  <tr>
-			<td class="copy-right" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #191919; text-align: left;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Telekom Deutschland GmbH</span>
-			</td>
-			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a>&nbsp;</a></span>
-			</td>
-			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a>&nbsp;</a></span>
-			</td>
-			<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;padding-right: 24px;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a href="'.$this->urlPath.'index.php/settings/user">'.$this->l10n->t('Unsubscribe').'</a></span>
-			</td>
-
-
-			</tr>
-<tr>
-			<td class="footer-link" style="padding-left:24px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px; ">
-				<a href="https://static.magentacloud.de/licences/webui.htm">'.$this->l10n->t('Open Source licences').'</a></span>
-			</td>
-<td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px;">
-				<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a></span>
-			</td>
-
-<td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: right;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;"> <a href="https://static.magentacloud.de/Datenschutz">'.$this->l10n->t('Data Protection').'</a></span>
-			</td>
-<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
-			  <span class="apple-link" style="color: #191919; font-size: 12px;"> <a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a></span>
-			</td>
-</tr>
-
-		</table>
-	  </div>';
+		$this->footer = '<div class="footer" style="clear: both; margin-top: 10px; text-align: center; width: 100%; border-top: 1px solid #191919">
+			<table class="footer-section" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+				<tr>
+					<td class="copy-right" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; padding-left:24px; font-size: 12px; color: #191919; text-align: left;">
+						<span class="apple-link" style="color: #191919; font-size: 12px;font-weight: bold;">© Telekom Deutschland GmbH</span>
+					</td>
+					<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+						<span class="apple-link" style="color: #191919; font-size: 12px; ">
+							<a>&nbsp;</a>
+						</span>
+					</td>
+					<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right;">
+						<span class="apple-link" style="color: #191919; font-size: 12px; ">
+							<a>&nbsp;</a>
+						</span>
+					</td>
+					<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #191919; text-align: right; padding-right: 24px;">
+						<span class="apple-link" style="color: #191919; font-size: 12px; ">
+							<a href="'.$this->urlPath.'index.php/settings/user">'.$this->l10n->t('Unsubscribe').'</a>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="footer-link" style="padding-left:24px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
+						<span class="apple-link" style="color: #191919; font-size: 12px; ">
+							<a href="https://static.magentacloud.de/licences/webui.htm">'.$this->l10n->t('Open Source licences').'</a>
+						</span>
+					</td>
+					<td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: left;">
+						<span class="apple-link" style="color: #191919; font-size: 12px;">
+							<a href="http://www.telekom.de/impressum">'.$this->l10n->t('Impressum').'</a>
+						</span>
+					</td>
+					<td class="footer-link" style="padding-right:50px;font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; font-size: 12px; color: #191919; text-align: right;">
+						<span class="apple-link" style="color: #191919; font-size: 12px; text-align: left;">
+							<a href="https://static.magentacloud.de/privacy/datenschutzhinweise_web.htm">'.$this->l10n->t('Data Protection').'</a>
+						</span>
+					</td>
+					<td class="footer-link" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 0px; padding-right: 24px; font-size: 12px; color: #191919; text-align: right;">
+						<span class="apple-link" style="color: #191919; font-size: 12px;">
+							<a href="https://cloud.telekom-dienste.de/hilfe">'.$this->l10n->t('Help & FAQ').'</a>
+						</span>
+					</td>
+				</tr>
+			</table>
+		</div>';
 		if ($this->footerAdded) {
 			return;
 		}
 		$this->footerAdded = true;
 		$this->ensureBodyIsClosed();
 		if($this->emailId == "defaultShareProvider.sendNote" || $this->emailId == "shareByMail.sendNote") {
-			$this->htmlBody = str_replace('style="Margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;float:left !important"', $this->htmlBody);
+			$this->htmlBody = str_replace('style="margin:0 auto;background:0 0!important;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;float:left !important"', $this->htmlBody);
 			$this->htmlBody = str_replace("'Segoe UI'", '', $this->htmlBody);
 			$this->htmlBody = str_replace("'Helvetica Neue'", "", $this->htmlBody);
-			$this->htmlBody = str_replace('style="Margin:0;margin-top:20px !important;Margin-bottom:10px;color:inherit;font-family:-apple-system,BlinkMacSystemFont,,Roboto,Oxygen-Sans,Ubuntu,Cantarell,,Arial,sans-serif;font-size:24px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal"', 'style="Margin:0;margin-top:20px !important;Margin-bottom:10px;color:inherit;font-family:TeleNeo, sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;padding: 0 0 0 24px !important;text-align:left;word-wrap:normal;color:#191919"', $this->htmlBody);
-			$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 600px;"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;padding: 0 0 0 24px !important;margin-bottom:80px"', $this->htmlBody);
+			$this->htmlBody = str_replace('style="margin:0;margin-top:20px !important;margin-bottom:10px;color:inherit;font-family:-apple-system,BlinkMacSystemFont,,Roboto,Oxygen-Sans,Ubuntu,Cantarell,,Arial,sans-serif;font-size:24px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal"', 'style="margin:0;margin-top:20px !important;margin-bottom:10px;color:inherit;font-family:TeleNeo, sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;padding: 0 0 0 24px !important;text-align:left;word-wrap:normal;color:#191919"', $this->htmlBody);
+			$this->htmlBody = str_replace('style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 600px;"', 'style="font-size:16px;font-family: TeleNeo, sans-serif;color:#191919;padding: 0 0 0 24px !important;margin-bottom:80px"', $this->htmlBody);
 			$this->htmlBody = str_replace("</h1>", ":</h1>", $this->htmlBody);
 		}
 		$this->htmlBody .= $this->footer.$this->tail;
