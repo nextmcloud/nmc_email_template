@@ -24,6 +24,7 @@ on:
         options: 
           - master
           - stable32
+          - stable33
       increment:
         description: 'Release increment'
         required: true
