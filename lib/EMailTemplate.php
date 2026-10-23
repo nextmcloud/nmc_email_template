@@ -125,19 +125,21 @@ EOF;
 EOF;
 
 	private ?IL10N $nmcL10n = null;
+	private ?string $nmcLanguage = null;
 	private array $renderedTemplates = [];
+	private ?string $shareRecipientHeading = null;
+	private array $shareRecipientContent = [];
+	private ?array $shareRecipientButton = null;
+	private bool $shareRecipientRendered = false;
 
 	public function setLanguage(string $language): void {
-		parent::setLanguage($language);
-		$this->nmcL10n = $this->l10nFactory->get('nmc_email_template', $language !== '' ? $language : null);
+		$this->nmcLanguage = $language !== '' ? $language : null;
+		$this->nmcL10n = null;
 	}
 
 	private function getL10n(): IL10N {
 		if ($this->nmcL10n === null) {
-			$language = $this->language ?? $this->l10nFactory->findLanguage();
-			if ($this->language === null && $language !== '') {
-				parent::setLanguage($language);
-			}
+			$language = $this->nmcLanguage ?? $this->l10nFactory->findLanguage();
 			$this->nmcL10n = $this->l10nFactory->get('nmc_email_template', $language !== '' ? $language : null);
 		}
 		return $this->nmcL10n;
@@ -152,6 +154,11 @@ EOF;
 
 	private function escape(string $value): string {
 		return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+	}
+
+	private function toPlainText(string $value): string {
+		$value = str_ireplace(['<br>', '<br/>', '<br />'], PHP_EOL, $value);
+		return trim(html_entity_decode(strip_tags($value), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 	}
 
 	private function renderTemplate(string $templateName, array $variables = []): string {
@@ -181,6 +188,10 @@ EOF;
 		return $this->emailId === 'defaultShareProvider.sendNote' || $this->emailId === 'shareByMail.sendNote';
 	}
 
+	private function isShareRecipientMail(): bool {
+		return $this->emailId === 'sharebymail.RecipientNotification' || $this->emailId === 'files_sharing.RecipientNotification';
+	}
+
 	private function suppressCoreButtons(): bool {
 		return in_array($this->emailId, [
 			'settings.Welcome',
@@ -193,6 +204,80 @@ EOF;
 			'activity.Notification',
 			'core.EmailVerification',
 		], true);
+	}
+
+	private function renderShareRecipientMail(): void {
+		if ($this->shareRecipientRendered) {
+			return;
+		}
+
+		$this->shareRecipientRendered = true;
+		$this->ensureBodyListClosed();
+		$this->ensureBodyIsOpened();
+
+		$l = $this->getL10n();
+		$displayName = trim((string)($this->data['shareWithDisplayName'] ?? ''));
+		$hello = $this->escape($l->t('Hello'));
+		$greeting = $displayName !== ''
+			? $hello . ' ' . $this->escape($displayName) . ','
+			: $hello . ',';
+
+		$heading = $this->escape($this->shareRecipientHeading ?? $this->subject);
+
+		$mainText = '';
+		$detailsHtml = '';
+
+		foreach ($this->shareRecipientContent as $item) {
+			if ($item['type'] === 'text' && $mainText === '') {
+				$mainText = $this->escape($item['text']);
+				continue;
+			}
+
+			if ($item['type'] === 'list') {
+				$meta = $this->escape($item['meta']);
+				$text = $this->escape($item['text']);
+
+				if ($meta !== '') {
+					$detailsHtml .= <<<EOF
+	<div style="margin-top:16px;padding-top:16px;border-top:1px solid #d9d9d9;">
+		<div style="font-size:12px;font-weight:bold;color:#191919;margin-bottom:4px;">{$meta}</div>
+		<div style="font-size:12px;color:#555;">{$text}</div>
+	</div>
+	EOF;
+				} elseif ($text !== '') {
+					$detailsHtml .= <<<EOF
+	<div style="margin-top:16px;padding-top:16px;border-top:1px solid #d9d9d9;font-size:12px;color:#555;">{$text}</div>
+	EOF;
+				}
+			}
+		}
+
+		if ($mainText === '') {
+			$mainText = $heading;
+		}
+
+		$buttonText = $this->shareRecipientButton['text'] ?? $l->t('Open share');
+		$buttonUrl = $this->shareRecipientButton['url'] ?? (string)($this->data['link'] ?? '');
+
+		$buttonHtml = '';
+		if ($buttonUrl !== '') {
+			$buttonHtml = <<<EOF
+	<p style="margin:24px 0 0;">
+		<a href="{$this->escape($buttonUrl)}" target="_blank" style="display:inline-block;background:#e20074;color:#fff;text-decoration:none;border-radius:8px;padding:12px 24px;font-size:12px;font-weight:bold;">{$this->escape($buttonText)}</a>
+	</p>
+	EOF;
+		}
+
+		$this->htmlBody .= <<<EOF
+	<div style="font-family:sans-serif;font-size:14px;color:#191919;padding:24px 24px 48px;">
+		<p style="font-weight:bold;margin:0 0 16px;">{$greeting}</p>
+		<div style="background:#f1f1f1;border-radius:4px;padding:24px;margin:0;">
+			<div style="font-size:16px;font-weight:bold;line-height:1.5;">{$mainText}</div>
+			{$detailsHtml}
+		</div>
+		{$buttonHtml}
+	</div>
+	EOF;
 	}
 
 	public function addHeader(): void {
@@ -208,60 +293,53 @@ EOF;
 		if ($this->footerAdded) {
 			return;
 		}
-
 		if ($plainTitle === '') {
 			$plainTitle = $title;
 		}
 
 		$this->ensureBodyIsClosed();
+
+		if ($this->isShareRecipientMail()) {
+			$this->shareRecipientHeading = $this->toPlainText($title);
+			if ($plainTitle !== false) {
+				$this->plainBody .= $plainTitle . PHP_EOL . PHP_EOL;
+			}
+			return;
+		}
+
 		$l = $this->getL10n();
 
 		switch ($this->emailId) {
 			case 'settings.Welcome':
 				$this->subject = $l->t('Welcome to the MagentaCLOUD');
 				break;
-
 			case 'defaultShareProvider.sendNote':
 			case 'shareByMail.sendNote':
 				$this->htmlBody .= vsprintf($this->shareNoteHeading, [$this->escape($title)]);
 				break;
-
-			case 'sharebymail.RecipientNotification':
-			case 'files_sharing.RecipientNotification':
-				$initiator = (string)($this->data['initiator'] ?? '');
-				$filename = (string)($this->data['filename'] ?? '');
-				$this->subject = $initiator . ' ' . $l->t('shared') . ' "' . $filename . '" ' . $l->t('with you');
-				break;
-
 			case 'settings.TestEmail':
 				$this->htmlBody .= vsprintf($this->heading, [$this->escape($title)]);
 				break;
-
 			case 'quote.notification':
 				$this->subject = $l->t('Your MagentaCLOUD status mail');
 				$this->htmlBody .= vsprintf($this->heading, [$this->escape($title)]);
 				break;
-
 			case 'quota_warning.Notification':
 				$this->subject = $l->t('Nearing your storage quota');
 				break;
-
 			case 'activity.Notification':
 				$this->subject = isset($this->data['dailyActivity'])
 					? $l->t('Daily activity summary for MagentaCLOUD')
 					: $l->t('Activity notification for MagentaCLOUD');
-
 				$this->appendTemplateOnce('activity-intro', 'activity_notification_intro.php', [
 					'hello' => $this->escape($l->t('Hello')),
 					'displayName' => $this->escape((string)($this->data['displayname'] ?? '')),
 					'activityText' => $this->escape($l->t('There were the following activities in your')),
 				]);
 				break;
-
 			case 'core.EmailVerification':
 				$this->subject = $l->t('MagentaCLOUD email verification');
 				break;
-
 			default:
 				parent::addHeading($title, $plainTitle);
 				return;
@@ -285,13 +363,24 @@ EOF;
 			return;
 		}
 
+		if ($this->isShareRecipientMail()) {
+			$plain = $plainText === '' ? $this->toPlainText($text) : $plainText;
+			$this->shareRecipientContent[] = [
+				'type' => 'text',
+				'text' => $plain === false ? $this->toPlainText($text) : $this->toPlainText((string)$plain),
+			];
+			if ($plain !== false) {
+				$this->plainBody .= $plain . PHP_EOL . PHP_EOL;
+			}
+			return;
+		}
+
 		$l = $this->getL10n();
 		$plain = $plainText === '' ? $text : $plainText;
 
 		switch ($this->emailId) {
 			case 'settings.Welcome':
 				$baseUrl = $this->getUrlPath();
-
 				$this->appendTemplateOnce('welcome', 'welcome_mail.php', [
 					'hello' => $this->escape($l->t('Hello')),
 					'displayName' => $this->escape((string)($this->data['displayname'] ?? $this->data['displayName'] ?? '')),
@@ -318,23 +407,6 @@ EOF;
 					'checkmarkUrl' => $this->escape($baseUrl . 'customapps/nmctheme/img/email/checkmark.png'),
 				]);
 				break;
-
-			case 'sharebymail.RecipientNotification':
-			case 'files_sharing.RecipientNotification':
-				$this->appendTemplateOnce('share-recipient', 'share_recipient_notification.php', [
-					'hello' => $this->escape($l->t('Hello')),
-					'displayName' => $this->escape((string)($this->data['shareWithDisplayName'] ?? '')),
-					'initiator' => $this->escape((string)($this->data['initiator'] ?? '')),
-					'filename' => $this->escape((string)($this->data['filename'] ?? '')),
-					'hasShared' => $this->escape($l->t('has shared')),
-					'shareDescription' => $this->escape($l->t('With You. Click button below to accept and open it.')),
-					'openShare' => $this->escape($l->t('Open share')),
-					'messageFrom' => $this->escape($l->t('Message from')),
-					'message' => $this->escape(trim(strip_tags($text))),
-					'link' => $this->escape((string)($this->data['link'] ?? '')),
-				]);
-				break;
-
 			case 'quota_warning.Notification':
 				$this->appendTemplateOnce('quota-warning', 'quota_warning.php', [
 					'usedValue' => $this->escape((string)($this->data['usedSpace'][0] ?? '')),
@@ -354,7 +426,6 @@ EOF;
 					'trashUrl' => $this->escape($this->getUrlPath() . 'index.php/apps/files/?dir=/&view=trashbin'),
 				]);
 				break;
-
 			case 'core.EmailVerification':
 				$this->appendTemplateOnce('email-verification', 'email_verification.php', [
 					'title' => $this->escape($l->t('Email verification')),
@@ -363,10 +434,8 @@ EOF;
 					'link' => $this->escape((string)($this->data['link'] ?? '')),
 				]);
 				break;
-
 			case 'activity.Notification':
 				break;
-
 			case 'defaultShareProvider.sendNote':
 			case 'shareByMail.sendNote':
 			case 'settings.TestEmail':
@@ -381,6 +450,55 @@ EOF;
 		}
 	}
 
+	public function addBodyListItem(
+		string $text,
+		string $metaInfo = '',
+		string $icon = '',
+		$plainText = '',
+		$plainMetaInfo = '',
+		$plainIndent = 0,
+	): void {
+		if (!$this->isShareRecipientMail()) {
+			parent::addBodyListItem($text, $metaInfo, $icon, $plainText, $plainMetaInfo, $plainIndent);
+			return;
+		}
+		if ($this->footerAdded) {
+			return;
+		}
+
+		$this->shareRecipientContent[] = [
+			'type' => 'list',
+			'text' => $this->toPlainText($text),
+			'meta' => $this->toPlainText($metaInfo),
+		];
+
+		if ($plainText === '' || $plainText === true) {
+			$plainText = $this->toPlainText($text);
+		}
+		if ($plainMetaInfo === '' || $plainMetaInfo === true) {
+			$plainMetaInfo = $this->toPlainText($metaInfo);
+		}
+		if ($plainText === false) {
+			return;
+		}
+
+		if ($plainIndent === 0) {
+			$this->plainBody .= ' * ' . $plainText;
+			if ($plainMetaInfo !== false) {
+				$this->plainBody .= ' (' . $plainMetaInfo . ')';
+			}
+			$this->plainBody .= PHP_EOL;
+			return;
+		}
+
+		$label = $plainMetaInfo !== false ? $plainMetaInfo : '';
+		$this->plainBody .= sprintf(
+			"%{$plainIndent}s %s\n",
+			$label,
+			str_replace("\n", "\n" . str_repeat(' ', $plainIndent + 1), $plainText),
+		);
+	}
+
 	public function addBodyButtonGroup(
 		string $textLeft,
 		string $urlLeft,
@@ -393,34 +511,45 @@ EOF;
 			parent::addBodyButtonGroup($textLeft, $urlLeft, $textRight, $urlRight, $plainTextLeft, $plainTextRight);
 			return;
 		}
-
 		if ($this->footerAdded) {
 			return;
 		}
-
 		if ($plainTextLeft === '') {
 			$plainTextLeft = $textLeft;
 		}
 		if ($plainTextRight === '') {
 			$plainTextRight = $textRight;
 		}
-
 		if ($this->emailId === 'settings.Welcome') {
 			$this->plainBody .= $plainTextLeft . ': ' . $urlLeft . PHP_EOL;
 			return;
 		}
-
 		$this->plainBody .= PHP_EOL . $plainTextLeft . ': ' . $urlLeft . PHP_EOL;
 		$this->plainBody .= $plainTextRight . ': ' . $urlRight . PHP_EOL . PHP_EOL;
 	}
 
 	public function addBodyButton(string $text, string $url, $plainText = ''): void {
-		if (!$this->suppressCoreButtons()) {
-			parent::addBodyButton($text, $url, $plainText);
+		if ($this->footerAdded) {
 			return;
 		}
 
-		if ($this->footerAdded) {
+		if ($this->isShareRecipientMail()) {
+			$this->shareRecipientButton = [
+				'text' => $this->toPlainText($text),
+				'url' => $url,
+			];
+			if ($plainText === '') {
+				$plainText = $text;
+			}
+			if ($plainText !== false) {
+				$this->plainBody .= $plainText . ': ';
+			}
+			$this->plainBody .= $url . PHP_EOL;
+			return;
+		}
+
+		if (!$this->suppressCoreButtons()) {
+			parent::addBodyButton($text, $url, $plainText);
 			return;
 		}
 
@@ -438,19 +567,15 @@ EOF;
 			parent::addBodyButtons($buttons, $label);
 			return;
 		}
-
 		if ($this->footerAdded) {
 			return;
 		}
-
 		if ($label !== '') {
 			$this->plainBody .= $label . PHP_EOL;
 		}
-
 		foreach ($buttons as $button) {
 			$this->plainBody .= $button['text'] . ': ' . $button['url'] . PHP_EOL;
 		}
-
 		$this->plainBody .= PHP_EOL;
 	}
 
@@ -458,9 +583,11 @@ EOF;
 		if ($this->footerAdded) {
 			return;
 		}
-
 		if ($lang !== null && $lang !== '') {
 			$this->setLanguage($lang);
+		}
+		if ($this->isShareRecipientMail()) {
+			$this->renderShareRecipientMail();
 		}
 
 		$l = $this->getL10n();
@@ -513,7 +640,7 @@ EOF;
 			$this->plainBody .= trim(html_entity_decode(
 				strip_tags(str_ireplace(['<br>', '<br/>', '<br />'], PHP_EOL, $text)),
 				ENT_QUOTES | ENT_HTML5,
-				'UTF-8'
+				'UTF-8',
 			)) . PHP_EOL;
 		}
 

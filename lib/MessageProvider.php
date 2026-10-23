@@ -43,22 +43,27 @@ class MessageProvider extends BaseMessageProvider {
 		if ($bytes < 1024) {
 			return [$bytes, 'B'];
 		}
+
 		$bytes = round($bytes / 1024, 0);
 		if ($bytes < 1024) {
 			return [$bytes, 'KB'];
 		}
+
 		$bytes = round($bytes / 1024, 1);
 		if ($bytes < 1024) {
 			return [$bytes, 'MB'];
 		}
+
 		$bytes = round($bytes / 1024, 1);
 		if ($bytes < 1024) {
 			return [$bytes, 'GB'];
 		}
+
 		$bytes = round($bytes / 1024, 1);
 		if ($bytes < 1024) {
 			return [$bytes, 'TB'];
 		}
+
 		$bytes = round($bytes / 1024, 1);
 		return [$bytes, 'PB'];
 	}
@@ -90,7 +95,8 @@ class MessageProvider extends BaseMessageProvider {
 				$content = $this->l->t('Your storage has no quota limit.');
 				break;
 			case self::STORAGE_SPACE_LEFT:
-				$content = $this->l->t('You still have available storage space.');
+				$percentage = max(0, min(100, 100 - $percentage));
+				$content = $this->l->t('of your storage space is still available.');
 				break;
 		}
 
@@ -100,26 +106,13 @@ class MessageProvider extends BaseMessageProvider {
 				'<a href="%s" target="_blank" style="%s">%s</a>',
 				'https://cloud.telekom-dienste.de/tarife',
 				'display:inline-block;color:#191919;background-color:#f1f1f1;border:1px solid #191919;border-radius:8px;text-decoration:none;font-size:12px;font-weight:bold;padding:12px 24px;',
-				htmlspecialchars($expandStorage, ENT_QUOTES, 'UTF-8')
+				htmlspecialchars($expandStorage, ENT_QUOTES, 'UTF-8'),
 			);
 		}
 
 		$emailTemplate->addBodyText(
-			$this->buildStorageHtml(
-				$storage,
-				$usedSpace,
-				$quota,
-				$percentage,
-				$content,
-				$expandable
-			),
-			$this->l->t(
-				'Storage space: %s %s used.',
-				[
-					$usedSpace[0],
-					$usedSpace[1],
-				]
-			)
+			$this->buildStorageHtml($storage, $usedSpace, $quota, $percentage, $content, $expandable),
+			$this->l->t('Storage space: %s %s used.', [$usedSpace[0], $usedSpace[1]]),
 		);
 	}
 
@@ -139,36 +132,24 @@ class MessageProvider extends BaseMessageProvider {
 		$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 
 		return <<<EOF
-		<div class="content" style="max-width:600px;margin:0 auto;">
-			<table role="presentation" style="width:100%;">
-				<tr>
-					<td style="padding:32px 24px;">
-						<div style="text-align:center;background:#f1f1f1;padding:48px 24px 24px;">
-							<span style="font-size:32px;color:#e20074">
-								{$usedValue}
-							</span>
-							<span style="font-size:16px;">
-								{$usedUnit}
-							</span>
-							<br>
-							<div style="margin:16px 0;border-top:1px solid #191919;">
-								<span style="font-size:32px;">
-									{$quotaValue}
-								</span>
-								<span style="font-size:16px;">
-									{$quotaUnit}
-								</span>
-							</div>
-							<span style="font-weight:bold;">
-								{$storage}
-							</span>
-							<p style="font-size:12px;margin:8px 0 16px;">
-								<strong>{$percentage}%</strong>
-								{$content}
-							</p>
-							{$expandable}
-						</div>
-		EOF;
+<div class="content" style="max-width:600px;margin:0 auto;">
+	<table class="monthly-details" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:separate;">
+		<tr>
+			<td class="monthly-storage" style="width:50%;vertical-align:top;padding:32px 12px 24px 24px;font-family:sans-serif;font-size:14px;">
+				<div style="height:290px;box-sizing:border-box;text-align:center;background:#f1f1f1;padding:48px 24px 24px;">
+					<span style="font-size:32px;color:#e20074;">{$usedValue}</span>
+					<span style="font-size:16px;">{$usedUnit}</span>
+					<div style="margin:16px 0;border-top:1px solid #191919;padding-top:6px;">
+						<span style="font-size:32px;">{$quotaValue}</span>
+						<span style="font-size:16px;">{$quotaUnit}</span>
+					</div>
+					<span style="font-weight:bold;">{$storage}</span>
+					<p style="font-size:12px;margin:8px 0 16px;">
+						<strong>{$percentage} %</strong> {$content}
+					</p>
+					{$expandable}
+				</div>
+EOF;
 	}
 
 	public function writeStorageFull(IEMailTemplate $emailTemplate, array $storageInfo): void {
@@ -188,31 +169,26 @@ class MessageProvider extends BaseMessageProvider {
 	}
 
 	public function writeWelcomeMail(IEMailTemplate $emailTemplate, string $name): void {
-		$emailTemplate->addHeading(
-			$this->l->t('Welcome %s!', [$name])
-		);
+		$emailTemplate->addHeading($this->l->t('Welcome %s!', [$name]));
 		$emailTemplate->addBodyText(
 			$this->l->t(
 				'With the status mail for %s, we inform you once a month about your used storage space and your granted shares.',
-				[$this->entity]
+				[$this->entity],
 			),
 			$this->l->t(
 				'With the status mail for %s, we inform you once a month about your used storage space and your granted shares.',
-				[$this->entity]
-			)
+				[$this->entity],
+			),
 		);
 		$emailTemplate->addBodyText(
 			$this->l->t(
 				'We also give you tips and tricks for using your %s every day. You can find out how to upload, move, share files and more here: <a href="%s">Help</a>',
-				[
-					$this->entity,
-					'https://cloud.telekom-dienste.de/hilfe',
-				]
+				[$this->entity, 'https://cloud.telekom-dienste.de/hilfe'],
 			),
 			$this->l->t(
 				'We also give you tips and tricks for using your %s every day. You can find out how to upload, move, share files and more here: Help',
-				[$this->entity]
-			)
+				[$this->entity],
+			),
 		);
 	}
 
@@ -225,25 +201,23 @@ class MessageProvider extends BaseMessageProvider {
 
 		$emailTemplate->addBodyText(
 			<<<EOF
-					</td>
-					<td class="monthly-storage" style="text-align: center; font-family: sans-serif; font-size: 14px; vertical-align: top; padding-left: 12px; width: 50%;">
-						<div style="background: #f1f1f1; border-top: 48px solid #f1f1f1; border-right: 24px solid #f1f1f1; border-left: 24px solid #f1f1f1; border-bottom: 24px solid #f1f1f1;">
-							<img src="{$home}/customapps/nmctheme/img/email/user-share.svg" style="width: 48px;">
-							<div style="border-top: 8px solid #f1f1f1; border-bottom: 8px solid #f1f1f1;">
-								<span style="font-size: 24px;">
-									<span style="color: #e20074;">{$shareCount}</span>
-								</span>
-							</div>
-							<br>
-							<span style="font-weight: bold;">{$share}</span>
-							<p style="font-size: 12px; margin-top: 8px; margin-bottom: 16px;">{$content1} {$shareCount} {$content2}</p>
-							<a href="{$home}/apps/files/?dir=/&view=sharingout" target="_blank" style="display: inline-block; color: #191919; background-color: #f1f1f1; border: 1px solid #191919; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 12px; font-weight: bold; margin: 0; padding: 12px 24px;">{$myShare}</a>
-						</div>
-					</td>
-				</tr>
-			</table>
-			EOF,
-			'.'
+			</td>
+			<td class="monthly-storage" style="width:50%;vertical-align:top;padding:32px 24px 24px 12px;text-align:center;font-family:sans-serif;font-size:14px;">
+				<div style="height:290px;box-sizing:border-box;text-align:center;background:#f1f1f1;padding:48px 24px 24px;">
+					<img src="{$home}/customapps/nmctheme/img/email/user-share.svg" alt="" style="display:block;width:48px;height:48px;margin:0 auto;">
+					<div style="margin:8px 0;">
+						<span style="font-size:24px;color:#e20074;">{$shareCount}</span>
+					</div>
+					<span style="font-weight:bold;">{$share}</span>
+					<p style="font-size:12px;margin:8px 0 16px;">{$content1} {$shareCount} {$content2}</p>
+					<a href="{$home}/apps/files/sharingout" target="_blank" style="display:inline-block;color:#191919;background-color:#f1f1f1;border:1px solid #191919;border-radius:8px;box-sizing:border-box;text-decoration:none;font-size:12px;font-weight:bold;padding:12px 24px;">{$myShare}</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+EOF,
+			'.',
 		);
 	}
 
@@ -284,7 +258,10 @@ class MessageProvider extends BaseMessageProvider {
 				'link' => 'https://cloud.telekom-dienste.de/software-apps',
 				'linkText' => $this->l->t('Here you can find our software for download.'),
 			],
-			self::TIP_DISCOVER_PARTNER, self::TIP_EMAIL_CENTER, self::TIP_MORE_STORAGE, self::DEFAULT_MESSAGE => [
+			self::TIP_DISCOVER_PARTNER,
+			self::TIP_EMAIL_CENTER,
+			self::TIP_MORE_STORAGE,
+			self::DEFAULT_MESSAGE => [
 				'paragraph1' => $this->l->t('With the MagentaCLOUD status e-mail, we will inform you once a month about the storage space you have used and the permissions you have been granted.'),
 				'paragraph2' => $this->l->t('We also give you tips and tricks on how to use your MagentaCLOUD on a daily basis.'),
 				'paragraph3' => $this->l->t('You can find out how to upload, move, share, etc. files here:'),
@@ -304,16 +281,14 @@ class MessageProvider extends BaseMessageProvider {
 	private function setLanguageForUser(IUser $user): void {
 		$this->l = $this->l10nFactory->get(
 			'nmc_email_template',
-			$this->l10nFactory->getUserLanguage($user)
+			$this->l10nFactory->getUserLanguage($user),
 		);
 	}
 
 	public function writeGenericMessage(IEMailTemplate $emailTemplate, IUser $user, int $messageId): void {
 		$this->setLanguageForUser($user);
 		$content = $this->getContent($messageId);
-		$emailTemplate->setSubject(
-			$this->l->t('Your MagentaCLOUD status mail')
-		);
+		$emailTemplate->setSubject($this->l->t('Your MagentaCLOUD status mail'));
 
 		$username = htmlspecialchars($user->getDisplayName(), ENT_QUOTES, 'UTF-8');
 		$home = htmlspecialchars(rtrim($this->generator->getAbsoluteURL('/'), '/'), ENT_QUOTES, 'UTF-8');
@@ -326,39 +301,35 @@ class MessageProvider extends BaseMessageProvider {
 
 		$linkHtml = $content['link'] !== '' && $content['linkText'] !== ''
 			? sprintf(
-				'<p style="margin:0 0 16px 0;"><a href="%s" style="color:#e20074;text-decoration:none;">%s</a></p>',
+				'<p style="margin:0 0 16px;"><a href="%s" style="color:#e20074;text-decoration:none;">%s</a></p>',
 				htmlspecialchars($content['link'], ENT_QUOTES, 'UTF-8'),
-				htmlspecialchars($content['linkText'], ENT_QUOTES, 'UTF-8')
+				htmlspecialchars($content['linkText'], ENT_QUOTES, 'UTF-8'),
 			)
 			: '';
 
 		$emailTemplate->addBodyText(
 			<<<EOF
-			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;width:100%;">
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;width:100%;">
+	<tr>
+		<td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
+			<p style="font-weight:bold;margin:32px 0 16px;">{$hello} {$username},</p>
+			<p style="margin:0 0 16px;">{$paragraph1}</p>
+			<p style="margin:0 0 16px;">{$paragraph2}</p>
+			<p style="margin:0 0 16px;">{$paragraph3}</p>
+			{$linkHtml}
+			<p style="margin:16px 0 32px;">{$yourTelekom}</p>
+			<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
 				<tr>
-					<td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
-						<p style="font-weight:bold;margin:32px 0 16px 0;">
-							{$hello} {$username},
-						</p>
-						<p style="margin:0 0 16px 0;">{$paragraph1}</p>
-						<p style="margin:0 0 16px 0;">{$paragraph2}</p>
-						<p style="margin:0 0 16px 0;">{$paragraph3}</p>
-						{$linkHtml}
-						<p style="margin:16px 0 32px 0;">{$yourTelekom}</p>
-						<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
-							<tr>
-								<td align="left" style="padding-bottom:32px;">
-									<a href="{$home}" target="_blank" style="display:inline-block;background:#e20074;color:#ffffff;text-decoration:none;border-radius:8px;padding:12px 24px;font-size:12px;font-weight:bold;">
-										{$openMagentaCLOUD}
-									</a>
-								</td>
-							</tr>
-						</table>
+					<td align="left" style="padding-bottom:32px;">
+						<a href="{$home}" target="_blank" style="display:inline-block;background:#e20074;color:#fff;text-decoration:none;border-radius:8px;padding:12px 24px;font-size:12px;font-weight:bold;">{$openMagentaCLOUD}</a>
 					</td>
 				</tr>
 			</table>
-			EOF,
-			'.'
+		</td>
+	</tr>
+</table>
+EOF,
+			'.',
 		);
 	}
 }
