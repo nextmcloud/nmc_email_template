@@ -206,6 +206,28 @@ EOF;
 		], true);
 	}
 
+	private function formatQuotaStorage(int $usedBytes, int $quotaBytes): array {
+		if ($usedBytes < 0 || $quotaBytes <= 0) {
+			return [
+				'used' => ['?', ''],
+				'quota' => ['?', ''],
+			];
+		}
+
+		$quotaGb = $quotaBytes / 1024 ** 3;
+
+		if ($quotaGb <= 5) {
+			$used = [round($usedBytes / 1024 ** 2, 1), 'MB'];
+		} else {
+			$used = [round($usedBytes / 1024 ** 3, 1), 'GB'];
+		}
+
+		return [
+			'used' => $used,
+			'quota' => [round($quotaGb), 'GB'],
+		];
+	}
+
 	private function renderShareRecipientMail(): void {
 		if ($this->shareRecipientRendered) {
 			return;
@@ -223,7 +245,6 @@ EOF;
 			: $hello . ',';
 
 		$heading = $this->escape($this->shareRecipientHeading ?? $this->subject);
-
 		$mainText = '';
 		$detailsHtml = '';
 
@@ -239,15 +260,15 @@ EOF;
 
 				if ($meta !== '') {
 					$detailsHtml .= <<<EOF
-	<div style="margin-top:16px;padding-top:16px;border-top:1px solid #d9d9d9;">
-		<div style="font-size:12px;font-weight:bold;color:#191919;margin-bottom:4px;">{$meta}</div>
-		<div style="font-size:12px;color:#555;">{$text}</div>
-	</div>
-	EOF;
+<div style="margin-top:16px;padding-top:16px;border-top:1px solid #d9d9d9;">
+	<div style="font-size:12px;font-weight:bold;color:#191919;margin-bottom:4px;">{$meta}</div>
+	<div style="font-size:12px;color:#555;">{$text}</div>
+</div>
+EOF;
 				} elseif ($text !== '') {
 					$detailsHtml .= <<<EOF
-	<div style="margin-top:16px;padding-top:16px;border-top:1px solid #d9d9d9;font-size:12px;color:#555;">{$text}</div>
-	EOF;
+<div style="margin-top:16px;padding-top:16px;border-top:1px solid #d9d9d9;font-size:12px;color:#555;">{$text}</div>
+EOF;
 				}
 			}
 		}
@@ -258,26 +279,26 @@ EOF;
 
 		$buttonText = $this->shareRecipientButton['text'] ?? $l->t('Open share');
 		$buttonUrl = $this->shareRecipientButton['url'] ?? (string)($this->data['link'] ?? '');
-
 		$buttonHtml = '';
+
 		if ($buttonUrl !== '') {
 			$buttonHtml = <<<EOF
-	<p style="margin:24px 0 0;">
-		<a href="{$this->escape($buttonUrl)}" target="_blank" style="display:inline-block;background:#e20074;color:#fff;text-decoration:none;border-radius:8px;padding:12px 24px;font-size:12px;font-weight:bold;">{$this->escape($buttonText)}</a>
-	</p>
-	EOF;
+<p style="margin:24px 0 0;">
+	<a href="{$this->escape($buttonUrl)}" target="_blank" style="display:inline-block;background:#e20074;color:#fff;text-decoration:none;border-radius:8px;padding:12px 24px;font-size:12px;font-weight:bold;">{$this->escape($buttonText)}</a>
+</p>
+EOF;
 		}
 
 		$this->htmlBody .= <<<EOF
-	<div style="font-family:sans-serif;font-size:14px;color:#191919;padding:24px 24px 48px;">
-		<p style="font-weight:bold;margin:0 0 16px;">{$greeting}</p>
-		<div style="background:#f1f1f1;border-radius:4px;padding:24px;margin:0;">
-			<div style="font-size:16px;font-weight:bold;line-height:1.5;">{$mainText}</div>
-			{$detailsHtml}
-		</div>
-		{$buttonHtml}
+<div style="font-family:sans-serif;font-size:14px;color:#191919;padding:24px 24px 48px;">
+	<p style="font-weight:bold;margin:0 0 16px;">{$greeting}</p>
+	<div style="background:#f1f1f1;border-radius:4px;padding:24px;margin:0;">
+		<div style="font-size:16px;font-weight:bold;line-height:1.5;">{$mainText}</div>
+		{$detailsHtml}
 	</div>
-	EOF;
+	{$buttonHtml}
+</div>
+EOF;
 	}
 
 	public function addHeader(): void {
@@ -325,7 +346,10 @@ EOF;
 				$this->htmlBody .= vsprintf($this->heading, [$this->escape($title)]);
 				break;
 			case 'quota_warning.Notification':
-				$this->subject = $l->t('Nearing your storage quota');
+				$percentage = min(100, (int)round((float)($this->data['quota'] ?? 0)));
+				$this->subject = $percentage >= 100
+					? $l->t('Your storage quota is full')
+					: $l->t('Nearing your storage quota');
 				break;
 			case 'activity.Notification':
 				$this->subject = isset($this->data['dailyActivity'])
@@ -408,22 +432,39 @@ EOF;
 				]);
 				break;
 			case 'quota_warning.Notification':
+				$storage = $this->formatQuotaStorage(
+					(int)($this->data['used'] ?? 0),
+					(int)($this->data['quotaBytes'] ?? 0),
+				);
+				$usedSpace = $storage['used'];
+				$quota = $storage['quota'];
+				$percentage = min(100, (int)round((float)($this->data['quota'] ?? 0)));
+				$isFull = $percentage >= 100;
+				$quotaDescription = $isFull
+					? $l->t('of your storage is occupied. You cannot upload any more files. Free up storage space by deleting files or emptying your recycle bin.')
+					: $l->t('of your storage is currently occupied. Once your storage is full, you cannot upload any more files. You can free up space by removing files or emptying your recycle bin.');
+				$statusText = $isFull
+					? $l->t('Your MagentaCLOUD storage is full. You cannot upload any more files. Free up storage space or expand your storage to continue uploading files.')
+					: $l->t('Your MagentaCLOUD storage is almost full. Free up storage space or expand your storage to continue uploading files.');
+
 				$this->appendTemplateOnce('quota-warning', 'quota_warning.php', [
-					'usedValue' => $this->escape((string)($this->data['usedSpace'][0] ?? '')),
-					'usedUnit' => $this->escape((string)($this->data['usedSpace'][1] ?? '')),
-					'quotaValue' => $this->escape((string)($this->data['quota1'][0] ?? '')),
-					'quotaUnit' => $this->escape((string)($this->data['quota1'][1] ?? '')),
-					'percentage' => $this->escape((string)($this->data['quota'] ?? '')),
+					'usedValue' => $this->escape((string)$usedSpace[0]),
+					'usedUnit' => $this->escape((string)$usedSpace[1]),
+					'quotaValue' => $this->escape((string)$quota[0]),
+					'quotaUnit' => $this->escape((string)$quota[1]),
+					'percentage' => $this->escape((string)$percentage),
 					'displayName' => $this->escape((string)($this->data['displayName'] ?? '')),
-					'quotaWarning' => $this->escape($l->t('Quota warning')),
-					'quotaDescription' => $this->escape($l->t('of your storage is currently occupied. Once your storage is full, you cannot upload any more files. However, you can remove files or empty your recycle bin at any time.')),
-					'orderNow' => $this->escape($l->t('Order now')),
-					'openTrash' => $this->escape($l->t('Open the trash')),
+					'quotaWarning' => $this->escape($isFull ? $l->t('Storage full') : $l->t('Quota warning')),
+					'quotaDescription' => $this->escape($quotaDescription),
+					'orderNow' => $this->escape($l->t('Expand storage')),
+					'openTrash' => $this->escape($l->t('Empty recycle bin')),
 					'hello' => $this->escape($l->t('Hello')),
-					'statusText' => $this->escape($l->t('With the MagentaCLOUD status email, we inform you once a month about the storage space you have used and the shares you have created.')),
+					'statusText' => $this->escape($statusText),
 					'yourTelekom' => $this->escape($l->t('Your Telekom')),
 					'openMagentaCloud' => $this->escape($l->t('Open MagentaCLOUD')),
+					'orderUrl' => 'https://cloud.telekom-dienste.de/tarife',
 					'trashUrl' => $this->escape($this->getUrlPath() . 'index.php/apps/files/?dir=/&view=trashbin'),
+					'homeUrl' => $this->escape($this->getUrlPath()),
 				]);
 				break;
 			case 'core.EmailVerification':
